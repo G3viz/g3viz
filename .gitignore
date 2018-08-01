@@ -5,7 +5,6 @@
 packrat/lib*/
 data-raw/temp/
 R/temp/
-test/
 inst/backup/
 inst/extdata/backup/
 inst/htmlwidgets/backup/
