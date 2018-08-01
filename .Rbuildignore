@@ -1,0 +1,7 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^packrat/
+^\.Rprofile$
+R/hugo2pfam.R
+data/9606.tsv.gz
