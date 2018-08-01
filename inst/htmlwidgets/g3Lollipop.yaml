@@ -1,0 +1,10 @@
+dependencies:
+  - name: d3
+    version: 4.13.0
+    src: htmlwidgets/lib
+    script: ./d3/d3.v4.min.js
+  - name: g3Lollipop
+    version: 0.0.1
+    src: htmlwidgets/lib
+    script: ./g3Lollipop/g3Lollipop.js
+    style: ./g3Lollipop/g3Lollipop.min.css
