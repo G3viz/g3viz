@@ -4,7 +4,7 @@ G3viz is an [R](https://www.r-project.org/) package for interactively visualizin
 
 ## Introduction
 
-Effectively visualizing genomic data can greatly help researchers to understand their genomic data.  The aim of this `g3viz` library is to provide a suite of web-based visualization tools that enables researchers to easily generate and interactively visualize their genomic data using a web browser, without knwoing additional web technologies (HTML5, Javascript, etc).
+Effectively visualizing genomic data can greatly help researchers to understand their genomic data.  The aim of this `g3viz` library is to provide a suite of web-based visualization tools that enables researchers to easily generate and interactively visualize their genomic data using a web browser, without knowing web related technologies (HTML5, Javascript, etc).
 
 ## Installation
 ```r
@@ -23,11 +23,11 @@ devtools::install_github("g3js/g3viz")
 
 #### Example 1.
 
-Retrieve genomic mutation data of _msk\_impact\_2017_ study for the gene _TP53_ from [cBioPortal](http://www.cbioportal.org/).
+Retrieve genomic mutation data of [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ from [cBioPortal](http://www.cbioportal.org/).
 
 ```r
 library(g3viz)
-# msk_impact_2017: https://www.ncbi.nlm.nih.gov/pubmed/28481359
+# get mutation data of msk_impact_2017 study from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 
 # lollipop diagram with default options
