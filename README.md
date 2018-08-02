@@ -4,7 +4,7 @@ G3viz is a _R_ package for interactively visualizing complex genomic data in a w
 
 ## Introduction
 
-Effectively visualize cancer genomic data can help researchers to understand the complicated genomic data. The aim of this `g3viz` _R_ library is to provide a suite of web-based visualization tools that enables researchers to easily generate and interactively visualize their genomic data using a web browser, without knwoing additional web technologies (HTML5, Javascript, etc).
+Effectively visualizing genomic data can help great researchers to understand and provide insights into their complex genomic data.  The aim of this `g3viz` _R_ library is to provide a suite of web-based visualization tools that enables researchers to easily generate and interactively visualize their genomic data using a web browser, without knwoing additional web technologies (HTML5, Javascript, etc).
 
 ## Installation
 ```r
