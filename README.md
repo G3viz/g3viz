@@ -1,6 +1,6 @@
 # G3viz: interactively visualizing cancer genomic data
 
-G3viz is a R package for Interactively visualizing cancer genomic data in web browser, without HTML5/Javascript knowledge. 
+G3viz is a _R_ package for interactively visualizing complex genomic data in a web browser, without knowing any HTML5/Javascript technologies. 
 
 ## Introduction
 
