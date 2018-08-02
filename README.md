@@ -27,12 +27,14 @@ Retrieve genomic mutation data of [msk\_impact\_2017](https://www.ncbi.nlm.nih.g
 
 ```r
 library(g3viz)
+
 # get mutation data of msk_impact_2017 study from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 
 # lollipop diagram with default options
-g3Lollipop(mutation.dat, gene.symbol = "TP53", variant.class.col = "Mutation_Type")
+g3Lollipop(mutation.dat, gene.symbol = "TP53")
 ```
+
 Lollipop plot:
 
 <img src="./inst/demo/MSK_IMPACT_2017_TP53.png" width="700px" style="padding-left:100px">
@@ -40,23 +42,25 @@ Lollipop plot:
 
 #### Example 2.
 
-Read data from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, classified the mutation data by detailed _Variant\_Classification_ information (i.e., _Frame\_Shift\_Del_, _Split\_Site_). 
+Load data from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, classified the mutation data by detailed _Variant\_Classification_ information (i.e., _Frame\_Shift\_Del_, _Split\_Site_). The test data was downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal.
 
 ```r
 library(g3viz)
 
 # load and read MAF file
-maf.file <- system.file("extdata", "tcga_laml.maf.gz", package = "g3viz")
-mutation.dat <- readMAF(input.maf)
+maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
+mutation.dat <- readMAF(maf.file)
 
-# lollipop diagram, add title
-g3Lollipop(mutation.dat, gene.symbol = "DNMT3A", 
-           variant.class.col = "Variant_Classification", factor.col = "Variant_Classification",
-           chart.margin = list(left = 40, right = 20, top = 40, bottom = 25),
-           title.text = "DNMT3A (TCGA LAML)", title.font = "normal 20px Sans",
-           title.color = "steelblue", title.alignment = "middle", title.dy = "0.1em")
+# lollipop diagram, classified by "Variant_Classification"
+# plot option: add title
+g3Lollipop(mutation.dat,
+           gene.symbol = "PIK3CA",
+           factor.col = "Variant_Classification", # legend: use "Variant_Classfication" column
+           chart.margin = list(left = 40, right = 40, top = 30, bottom = 25),
+           title.text = "PIK3CA (TCGA-BRCA)", title.font = "normal 20px Sans",
+           title.color = "steelblue", title.alignment = "middle", title.dy = "0.3em")
 ```
 Lollipop plot:
 
-<img src="./inst/demo/DNMT3A_TCGA_LAML.png" width="700px" style="padding-left:100px">
+<img src="./inst/demo/TCGA-BRCA-PIK3CA.png" width="700px" style="padding-left:100px">
 

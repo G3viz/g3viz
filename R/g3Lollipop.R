@@ -4,11 +4,12 @@
 #'
 #' @param mutation.dat Mutation data frame.
 #' @param gene.symbol HGNC gene symbol.
+#' @param uniprot.id UniProt ID, in case that gene symbol maps to multiple UniProt entries.
 #' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
 #' @param variant.class.col Column name of variant class information
-#' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default \emph{Variant_Classification}.
+#' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.
 #' @param protein.change.col Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
-#' Default \emph{Protein_Change}.
+#' Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.
 #' @param mutation.class.col Column name of the parsed mutation class. Default \emph{Mutation_Class}.
 #' @param aachange.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
 #' @param factor.col column of classes in the plot legend. IF \code{NA}, use parsed \emph{Mutation_Class} column,
@@ -73,9 +74,10 @@
 #' @export
 g3Lollipop <- function(mutation.dat,
                        gene.symbol,
+                       uniprot.id = NA,
                        gene.symbol.col = "Hugo_Symbol",
                        variant.class.col = c("Variant_Classification", "Mutation_Type"),
-                       protein.change.col = "Protein_Change",
+                       protein.change.col = c("Protein_Change", "HGVSp_Short"),
                        mutation.class.col = "Mutation_Class",
                        aa.pos.col = "AA_Position",
                        factor.col = NA,
@@ -143,6 +145,11 @@ g3Lollipop <- function(mutation.dat,
     stop("Can not find variant_class column in mutation data.")
   }
 
+  protein.change.col <- guessMAFColumnName(mutation.dat, protein.change.col)
+  if(is.na(protein.change.col)){
+    stop("Can not find protein_change column in mutation data.")
+  }
+
   # check if all required columns exists in mut.dat
   mut.required.col <- c(gene.symbol.col, protein.change.col)
 
@@ -182,7 +189,7 @@ g3Lollipop <- function(mutation.dat,
   snv.data.json <- jsonlite::toJSON(snv.data.df, pretty = FALSE, auto_unbox = TRUE)
 
   # get protein domain information
-  domain.data.json <- hgnc2pfam(gene.symbol)
+  domain.data.json <- hgnc2pfam(gene.symbol, uniprot.id)
 
   # read in data
   snv.data.format <- list(

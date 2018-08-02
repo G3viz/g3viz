@@ -6,9 +6,9 @@
 \usage{
 readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
   variant.class.col = c("Variant_Classification", "Mutation_Class"),
-  protein.change.col = "Protein_Change",
+  protein.change.col = c("Protein_Change", "HGVSp_Short"),
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
-  mutation.type.to.class.df = NULL)
+  mutation.type.to.class.df = NULL, ...)
 }
 \arguments{
 \item{maf.file}{MAF file name.  Gunzipped input file allowed, with ".gz" file extension.}
@@ -19,13 +19,15 @@ readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
 (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.}
 
 \item{protein.change.col}{Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
-Default \emph{Protein_Change}.}
+Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 
 \item{mutation.class.col}{Column name of the parsed mutation class. Default \emph{Mutation_Class}.}
 
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
 \code{\link{getDefaultMutationMappingTable}} for details.
 Default \code{NULL}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
+
+\item{...}{additional parameters pass to \code{\link[utils]read.table}.}
 
 \item{aachange.pos.col}{Column name of the parsed amino-acid change position. Default \emph{AA_Position}.}
 }

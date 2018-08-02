@@ -7,7 +7,7 @@
 #'
 #' @export
 guessMAFColumnName <- function(maf.df, alt.column.names){
-  idx <- alt.column.names %in% colnames(maf.df)
+  idx <- which(alt.column.names %in% colnames(maf.df))
 
   if(length(idx) == 1){
     return(alt.column.names[idx])

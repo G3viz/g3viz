@@ -4,9 +4,10 @@
 \alias{g3Lollipop}
 \title{Plot Lollipop diagram plot for mutation data.}
 \usage{
-g3Lollipop(mutation.dat, gene.symbol, gene.symbol.col = "Hugo_Symbol",
+g3Lollipop(mutation.dat, gene.symbol, uniprot.id = NA,
+  gene.symbol.col = "Hugo_Symbol",
   variant.class.col = c("Variant_Classification", "Mutation_Type"),
-  protein.change.col = "Protein_Change",
+  protein.change.col = c("Protein_Change", "HGVSp_Short"),
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
   factor.col = NA, chart.width = 800, chart.type = "pie",
   chart.margin = list(left = 40, right = 20, top = 15, bottom = 25),
@@ -36,13 +37,15 @@ g3Lollipop(mutation.dat, gene.symbol, gene.symbol.col = "Hugo_Symbol",
 
 \item{gene.symbol}{HGNC gene symbol.}
 
+\item{uniprot.id}{UniProt ID, in case that gene symbol maps to multiple UniProt entries.}
+
 \item{gene.symbol.col}{Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.}
 
 \item{variant.class.col}{Column name of variant class information
-(e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default \emph{Variant_Classification}.}
+(e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.}
 
 \item{protein.change.col}{Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
-Default \emph{Protein_Change}.}
+Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 
 \item{mutation.class.col}{Column name of the parsed mutation class. Default \emph{Mutation_Class}.}
 
