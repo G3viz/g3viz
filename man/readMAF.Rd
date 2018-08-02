@@ -5,7 +5,7 @@
 \title{Read MAF file}
 \usage{
 readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
-  variant.class.col = "Variant_Classification",
+  variant.class.col = c("Variant_Classification", "Mutation_Class"),
   protein.change.col = "Protein_Change",
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
   mutation.type.to.class.df = NULL)
@@ -16,7 +16,7 @@ readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
 \item{gene.symbol.col}{Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.}
 
 \item{variant.class.col}{Column name of variant class information
-(e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default \emph{Variant_Classification}.}
+(e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.}
 
 \item{protein.change.col}{Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
 Default \emph{Protein_Change}.}

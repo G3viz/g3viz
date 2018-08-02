@@ -6,7 +6,7 @@
 #' @param maf.file MAF file name.  Gunzipped input file allowed, with ".gz" file extension.
 #' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
 #' @param variant.class.col Column name of variant class information
-#' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default \emph{Variant_Classification}.
+#' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.
 #' @param protein.change.col Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
 #' Default \emph{Protein_Change}.
 #' @param mutation.class.col Column name of the parsed mutation class. Default \emph{Mutation_Class}.
@@ -18,7 +18,7 @@
 #' @export
 readMAF <- function(maf.file,
                     gene.symbol.col = "Hugo_Symbol",
-                    variant.class.col = "Variant_Classification",
+                    variant.class.col = c("Variant_Classification", "Mutation_Class"),
                     protein.change.col = "Protein_Change",
                     mutation.class.col = "Mutation_Class",
                     aa.pos.col = "AA_Position",
@@ -46,7 +46,12 @@ readMAF <- function(maf.file,
 
   # =============================
   # check if all required columns exist
-  maf.required.col <- c(gene.symbol.col, variant.class.col, protein.change.col)
+  variant.class.col <- guessMAFColumnName(maf.df, variant.class.col)
+  if(is.na(variant.class.col)){
+    stop("Can not find variant_class column in mutation data.")
+  }
+
+  maf.required.col <- c(gene.symbol.col, protein.change.col)
   missing.columns <- maf.required.col[!maf.required.col %in% colnames(maf.df)]
   if(length(missing.columns) > 0){
     message(maf.file, " contains columns: ", paste(colnames(maf.df), collapse = ", "))

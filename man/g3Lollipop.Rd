@@ -5,7 +5,7 @@
 \title{Plot Lollipop diagram plot for mutation data.}
 \usage{
 g3Lollipop(mutation.dat, gene.symbol, gene.symbol.col = "Hugo_Symbol",
-  variant.class.col = "Variant_Classification",
+  variant.class.col = c("Variant_Classification", "Mutation_Type"),
   protein.change.col = "Protein_Change",
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
   factor.col = NA, chart.width = 800, chart.type = "pie",

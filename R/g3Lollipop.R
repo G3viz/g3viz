@@ -74,7 +74,7 @@
 g3Lollipop <- function(mutation.dat,
                        gene.symbol,
                        gene.symbol.col = "Hugo_Symbol",
-                       variant.class.col = "Variant_Classification",
+                       variant.class.col = c("Variant_Classification", "Mutation_Type"),
                        protein.change.col = "Protein_Change",
                        mutation.class.col = "Mutation_Class",
                        aa.pos.col = "AA_Position",
@@ -138,8 +138,13 @@ g3Lollipop <- function(mutation.dat,
     stop("Please provide a gene symbol")
   }
 
+  variant.class.col <- guessMAFColumnName(mutation.dat, variant.class.col)
+  if(is.na(variant.class.col)){
+    stop("Can not find variant_class column in mutation data.")
+  }
+
   # check if all required columns exists in mut.dat
-  mut.required.col <- c(gene.symbol.col, variant.class.col, protein.change.col)
+  mut.required.col <- c(gene.symbol.col, protein.change.col)
 
   missing.columns <- mut.required.col[!mut.required.col %in% colnames(mutation.dat)]
   if(length(missing.columns) > 0){
