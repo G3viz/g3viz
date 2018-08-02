@@ -1,7 +1,3 @@
-var input = null;
-var domID = null;
-var lollipop;
-
 HTMLWidgets.widget({
   name: 'g3Lollipop',
   type: 'output',
@@ -26,6 +22,8 @@ HTMLWidgets.widget({
         lollipop.setOptions(plotSettings);
 
         lollipop.draw();
+
+        el.chart = lollipop;
       },
       resize: function (width, height) {
         // TODO: code to re-render the widget with a new size
