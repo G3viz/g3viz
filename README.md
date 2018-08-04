@@ -65,7 +65,7 @@ g3Lollipop(mutation.dat,
 
 #### - Example 3
 
-Load user-defined [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) or _CSV_ file.
+Load user-defined file in _CSV_ or _TSV_ format.
 
 ```r
 library(g3viz)
