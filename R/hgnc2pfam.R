@@ -27,7 +27,10 @@
 #'     \emph{symbol}, \emph{uniprot}, \emph{length}, and a list of \emph{pfam} entries, including
 #'     \emph{hmm.acc}, \emph{hmm.name}, \emph{start}, \emph{end}, and \emph{type}.
 #' @export
-hgnc2pfam <- function(hgnc.symbol, guess = TRUE, uniprot.id = NA, output.format = "json"){
+hgnc2pfam <- function(hgnc.symbol,
+                      guess = TRUE,
+                      uniprot.id = NA,
+                      output.format = "json"){
   # if hgnc.symbol is missing
   if(missing(hgnc.symbol)){
     stop("Missing hgnc.symbol: need to specify a HUGO symbol.")

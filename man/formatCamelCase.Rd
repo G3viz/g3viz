@@ -2,10 +2,18 @@
 % Please edit documentation in R/formatCamelCase.R
 \name{formatCamelCase}
 \alias{formatCamelCase}
-\title{change to camel case}
+\title{format a give string to camel case (e.g., \emph{Abc_Efg})}
 \usage{
-formatCamelCase(in.df)
+formatCamelCase(x, sep = "_")
+}
+\arguments{
+\item{x}{input string}
+
+\item{sep}{separator. Default \emph{_}.}
+}
+\value{
+the string in camel format
 }
 \description{
-change to camel case
+format a give string to camel case (e.g., \emph{Abc_Efg})
 }

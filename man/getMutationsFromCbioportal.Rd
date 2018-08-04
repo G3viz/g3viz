@@ -5,18 +5,18 @@
 \title{Query cancer genomic mutation data from cBioPortal}
 \usage{
 getMutationsFromCbioportal(study.id, gene.symbol, output.file = NA,
-  mutation.type.to.class.df = NULL)
+  mutation.type.to.class.df = NA)
 }
 \arguments{
 \item{study.id}{cbioprotal study ID}
 
 \item{gene.symbol}{HGNC gene symbol.}
 
+\item{output.file}{if specified, output to a file in \emph{CSV} format. Default is \code{NA}.}
+
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
 \code{\link{getDefaultMutationMappingTable}} for details.
-Default \code{NULL}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
-
-\item{output.csv}{if specified, output to a file in \emph{csv} format. Default is \code{NA}.}
+Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
 }
 \value{
 a data frame with columns
@@ -30,7 +30,7 @@ a data frame with columns
 \item \emph{End_Position} --- end position
 \item \emph{Reference_Allele} --- reference allele
 \item \emph{Variant_Allele} --- variant allele
-\item \emph{Mutation_Class} --- mutation class (e.g., truncating/misense/Inframe/Other)
+\item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Misense/Inframe/Other)
 \item \emph{AA_Position} --- amino-acid postion of the variant; if the variant is not in protein-conding region, \code{NA}
 }
 }

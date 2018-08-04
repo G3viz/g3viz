@@ -4,15 +4,16 @@
 #' for more details.
 #'
 #' @param mutation.type.vec a vector of mutation type information
-#' @param mutation.tytpe.to.class.df Data frame mapping from mutation tytpe (header \emph{Mutation_Type})
-#' to mutation class (header \emph{Mutation_Class}).
-#' Default is \code{\link{getDefaultMutationMappingTable}}.
+#' @param mutation.type.to.class.df A mapping table from mutation tytpe (header \emph{Mutation_Type})
+#'   to mutation class (header \emph{Mutation_Class}).
+#'   Default \code{NA} indicates to use default mapping table; see \code{\link{getDefaultMutationMappingTable}}.
 #' @return a vector of mapped mutation class information
 #' @export
-mapMutationTypeToMutationClass <- function(mutation.type.vec, mutation.type.to.class.df = NULL){
+mapMutationTypeToMutationClass <- function(mutation.type.vec,
+                                           mutation.type.to.class.df = NA){
   # ============================
   # read variant_type to variant_class mapping
-  if(is.null(mutation.type.to.class.df)){
+  if(is.na(mutation.type.to.class.df)){
     Map.df <- getDefaultMutationMappingTable()
   } else {
     Map.df = mutation.type.to.class.df

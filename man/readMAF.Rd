@@ -7,8 +7,9 @@
 readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
   variant.class.col = c("Variant_Classification", "Mutation_Class"),
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
+  if.parse.aa.pos = TRUE, if.parse.mutation.class = TRUE,
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
-  mutation.type.to.class.df = NULL, ...)
+  mutation.type.to.class.df = NA, sep = "\\t", ...)
 }
 \arguments{
 \item{maf.file}{MAF file name.  Gunzipped input file allowed, with ".gz" file extension.}
@@ -21,18 +22,25 @@ readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
 \item{protein.change.col}{Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
 Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 
+\item{if.parse.aa.pos}{if parse amino-acid position of mutations. Default is \code{TRUE}.}
+
+\item{if.parse.mutation.class}{if parse mutation class from mutation type (variant classification) information. Default is \code{TRUE}.}
+
 \item{mutation.class.col}{Column name of the parsed mutation class. Default \emph{Mutation_Class}.}
+
+\item{aa.pos.col}{Column name of the parsed amino-acid change position. Default \emph{AA_Position}.}
 
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
 \code{\link{getDefaultMutationMappingTable}} for details.
-Default \code{NULL}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
+Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
 
-\item{...}{additional parameters pass to \code{\link[utils]read.table}.}
+\item{sep}{separator of columns. Default \code{sep = "\\t"}.}
 
-\item{aachange.pos.col}{Column name of the parsed amino-acid change position. Default \emph{AA_Position}.}
+\item{...}{additional parameters pass to \code{\link[utils]{read.table}}.}
 }
 \value{
-A data frame
+a data frame containg representation of the mutation data in the given MAF file.,
+        with optional columns of parsed \emph{Mutation_Class} and \emph{Protein_Position}.
 }
 \description{
 Read MAF file.

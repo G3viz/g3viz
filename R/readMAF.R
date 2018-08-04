@@ -9,22 +9,30 @@
 #' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.
 #' @param protein.change.col Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
 #' Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.
+#' @param if.parse.aa.pos if parse amino-acid position of mutations. Default is \code{TRUE}.
+#' @param if.parse.mutation.class if parse mutation class from mutation type (variant classification) information. Default is \code{TRUE}.
 #' @param mutation.class.col Column name of the parsed mutation class. Default \emph{Mutation_Class}.
-#' @param aachange.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
+#' @param aa.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
-#' \code{\link{getDefaultMutationMappingTable}} for details.
-#' Default \code{NULL}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
-#' @param ... additional parameters pass to \code{\link[utils]read.table}.
-#' @return A data frame
+#'   \code{\link{getDefaultMutationMappingTable}} for details.
+#'   Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
+#' @param sep separator of columns. Default \code{sep = "\\t"}.
+#' @param ... additional parameters pass to \code{\link[utils]{read.table}}.
+#'
+#' @return a data frame containg representation of the mutation data in the given MAF file.,
+#'         with optional columns of parsed \emph{Mutation_Class} and \emph{Protein_Position}.
+#'
 #' @export
 readMAF <- function(maf.file,
                     gene.symbol.col = "Hugo_Symbol",
                     variant.class.col = c("Variant_Classification", "Mutation_Class"),
                     protein.change.col = c("Protein_Change", "HGVSp_Short"),
+                    if.parse.aa.pos = TRUE,
+                    if.parse.mutation.class = TRUE,
                     mutation.class.col = "Mutation_Class",
                     aa.pos.col = "AA_Position",
-                    mutation.type.to.class.df = NULL,
-                    ...) {
+                    mutation.type.to.class.df = NA,
+                    sep = "\t", ...) {
   if(missing(maf.file)){
     stop("maf.file is missing")
   }
@@ -36,22 +44,22 @@ readMAF <- function(maf.file,
   # read data in
   if(grepl(pattern = 'gz$', maf.file)){
     suppressWarnings(
-      maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = "\t", quote = "", ...)
+      maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = "", ...)
     )
   } else {
-    maf.df <- read.table(header = TRUE, sep = "\t", quote = "", ...)
+    maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = "", ...)
   }
 
   # =============================
   # check if all required columns exist
   variant.class.col <- guessMAFColumnName(maf.df, variant.class.col)
   if(is.na(variant.class.col)){
-    stop("Can not find variant_class column in mutation data.")
+    stop("Can not find Variant_Class column.")
   }
 
   protein.change.col <- guessMAFColumnName(maf.df, protein.change.col)
   if(is.na(protein.change.col)){
-    stop("Can not find protein_change column in mutation data.")
+    stop("Can not find Protein_Change column.")
   }
 
   maf.required.col <- c(gene.symbol.col)
@@ -63,17 +71,20 @@ readMAF <- function(maf.file,
 
   # ============================
   # parse Mutation_Class
-  maf.df[, mutation.class.col] <- mapMutationTypeToMutationClass(maf.df[, variant.class.col],
-                                                                 mutation.type.to.class.df)
+  if(if.parse.mutation.class){
+    maf.df[, mutation.class.col] <- mapMutationTypeToMutationClass(maf.df[, variant.class.col],
+                                                                   mutation.type.to.class.df)
+  }
 
   # ============================
   # parse amino-acid position
-  maf.df[, aa.pos.col] <- parseProteinChange(maf.df[, protein.change.col],
-                                             maf.df[, mutation.class.col])
+  if(if.parse.aa.pos){
+    maf.df[, aa.pos.col] <- parseProteinChange(maf.df[, protein.change.col],
+                                               maf.df[, mutation.class.col])
 
-  # ============================
-  # sort according to
-  maf.df <- maf.df[order(maf.df[, aa.pos.col], maf.df[, gene.symbol.col], maf.df[, protein.change.col], decreasing = FALSE), ]
+    # sort according to amino-acid position
+    maf.df <- maf.df[order(maf.df[, aa.pos.col], maf.df[, gene.symbol.col], maf.df[, protein.change.col], decreasing = FALSE), ]
+  }
 
   maf.df
 }

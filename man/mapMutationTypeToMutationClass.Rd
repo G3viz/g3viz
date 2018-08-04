@@ -5,14 +5,14 @@
 \title{Map from mutation type to mutation class}
 \usage{
 mapMutationTypeToMutationClass(mutation.type.vec,
-  mutation.type.to.class.df = NULL)
+  mutation.type.to.class.df = NA)
 }
 \arguments{
 \item{mutation.type.vec}{a vector of mutation type information}
 
-\item{mutation.tytpe.to.class.df}{Data frame mapping from mutation tytpe (header \emph{Mutation_Type})
+\item{mutation.type.to.class.df}{A mapping table from mutation tytpe (header \emph{Mutation_Type})
 to mutation class (header \emph{Mutation_Class}).
-Default is \code{\link{getDefaultMutationMappingTable}}.}
+Default \code{NA} indicates to use default mapping table; see \code{\link{getDefaultMutationMappingTable}}.}
 }
 \value{
 a vector of mapped mutation class information

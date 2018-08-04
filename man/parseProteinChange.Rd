@@ -6,8 +6,13 @@
 \usage{
 parseProteinChange(protein.change.vec, mutation.class.vec)
 }
+\arguments{
+\item{protein.change.vec}{a vector of strings with protein change information, usually in HGVSp_short format.}
+
+\item{mutation.class.vec}{a vector of strings with mutation class (or so-called variant classification) information.}
+}
 \description{
-Parse \emph{amino_acid_position} according to HGVSp format. \cr
+Parse \emph{amino_acid_position} according to HGVSp_short format. \cr
  For example, \emph{p.Q16Rfs*28}, amino-acid position is 16.
   See \url{http://varnomen.hgvs.org/recommendations/protein/}. \cr
   See \url{https://www.hgvs.org/mutnomen/recs-prot.html}. \cr

@@ -4,10 +4,10 @@
 #' by the given cBioPortal cancer study ID and the gene symbol.
 #' @param study.id cbioprotal study ID
 #' @param gene.symbol HGNC gene symbol.
-#' @param output.csv if specified, output to a file in \emph{csv} format. Default is \code{NA}.
+#' @param output.file if specified, output to a file in \emph{CSV} format. Default is \code{NA}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
 #' \code{\link{getDefaultMutationMappingTable}} for details.
-#' Default \code{NULL}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
+#' Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
 #' @examples
 #' # list all cbioportal studies
 #' library(cgdsr)
@@ -19,6 +19,7 @@
 #' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 #' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
 #' @import cgdsr
+#'
 #' @return a data frame with columns
 #' \itemize{
 #' \item \emph{Hugo_Symbol} --- Hugo gene symbol
@@ -30,18 +31,14 @@
 #' \item \emph{End_Position} --- end position
 #' \item \emph{Reference_Allele} --- reference allele
 #' \item \emph{Variant_Allele} --- variant allele
-#' \item \emph{Mutation_Class} --- mutation class (e.g., truncating/misense/Inframe/Other)
+#' \item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Misense/Inframe/Other)
 #' \item \emph{AA_Position} --- amino-acid postion of the variant; if the variant is not in protein-conding region, \code{NA}
 #' }
 #' @export
-getMutationsFromCbioportal <- function(study.id, gene.symbol, output.file = NA,
-                                       mutation.type.to.class.df = NULL){
-  # test
-  # study.id = "all_stjude_2016"
-  # gene.symbol = "TP53"
-  # output.file = NA
-  # mutation.type.to.class.df = NULL
-
+getMutationsFromCbioportal <- function(study.id,
+                                       gene.symbol,
+                                       output.file = NA,
+                                       mutation.type.to.class.df = NA){
   # =============================
   # define mutation columns
   aa.pos.col <- "AA_Position"
@@ -115,8 +112,3 @@ getMutationsFromCbioportal <- function(study.id, gene.symbol, output.file = NA,
 
   mutation.df
 }
-
-# study.id <- "msk_impact_2017"
-# gene.symbol <- "TP53"
-# mutation.df <- getMutationsFromCbioportal(study.id, gene.symbol, paste0(gene.symbol, "-", study.id, ".csv"))
-# mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")

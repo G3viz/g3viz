@@ -2,6 +2,7 @@
 
 export(formatCamelCase)
 export(g3Lollipop)
+export(g3Lollipop.options)
 export(g3LollipopOutput)
 export(getDefaultMutationMappingTable)
 export(getMutationsFromCbioportal)
@@ -15,3 +16,4 @@ export(renderG3Lollipop)
 export(uniprot2pfam)
 import(cgdsr)
 import(htmlwidgets)
+import(jsonlite)

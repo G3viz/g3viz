@@ -1,16 +1,15 @@
-#' change to camel case
+#' format a give string to camel case (e.g., \emph{Abc_Efg})
+#' @param x input string
+#' @param sep separator. Default \emph{_}.
+#'
+#' @return the string in camel format
+#'
 #' @export
-formatCamelCase <- function(in.df){
-  stopifnot(is.data.frame(in.df))
+formatCamelCase <- function(x, sep = "_"){
+  stopifnot(is.character(x))
 
-  firstLetterCap <- function(x, sep = "_") {
-    s <- strsplit(x, sep)[[1]]
-    paste(toupper(substring(s, 1,1)), substring(s, 2), sep = "", collapse = sep)
-  }
+  s <- strsplit(x, sep)[[1]]
+  t <- paste(toupper(substring(s, 1,1)), substring(s, 2), sep = "", collapse = sep)
 
-  col.names <- colnames(in.df)
-  col.new.names <- sapply(col.names, firstLetterCap)
-  colnames(in.df) <- col.new.names
-
-  in.df
+  t
 }
