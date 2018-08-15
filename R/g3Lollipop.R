@@ -44,7 +44,7 @@ g3Lollipop <- function(mutation.dat,
   factor.col <- guessMAFColumnName(mutation.dat, factor.col)
   message("Factor is set to ", factor.col)
 
-  if(is.na(plot.options$legendTitle) && !is.na(factor.col)){
+  if(is.null(plot.options$legendTitle) && !is.na(factor.col)){
     plot.options$legendTitle <- factor.col
   }
 
