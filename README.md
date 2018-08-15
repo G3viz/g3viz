@@ -33,6 +33,7 @@ g3Lollipop(mutation.dat, gene.symbol = "TP53")
 ```
 
 > Lollipop plot:
+> [live example](https://bl.ocks.org/phoeguo/raw/583a12e04c6b9d7ca1825cdbdc62f531/)
 >
 > <img src="./inst/demo/MSK_IMPACT_2017_TP53.png" width="600px">
 
