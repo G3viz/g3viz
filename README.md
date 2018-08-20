@@ -18,7 +18,7 @@ devtools::install_github("g3js/g3viz")
 
 ## g3Lollipop examples
 
-#### - Example 1
+### Example 1
 
 Retrieve genomic mutation data of [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ from [cBioPortal](http://www.cbioportal.org/).
 
@@ -37,7 +37,7 @@ g3Lollipop(mutation.dat, gene.symbol = "TP53")
 > <img src="./inst/demo/MSK_IMPACT_2017_TP53.png" width="600px">
 >
 
-#### - Example 2
+### Example 2
 
 Load data from local [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, classified the mutation data by detailed _Variant\_Classification_ information (i.e., _Frame\_Shift\_Del_, _Split\_Site_).  In this example, the MAF data was downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal.
 
@@ -64,7 +64,7 @@ g3Lollipop(mutation.dat,
 > <img src="./inst/demo/TCGA_BRCA_PIK3CA.png" width="600px">
 >
 
-#### - Example 3
+### Example 3
 
 Load user-defined file in _CSV_ or _TSV_ format.
 
