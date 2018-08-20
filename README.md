@@ -31,9 +31,8 @@ mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 # lollipop diagram with default options
 g3Lollipop(mutation.dat, gene.symbol = "TP53")
 ```
-
 >
-> [live example](https://bl.ocks.org/phoeguo/raw/583a12e04c6b9d7ca1825cdbdc62f531/)
+> [Live example](https://bl.ocks.org/phoeguo/raw/583a12e04c6b9d7ca1825cdbdc62f531/)
 >
 > <img src="./inst/demo/MSK_IMPACT_2017_TP53.png" width="600px">
 >
@@ -59,10 +58,11 @@ g3Lollipop(mutation.dat,
            factor.col = "Variant_Classification",
            plot.options = plot.options)
 ```
-
-> Lollipop plot:
+>
+> [Live example](https://bl.ocks.org/phoeguo/raw/302a0ff5729f6aa773c33d4bfd3061c4/)
 >
 > <img src="./inst/demo/TCGA_BRCA_PIK3CA.png" width="600px">
+>
 
 #### - Example 3
 
@@ -111,11 +111,11 @@ g3Lollipop(mutation.dat,
            protein.change.col = protein.change.colname,
            plot.options = plot.options)
 ```
-
-> Lollipop plot:
+>
+> [Live example](https://bl.ocks.org/phoeguo/raw/60f804c6683de30650e36ee912304754/)
 >
 > <img src="./inst/demo/CCLE_APC.png" width="900px">
-
+>
 
 ## 
 
