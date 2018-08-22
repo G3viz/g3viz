@@ -1,4 +1,4 @@
-# G3Viz: interactively visualize genomic data
+# <a name="top"></a>G3Viz: interactively visualize genomic data
 
 Easily and effectively visualizing genomic data can help researchers to better understand their data. 
 G3Viz is an [R](https://www.r-project.org/) package, which aims to provide a suite of easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies. 
@@ -28,6 +28,12 @@ devtools::install_github("g3js/g3viz")
 
 ```
 
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+
 ## <a name="quickstart"><a>Quick Start
 
 ### <a name="ex1"></a>Example 1: visualize mutation data from [cBioPortal](http://www.cbioportal.org/)
@@ -48,6 +54,12 @@ g3Lollipop(mutation.dat, gene.symbol = "TP53")
 >
 > <img src="./inst/extdata/MSK_IMPACT_2017_TP53.png" width="600px">
 >
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
 
 ### <a name="ex2"></a>Example 2: visualize mutation data in [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file
 
@@ -75,6 +87,12 @@ g3Lollipop(mutation.dat,
 >
 > <img src="./inst/extdata/TCGA_BRCA_PIK3CA.png" width="600px">
 >
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
 
 ### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ formatted file
 
@@ -125,6 +143,12 @@ g3Lollipop(mutation.dat,
 > <img src="./inst/extdata/CCLE_APC.png" width="900px">
 >
 
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+
 ## <a name="usage"></a>Usage
 
 1. <a name="readdata"></a>Read data
@@ -157,6 +181,12 @@ mutation.dat <- readMAF(mutation.csv,
                         protein.change.col = "amino_acid_change",
                         sep = ",")  # separator of csv file
 ```
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
 
 2. <a name="options"></a>Set chart options
 
@@ -210,6 +240,12 @@ tooltip | if show tooltip. Default `TRUE`.
 brush | if show brush. Default `TRUE`.
 zoom | if enable zoom feature. Default `TRUE`.
 
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
+
 3. <a name="view"></a>Visualize genomic mutation data via a lollipop diagram in a web browser
 
 Call `g3Lollipop` function to visualize genomic mutation data in a web browser.  For example
@@ -221,3 +257,9 @@ g3Lollipop(mutation.dat,
            protein.change.col = protein.change.colname,
            plot.options = plot.options)
 `
+
+<br/>
+<div align="right">
+    <b><a href="#top">↥ back to top</a></b>
+</div>
+<br/>
