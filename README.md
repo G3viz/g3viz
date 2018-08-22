@@ -119,21 +119,21 @@ g3Lollipop(mutation.dat,
 
 Genomic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded from
 
-* [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, for example,
+- [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, for example,
 
 ```r
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
 mutation.dat <- readMAF(maf.file)
 ```
 
-* directly from [cBioPortal]<a href="https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/">MAF</a> (internet access required), for example,
+- directly from [cBioPortal]<a href="https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/">MAF</a> (internet access required), for example,
 
 ```r
 # get mutation data of msk_impact_2017 study from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 ```
 
-* _CSV_ or _TSV_ file
+- _CSV_ or _TSV_ file
 
 ```r
 # load and read data
@@ -198,5 +198,14 @@ tooltip | if show tooltip. Default `TRUE`.
 brush | if show brush. Default `TRUE`.
 zoom | if enable zoom feature. Default `TRUE`.
 
+3. Visualize genomic mutation data via a lollipop diagram in a web browser
 
+Call `g3Lollipop` function to visualize genomic mutation data in a web browser.  For example
 
+`
+g3Lollipop(mutation.dat,
+           gene.symbol = "APC",
+           gene.symbol.col = gene.symbol.colname,
+           protein.change.col = protein.change.colname,
+           plot.options = plot.options)
+`
