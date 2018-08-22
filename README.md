@@ -3,7 +3,19 @@
 Easily and effectively visualizing genomic data can help researchers to better understand their data. 
 G3Viz is an [R](https://www.r-project.org/) package, which aims to provide a suite of easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies. 
 
-## Install
+## Content
+* [Installation](#installation)
+* [Quick Start](#quickstart)
+  * [Example 1](#ex1): visualize mutation data from [cBioPortal](http://www.cbioportal.org/)
+  * [Example 2](#ex2): visualize mutation data in [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file
+  * [Example 3](#ex3): visualize mutation data in _CSV_ or _TSV_ formatted file
+* [Usage](#usage)
+  1. [Read Data](#readdata)
+  2. [Set chart options](#options)
+  3. [Visualize genomic mutation data via a lollipop diagram in a web browser](#view)
+
+
+## <a name="install"></a>Installation
 ```r
 # Install devtools
 install.package("devtools")
@@ -16,9 +28,9 @@ devtools::install_github("g3js/g3viz")
 
 ```
 
-## Examples
+## <a name="quickstart"><a>Quick Start
 
-### Example 1: visualize mutation data from [cBioPortal](http://www.cbioportal.org/)
+### <a name="ex1"></a>Example 1: visualize mutation data from [cBioPortal](http://www.cbioportal.org/)
 
 Retrieve genomic mutation data of [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ from [cBioPortal](http://www.cbioportal.org/).
 
@@ -37,7 +49,7 @@ g3Lollipop(mutation.dat, gene.symbol = "TP53")
 > <img src="./inst/extdata/MSK_IMPACT_2017_TP53.png" width="600px">
 >
 
-### Example 2: visualize mutation data from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)
+### <a name="ex2"></a>Example 2: visualize mutation data in [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file
 
 Load data from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, classified the mutation data by detailed _Variant\_Classification_ information (i.e., _Frame\_Shift\_Del_, _Split\_Site_).  In this example, the MAF data was downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal.
 
@@ -64,7 +76,7 @@ g3Lollipop(mutation.dat,
 > <img src="./inst/extdata/TCGA_BRCA_PIK3CA.png" width="600px">
 >
 
-### Example 3: visualize mutation data in _CSV_ or _TSV_ format
+### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ formatted file
 
 Load user-defined file in _CSV_ or _TSV_ format.
 
@@ -113,13 +125,13 @@ g3Lollipop(mutation.dat,
 > <img src="./inst/extdata/CCLE_APC.png" width="900px">
 >
 
-## Usage
+## <a name="usage"></a>Usage
 
-1. Read data
+1. <a name="readdata"></a>Read data
 
-Genomic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded from
+Genomic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded in three ways
 
-- [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, for example,
+- from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, for example,
 
 ```r
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
@@ -133,7 +145,7 @@ mutation.dat <- readMAF(maf.file)
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 ```
 
-- _CSV_ or _TSV_ file
+- from _CSV_ or _TSV_ formatted file
 
 ```r
 # load and read data
@@ -146,7 +158,7 @@ mutation.dat <- readMAF(mutation.csv,
                         sep = ",")  # separator of csv file
 ```
 
-2. Set chart options
+2. <a name="options"></a>Set chart options
 
 Chart options can be specified using `g3Lollipop.options()` function (_e.g._, `g3Lollipop.options(chart.type = "circle", lollipop.track.background = "transparent")`.  Use `?g3viz::g3Lollipop.options` to check these options.
 These options are listed in the following table. 
@@ -198,7 +210,7 @@ tooltip | if show tooltip. Default `TRUE`.
 brush | if show brush. Default `TRUE`.
 zoom | if enable zoom feature. Default `TRUE`.
 
-3. Visualize genomic mutation data via a lollipop diagram in a web browser
+3. <a name="view"></a>Visualize genomic mutation data via a lollipop diagram in a web browser
 
 Call `g3Lollipop` function to visualize genomic mutation data in a web browser.  For example
 
