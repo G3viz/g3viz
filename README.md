@@ -153,7 +153,7 @@ These options are listed in the following table.
 
 Option name             | Description
 ----------------------- | --------------------------------------
-chart.width             | chart width in pixel.  Default `800`.
+chart.width             | chart width in px.  Default `800`.
 chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
 chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
 chart.background        | chart background.  Default `transparent`.
@@ -163,10 +163,40 @@ axis.label.font         | css font style shorthand (font-style font-variant font
 axis.label.color        | axis label text color.  Default `#4f4f4f`.
 axis.label.alignment    | axis label text alignment (start/end/middle). Default `middle`
 axis.label.dy           | text adjustment of axis label text.  Default `-2em`.
-
-
-
-
+legend.margin           | legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
+legend.interactive      | legend interactive mode. Default `TRUE`.
+legend.title            | legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
+lollipop.track.height   | height of lollipop track. Default `420`.
+lollipop.track.background  | background of lollipop track. Default `rgb(244,244,244)`.
+lollipop.pop.min.size  | lollipop pop minimal size in px. Default `2`.
+lollipop.pop.max.size | lollipop pop maximal size in px. Default `12`.
+lollipop.pop.info.limit | threshold of lollipop pop size to show count information in middle of pop. Default `8`.
+lollipop.pop.info.color | lollipop pop information text color. Default `#EEE`.
+lollipop.line.color | lollipop line color. Default `rgb(42,42,42)`.
+lollipop.line.width | lollipop line width. Default `0.5`.
+lollipop.circle.color | lollipop circle border color. Default `wheat`.
+lollipop.circle.width | lollipop circle border width. Default `0.5`.
+lollipop.label.ratio | lollipop click-out label font size to circle size ratio. Default `1.4`.
+lollipop.label.min.font.size | lollipop click-out label minimal font size. Default `10`.
+lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. (TODO: link to colorscheme demo)
+title.text | title of chart. Default "".
+title.font | font of chart title. Default `normal 16px Arial`.
+title.color | color of chart title. Default `#424242`.
+title.alignment | text alignment of chart title (start/middle/end). Default `middle`.
+title.dy | text adjustment of chart title. Default `0.35em`.
+anno.height | height of protein structure annotation track. Default `30`.
+anno.margin | margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
+anno.background | background of protein structure annotation track. Default `transparent`.
+anno.bar.fill | background of protein bar in protein structure annotation track. Default `#E5E3E1`.
+anno.bar.margin | margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.
+domain.color.scheme | color scheme of protein domains. Default `category10`.
+domain.margin | margin of protein domains. Default `list(top = 0, bottom = 0)`.
+domain.text.font | domain label text font in shorthand format. Default `normal 11px Arial`.
+domain.text.color | domain label text color. Default `#F2F2F2`.
+legend | if show legend. Default `TRUE`.
+tooltip | if show tooltip. Default `TRUE`.
+brush | if show brush. Default `TRUE`.
+zoom | if enable zoom feature. Default `TRUE`.
 
 
 
