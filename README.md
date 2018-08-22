@@ -153,8 +153,7 @@ These options are listed in the following table.
 
 Option name             | Description
 ----------------------- | --------------------------------------
-**Chart options**       |
------------------------ | --------------------------------------
+* Chart options         |
 chart.width             | chart width in pixel.  Default `800`.
 chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
 chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
@@ -165,7 +164,6 @@ axis.label.font         | css font style shorthand (font-style font-variant font
 axis.label.color        | axis label text color.  Default `#4f4f4f`.
 axis.label.alignment    | axis label text alignment (start/end/middle). Default `middle`
 axis.label.dy           | text adjustment of axis label text.  Default `-2em`.
------------------------ | --------------------------------------
 
 
 
