@@ -153,7 +153,6 @@ These options are listed in the following table.
 
 Option name             | Description
 ----------------------- | --------------------------------------
-* Chart options         |
 chart.width             | chart width in pixel.  Default `800`.
 chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
 chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
