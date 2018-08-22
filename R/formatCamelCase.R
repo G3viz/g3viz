@@ -1,4 +1,4 @@
-#' format a give string to camel case (e.g., \emph{Abc_Efg})
+#' format a give string to camel case (e.g., from \emph{abc_efg} to \emph{Abc_Efg})
 #' @param x input string
 #' @param sep separator. Default \emph{_}.
 #'

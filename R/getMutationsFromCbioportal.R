@@ -9,7 +9,7 @@
 #' \code{\link{getDefaultMutationMappingTable}} for details.
 #' Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
 #' @examples
-#' # list all cbioportal studies
+#' # list all studies of cBioPortal
 #' library(cgdsr)
 #' cgds <- CGDS("http://www.cbioportal.org/public-portal/")
 #' all.studies <- getCancerStudies(cgds)
@@ -18,7 +18,8 @@
 #' # pick a primary HGNC gene symbol to query
 #' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 #' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
-#' @import cgdsr
+#' @importFrom cgdsr CGDS getGeneticProfiles getCaseLists getMutationData
+#' @importFrom utils write.table
 #'
 #' @return a data frame with columns
 #' \itemize{
@@ -31,8 +32,8 @@
 #' \item \emph{End_Position} --- end position
 #' \item \emph{Reference_Allele} --- reference allele
 #' \item \emph{Variant_Allele} --- variant allele
-#' \item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Misense/Inframe/Other)
-#' \item \emph{AA_Position} --- amino-acid postion of the variant; if the variant is not in protein-conding region, \code{NA}
+#' \item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Missense/Inframe/Other)
+#' \item \emph{AA_Position} --- amino-acid position of the variant; if the variant is not in protein-coding region, \code{NA}
 #' }
 #' @export
 getMutationsFromCbioportal <- function(study.id,
@@ -46,11 +47,11 @@ getMutationsFromCbioportal <- function(study.id,
 
   # ========================
   # cgds server
-  cgds <- cgdsr::CGDS("http://www.cbioportal.org/public-portal/")
+  cgds <- CGDS("http://www.cbioportal.org/public-portal/")
 
   # ========================
   # get study information
-  genetic.profiles <- cgdsr::getGeneticProfiles(cgds, study.id)
+  genetic.profiles <- getGeneticProfiles(cgds, study.id)
   message("Found study ", study.id)
 
   # ========================
@@ -65,12 +66,12 @@ getMutationsFromCbioportal <- function(study.id,
 
   # ========================
   # get case list
-  case.list.details <- cgdsr::getCaseLists(cgds, study.id)[mutation.idx, ]
+  case.list.details <- getCaseLists(cgds, study.id)[mutation.idx, ]
   mutation.case.list.id <- case.list.details$case_list_id
   num.case <- length(strsplit(case.list.details$case_ids, " ")[[1]])
   message(num.case, " cases in this study")
 
-  extended.mutation.df <- cgdsr::getMutationData(cgds, mutation.case.list.id, mutation.profile, gene.symbol)
+  extended.mutation.df <- getMutationData(cgds, mutation.case.list.id, mutation.profile, gene.symbol)
   # =========================
   # parse mutation data columns
   required.colnames <- c("gene_symbol", "amino_acid_change", "case_id", "mutation_type",
@@ -107,7 +108,7 @@ getMutationsFromCbioportal <- function(study.id,
 
   if(!is.na(output.file)){
     message("Write mutation data to ", output.file)
-    write.table(mutation.df, file = output.file, sep = "\t", quote = FALSE, col.name = TRUE, row.name = FALSE)
+    write.table(mutation.df, file = output.file, sep = "\t", quote = FALSE, col.names = TRUE, row.names = FALSE)
   }
 
   mutation.df

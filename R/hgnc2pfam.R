@@ -1,7 +1,7 @@
 #' Map from Hugo symbol to Pfam domains
 #'
-#' @description Mapping from Hugo symbol to Pfam-A domain compostion.
-#' If the given Hugo symbol has multple UniProt ID mappings,
+#' @description Mapping from Hugo symbol to Pfam-A domain composition.
+#' If the given Hugo symbol has multiple UniProt ID mappings,
 #' and \code{guess == TRUE},
 #' the longest UniProt protein is selected. Return is either a list of a JSON.
 #' @examples
@@ -9,23 +9,26 @@
 #' hgnc2pfam("TP53")
 #' hgnc2pfam("TP53", output.format = "json")
 #' hgnc2pfam("TP53", output.format = "list")
-#' hgnc2pfam("TP53", output.format = "json", uniprot.id = "P84996") # OK
+#' hgnc2pfam("TP53", output.format = "json", uniprot.id = "P04637") # OK
 #'
-#' # for gene mapping to multiple uniprot enties
+#' # for gene mapping to multiple UniProt enties
 #' hgnc2pfam("GNAS", guess = TRUE)
 #' hgnc2pfam("GNAS", guess = FALSE)
 #' hgnc2pfam("GNAS", output.format = "list")
 #' hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84996")
-#' hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+#' # hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
 #' @param hgnc.symbol primary Hugo symbol
 #' @param output.format output format: JSON or list
 #' @param uniprot.id UniProt ID, in case that gene symbol maps to multiple UniProt entries.
 #' @param guess if the given Hugo symbol links to multiple UniProt IDs,
 #' choose the longest one (\code{guess == TRUE});
 #' otherwise \code{NA} (\code{guess == FALSE}).  Default \code{TRUE}.
-#' @return A list or a Json with attributes:
-#'     \emph{symbol}, \emph{uniprot}, \emph{length}, and a list of \emph{pfam} entries, including
+#' @return A list or a JSON with attributes:
+#'     \emph{symbol}, \emph{uniprot}, \emph{length}, and a list of \emph{Pfam} entries, including
 #'     \emph{hmm.acc}, \emph{hmm.name}, \emph{start}, \emph{end}, and \emph{type}.
+#'
+#' @importFrom utils capture.output
+#' @importFrom jsonlite toJSON
 #' @export
 hgnc2pfam <- function(hgnc.symbol,
                       guess = TRUE,
@@ -42,8 +45,8 @@ hgnc2pfam <- function(hgnc.symbol,
     stop("Output.format should be either json or list.")
   }
 
-  # get uniprot ids
-  uniprot.df = hgnc2uniprot(hgnc.symbol)
+  # get UniProt ids
+  uniprot.df <- hgnc2uniprot(hgnc.symbol)
 
   if(nrow(uniprot.df) > 1){
     msg <- paste(capture.output(print.data.frame(uniprot.df, row.names = FALSE)), collapse = "\n")
@@ -53,7 +56,7 @@ hgnc2pfam <- function(hgnc.symbol,
   if(!is.na(uniprot.id)){
     if(uniprot.id %in% uniprot.df$uniprot){
       message("Choose ", uniprot.id)
-      uniprot.df = subset(uniprot.df, uniprot == uniprot.id)
+      uniprot.df <- subset(uniprot.df, uniprot == uniprot.id)
     } else {
       stop(uniprot.id, " is not mapped to ", hgnc.symbol)
     }
@@ -76,8 +79,8 @@ hgnc2pfam <- function(hgnc.symbol,
   }
 
   if(is.data.frame(pfam.df)){
-    pfam.df = pfam.df[, c("hmm.acc", "hmm.name", "start", "end", "type")]
-    pfam.df = pfam.df[!is.na(pfam.df[,"hmm.acc"]), ]
+    pfam.df <- pfam.df[, c("hmm.acc", "hmm.name", "start", "end", "type")]
+    pfam.df <- pfam.df[!is.na(pfam.df[,"hmm.acc"]), ]
   }
   # remove empty entries
 
@@ -85,7 +88,7 @@ hgnc2pfam <- function(hgnc.symbol,
   output.list$pfam <- pfam.df
 
   if(output.format == "json"){
-    jsonlite::toJSON(output.list, pretty = FALSE, auto_unbox = TRUE)
+    toJSON(output.list, pretty = FALSE, auto_unbox = TRUE)
   } else {
     output.list
   }

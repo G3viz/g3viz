@@ -3,7 +3,7 @@
 #' @description Read MAF file.
 #' For MAF format specification, check \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
 #'
-#' @param maf.file MAF file name.  Gunzipped input file allowed, with ".gz" file extension.
+#' @param maf.file MAF file name.  Gnuzipped input file allowed, with ".gz" file extension.
 #' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
 #' @param variant.class.col Column name of variant class information
 #' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.
@@ -19,8 +19,10 @@
 #' @param sep separator of columns. Default \code{sep = "\\t"}.
 #' @param ... additional parameters pass to \code{\link[utils]{read.table}}.
 #'
-#' @return a data frame containg representation of the mutation data in the given MAF file.,
-#'         with optional columns of parsed \emph{Mutation_Class} and \emph{Protein_Position}.
+#' @importFrom utils write.table read.table
+#'
+#' @return a data frame containing MAF information,
+#'				 plus optional columns of the parsed \emph{Mutation_Class} and \emph{Protein_Position}.
 #'
 #' @export
 readMAF <- function(maf.file,

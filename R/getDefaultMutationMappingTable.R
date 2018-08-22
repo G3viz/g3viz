@@ -2,8 +2,8 @@
 #'
 #' @description Return the default mapping table between mutation type to mutation class
 #' @details
-#' Mutation type or variant classificaiton, generally with column named \emph{Variant_Classficiation} or
-#' \emph{Mutation_Type} in MAF file, can be classificed as follows
+#' Mutation type or variant classification, generally with column named \emph{Variant_Classficiation} or
+#' \emph{Mutation_Type} in MAF file, can be classified as follows
 #' \enumerate{
 #' \item Missense
 #' \itemize{
@@ -27,7 +27,7 @@
 #'   See \url{https://en.wikipedia.org/wiki/Nonsense_mutation}.
 #' \item \emph{Nonstop_Mutation} --- variant removes stop codon.
 #' \item \emph{Splice_Site} --- the variant is within two bases of a splice site.
-#' \item \emph{Splice_Region} --- the variant is within splice reguion.
+#' \item \emph{Splice_Region} --- the variant is within splice region.
 #' }
 #' \item Other
 #' \itemize{
@@ -38,14 +38,14 @@
 #' \item \emph{Fusion} --- gene fusion
 #' \item \emph{IGR} --- intergenic region. Does not overlap any transcript.
 #' \item \emph{Intron} --- variant lies between exons within the bounds of the chosen transcript.
-#' \item \emph{Translation_Start_Site} --- varaint in translation start site.
+#' \item \emph{Translation_Start_Site} --- variant in translation start site.
 #' \item \emph{De_novo_Start_InFrame} --- New start codon is created by the given variant using the chosen transcript.
 #' However, it is in frame relative to the coded protein.
 #' \item \emph{De_novo_Start_OutOfFrame} --- New start codon is created by the given variant using the chosen transcript.
 #' However, it is out of frame relative to the coded protein.
 #' \item \emph{Start_Codon_SNP} --- point mutation that overlaps the start codon.
 #' \item \emph{Start_Codon_Ins} --- insertion that overlaps the start codon.
-#' \item \emph{Start_Codon_Del} --- seletion that overlaps the start codon.
+#' \item \emph{Start_Codon_Del} --- selection that overlaps the start codon.
 #' \item \emph{RNA} --- variant lies on one of the RNA transcripts.
 #' \item \emph{lincRNA} --- variant lies on one of the lincRNAs.
 #' \item \emph{Unknown} --- Unknown

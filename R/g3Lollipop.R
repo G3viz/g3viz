@@ -14,8 +14,7 @@
 #'   otherwise, use specified.  Default \code{NA}.
 #' @param plot.options options of lollipop plot in list format
 #'
-#' @import htmlwidgets
-#' @import jsonlite
+#' @importFrom jsonlite toJSON
 #'
 #' @export
 g3Lollipop <- function(mutation.dat,
@@ -59,7 +58,7 @@ g3Lollipop <- function(mutation.dat,
   # get mutation data for the given gene
   snv.data.df <- mutation.dat[mutation.dat[, gene.symbol.col] == gene.symbol
                               & !is.na(mutation.dat[, aa.pos.col]), ]
-  snv.data.json <- jsonlite::toJSON(snv.data.df, pretty = FALSE, auto_unbox = TRUE)
+  snv.data.json <- toJSON(snv.data.df, pretty = FALSE, auto_unbox = TRUE)
 
   # get protein domain information
   domain.data.json <- hgnc2pfam(gene.symbol, uniprot.id)
@@ -71,10 +70,10 @@ g3Lollipop <- function(mutation.dat,
     factor = factor.col
   )
 
-  snv.data.format.json <- jsonlite::toJSON(snv.data.format, pretty = FALSE, auto_unbox = TRUE)
+  snv.data.format.json <- toJSON(snv.data.format, pretty = FALSE, auto_unbox = TRUE)
 
   # domain data format
-  domain.data.format = list(
+  domain.data.format <- list(
     length = "length",
     domainType = "pfam",
     details = list(
@@ -83,9 +82,9 @@ g3Lollipop <- function(mutation.dat,
       name = "hmm.name"
     )
   )
-  domain.data.format.json = jsonlite::toJSON(domain.data.format, pretty = FALSE, auto_unbox = TRUE)
+  domain.data.format.json <- toJSON(domain.data.format, pretty = FALSE, auto_unbox = TRUE)
 
-  plot.options.json <- jsonlite::toJSON(plot.options, pretty = FALSE, auto_unbox = TRUE)
+  plot.options.json <- toJSON(plot.options, pretty = FALSE, auto_unbox = TRUE)
 
   x <- list(
     domainData = domain.data.json,
@@ -120,14 +119,17 @@ g3Lollipop <- function(mutation.dat,
 #'
 #' @name g3Lollipop-shiny
 #'
+#' @importFrom htmlwidgets shinyWidgetOutput
+#'
 #' @export
 g3LollipopOutput <- function(outputId, width = '100%', height = '400px'){
-  htmlwidgets::shinyWidgetOutput(outputId, 'g3Lollipop', width, height, package = 'g3viz')
+  shinyWidgetOutput(outputId, 'g3Lollipop', width, height, package = 'g3viz')
 }
 
 #' @rdname g3Lollipop-shiny
+#' @importFrom htmlwidgets shinyRenderWidget
 #' @export
 renderG3Lollipop <- function(expr, env = parent.frame(), quoted = FALSE) {
   if (!quoted) { expr <- substitute(expr) } # force quoted
-  htmlwidgets::shinyRenderWidget(expr, g3LollipopOutput, env, quoted = TRUE)
+  shinyRenderWidget(expr, g3LollipopOutput, env, quoted = TRUE)
 }

@@ -4,7 +4,7 @@
 #' for more details.
 #'
 #' @param mutation.type.vec a vector of mutation type information
-#' @param mutation.type.to.class.df A mapping table from mutation tytpe (header \emph{Mutation_Type})
+#' @param mutation.type.to.class.df A mapping table from mutation type (header \emph{Mutation_Type})
 #'   to mutation class (header \emph{Mutation_Class}).
 #'   Default \code{NA} indicates to use default mapping table; see \code{\link{getDefaultMutationMappingTable}}.
 #' @return a vector of mapped mutation class information

@@ -10,7 +10,7 @@ mapMutationTypeToMutationClass(mutation.type.vec,
 \arguments{
 \item{mutation.type.vec}{a vector of mutation type information}
 
-\item{mutation.type.to.class.df}{A mapping table from mutation tytpe (header \emph{Mutation_Type})
+\item{mutation.type.to.class.df}{A mapping table from mutation type (header \emph{Mutation_Type})
 to mutation class (header \emph{Mutation_Class}).
 Default \code{NA} indicates to use default mapping table; see \code{\link{getDefaultMutationMappingTable}}.}
 }

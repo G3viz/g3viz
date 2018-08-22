@@ -16,7 +16,7 @@ a data frame with columns
 \item \emph{length} --- protein length
 \item \emph{hmm.acc} --- accession number of Pfam HMM model, e.g., PF08563
 \item \emph{hmm.name} --- Pfam name, e.g., P53_TAD
-\item \emph{start} --- Pfam domain start postion
+\item \emph{start} --- Pfam domain start position
 \item \emph{end} --- Pfam domain end position
 \item \emph{type} --- Pfam type, including domain/motif/family
 }

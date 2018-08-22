@@ -30,8 +30,8 @@ a data frame with columns
 \item \emph{End_Position} --- end position
 \item \emph{Reference_Allele} --- reference allele
 \item \emph{Variant_Allele} --- variant allele
-\item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Misense/Inframe/Other)
-\item \emph{AA_Position} --- amino-acid postion of the variant; if the variant is not in protein-conding region, \code{NA}
+\item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Missense/Inframe/Other)
+\item \emph{AA_Position} --- amino-acid position of the variant; if the variant is not in protein-coding region, \code{NA}
 }
 }
 \description{
@@ -39,7 +39,7 @@ Retrieve and parse mutation data from cBioPortal
 by the given cBioPortal cancer study ID and the gene symbol.
 }
 \examples{
-# list all cbioportal studies
+# list all studies of cBioPortal
 library(cgdsr)
 cgds <- CGDS("http://www.cbioportal.org/public-portal/")
 all.studies <- getCancerStudies(cgds)

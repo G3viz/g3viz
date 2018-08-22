@@ -19,13 +19,13 @@ otherwise \code{NA} (\code{guess == FALSE}).  Default \code{TRUE}.}
 \item{output.format}{output format: JSON or list}
 }
 \value{
-A list or a Json with attributes:
-    \emph{symbol}, \emph{uniprot}, \emph{length}, and a list of \emph{pfam} entries, including
+A list or a JSON with attributes:
+    \emph{symbol}, \emph{uniprot}, \emph{length}, and a list of \emph{Pfam} entries, including
     \emph{hmm.acc}, \emph{hmm.name}, \emph{start}, \emph{end}, and \emph{type}.
 }
 \description{
-Mapping from Hugo symbol to Pfam-A domain compostion.
-If the given Hugo symbol has multple UniProt ID mappings,
+Mapping from Hugo symbol to Pfam-A domain composition.
+If the given Hugo symbol has multiple UniProt ID mappings,
 and \code{guess == TRUE},
 the longest UniProt protein is selected. Return is either a list of a JSON.
 }
@@ -34,12 +34,12 @@ the longest UniProt protein is selected. Return is either a list of a JSON.
 hgnc2pfam("TP53")
 hgnc2pfam("TP53", output.format = "json")
 hgnc2pfam("TP53", output.format = "list")
-hgnc2pfam("TP53", output.format = "json", uniprot.id = "P84996") # OK
+hgnc2pfam("TP53", output.format = "json", uniprot.id = "P04637") # OK
 
-# for gene mapping to multiple uniprot enties
+# for gene mapping to multiple UniProt enties
 hgnc2pfam("GNAS", guess = TRUE)
 hgnc2pfam("GNAS", guess = FALSE)
 hgnc2pfam("GNAS", output.format = "list")
 hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84996")
-hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+# hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
 }

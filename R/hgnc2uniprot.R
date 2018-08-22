@@ -25,11 +25,11 @@ hgnc2uniprot <- function(hgnc.symbol){
     stop("Missing hgnc.symbol: need to specify a HUGO symbol.")
   }
 
-  hgnc2pfam.file = system.file('data', 'hgnc2pfam.RDS', package = 'g3viz')
+  hgnc2pfam.file <- system.file('data', 'hgnc2pfam.RDS', package = 'g3viz')
   #hgnc2pfam.file = "data/hgnc2pfam.RDS"
-  hgnc2pfam.df = readRDS(file = hgnc2pfam.file)
+  hgnc2pfam.df <- readRDS(file = hgnc2pfam.file)
 
-  uniprot.df = unique(subset(hgnc2pfam.df, symbol == hgnc.symbol)[, c("symbol", "uniprot", "length")])
+  uniprot.df <- unique(subset(hgnc2pfam.df, symbol == hgnc.symbol, select = c("symbol", "uniprot", "length")))
 
   uniprot.df
 }

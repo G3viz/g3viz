@@ -1,9 +1,10 @@
 Package: g3viz
 Type: Package
-Title: visulize MAF genomic annotation data
+Title: Visualize Genomic Mutation Data Using an Interactive Lollipop Diagram
 Version: 0.1.0
 Author: person("Xin", "Guo", email = "phoeguo@gmail.com", role=c("aut", "cre"))
-Description: a warpper of g3viz javascript library to generate interactive "lollipop-style" diagram to visualize mutation data
+Maintainer: Xin Guo <phoeguo@gmail.com>
+Description: R interface for g3viz Javascript library.  Using an interactive `lollipop-diagram` to visualize genomic mutation data.
 License: MIT
 Encoding: UTF-8
 LazyData: true
@@ -11,10 +12,11 @@ Depends:
     R (>= 3.0.2)
 Imports:
     jsonlite,
-    cgdsr
+    cgdsr,
+    stringr,
+    htmlwidgets
 Suggests:
-    shiny (>= 1.0.0),
-    httpuv (>= 1.4.0)
-URL: https://github.com/G3js/g3viz
-BugReports: https://github.com/G3js/g3viz/issues
+    shiny (>= 1.0.0)
+URL: https://github.com/G3js/lollipopR
+BugReports: https://github.com/G3js/lollipopR/issues
 RoxygenNote: 6.1.0

@@ -2,7 +2,7 @@
 #'
 #' @param chart.width chart width. Default 800.
 #' @param chart.type \emph{pie} or \emph{circle}. Default \emph{pie}.
-#' @param chart.margin chart margin in \emph{list}. Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.
+#' @param chart.margin specify chart margin in _list_ format. Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.
 #' @param chart.background chart background. Default \emph{transparent}.
 #' @param transition.time chart animation transition time in millisecond.  Default 600.
 #'
@@ -56,58 +56,58 @@
 #'
 #' @return a list with g3Lollipop plot options
 #' @export
-g3Lollipop.options <- function(  chart.width = 800,
-                                 chart.type = "pie",
-                                 chart.margin = list(left = 40, right = 20, top = 15, bottom = 25),
-                                 chart.background = "transparent",
-                                 transition.time = 600,
-                                 # axis
-                                 y.axis.label = "mutations",
-                                 axis.label.font = "normal 12px Arial",
-                                 axis.label.color = "#4f4f4f",
-                                 axis.label.alignment = "middle",
-                                 axis.label.dy = "-2em",
-                                 # legend
-                                 legend.margin = list(left = 10, right = 0, top = 5, bottom = 5),
-                                 legend.interactive = TRUE,
-                                 legend.title = NA,
-                                 # lollipop track
-                                 lollipop.track.height = 420,
-                                 lollipop.track.background = "rgb(244,244,244)",
-                                 # pop size
-                                 lollipop.pop.min.size = 2,
-                                 lollipop.pop.max.size = 12,
-                                 lollipop.pop.info.limit = 8,
-                                 lollipop.pop.info.color = "#EEE",
-                                 lollipop.line.color = "rgb(42,42,42)",
-                                 lollipop.line.width = 0.5,
-                                 lollipop.circle.color = "wheat",
-                                 lollipop.circle.width = 0.5,
-                                 lollipop.label.ratio = 1.4,
-                                 lollipop.label.min.font.size = 10,
-                                 lollipop.color.scheme = "accent",
-                                 # title text
-                                 title.text = "",
-                                 title.font = "normal 16px Arial",
-                                 title.color = "#424242",
-                                 title.alignment = "middle",
-                                 title.dy = "0.35em",
-                                 # annotation track
-                                 anno.height = 30,
-                                 anno.margin = list(top = 4, bottom = 0),
-                                 anno.background = "transparent",
-                                 anno.bar.fill = "#e5e3e1",
-                                 anno.bar.margin = list(top = 2, bottom = 2),
-                                 # domain
-                                 domain.color.scheme = "category10",
-                                 domain.margin = list(top = 0, bottom = 0),
-                                 domain.text.font = "normal 11px Arial",
-                                 domain.text.color = "#f2f2f2",
-                                 # others
-                                 legend = TRUE,
-                                 tooltip = TRUE,
-                                 brush = TRUE,
-                                 zoom = TRUE
+g3Lollipop.options <- function(chart.width = 800,
+                               chart.type = "pie",
+                               chart.margin = list(left = 40, right = 20, top = 15, bottom = 25),
+                               chart.background = "transparent",
+                               transition.time = 600,
+                               # axis
+                               y.axis.label = "mutations",
+                               axis.label.font = "normal 12px Arial",
+                               axis.label.color = "#4f4f4f",
+                               axis.label.alignment = "middle",
+                               axis.label.dy = "-2em",
+                               # legend
+                               legend.margin = list(left = 10, right = 0, top = 5, bottom = 5),
+                               legend.interactive = TRUE,
+                               legend.title = NA,
+                               # lollipop track
+                               lollipop.track.height = 420,
+                               lollipop.track.background = "rgb(244,244,244)",
+                               # pop size
+                               lollipop.pop.min.size = 2,
+                               lollipop.pop.max.size = 12,
+                               lollipop.pop.info.limit = 8,
+                               lollipop.pop.info.color = "#EEE",
+                               lollipop.line.color = "rgb(42,42,42)",
+                               lollipop.line.width = 0.5,
+                               lollipop.circle.color = "wheat",
+                               lollipop.circle.width = 0.5,
+                               lollipop.label.ratio = 1.4,
+                               lollipop.label.min.font.size = 10,
+                               lollipop.color.scheme = "accent",
+                               # title text
+                               title.text = "",
+                               title.font = "normal 16px Arial",
+                               title.color = "#424242",
+                               title.alignment = "middle",
+                               title.dy = "0.35em",
+                               # annotation track
+                               anno.height = 30,
+                               anno.margin = list(top = 4, bottom = 0),
+                               anno.background = "transparent",
+                               anno.bar.fill = "#e5e3e1",
+                               anno.bar.margin = list(top = 2, bottom = 2),
+                               # domain
+                               domain.color.scheme = "category10",
+                               domain.margin = list(top = 0, bottom = 0),
+                               domain.text.font = "normal 11px Arial",
+                               domain.text.color = "#f2f2f2",
+                               # others
+                               legend = TRUE,
+                               tooltip = TRUE,
+                               brush = TRUE,
+                               zoom = TRUE
 ){
   # plot settings
   plot.options <- list(chartWidth = chart.width,

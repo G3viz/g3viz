@@ -8,6 +8,7 @@
 #' @param protein.change.vec a vector of strings with protein change information, usually in HGVSp_short format.
 #' @param mutation.class.vec a vector of strings with mutation class (or so-called variant classification) information.
 #'
+#' @importFrom stringr str_extract_all
 #' @export
 parseProteinChange <- function(protein.change.vec, mutation.class.vec) {
   if(length(protein.change.vec) != length(mutation.class.vec)){
@@ -26,7 +27,7 @@ parseProteinChange <- function(protein.change.vec, mutation.class.vec) {
 
     if(!(is.na(d.mc) || d.mc == "Other" || d.mc == "")){
       # extract the first numeric value
-      aa.pos.vec[idx] = as.numeric(stringr::str_extract_all(d.pc, "[0-9]+")[[1]])[1]
+      aa.pos.vec[idx] = as.numeric(str_extract_all(d.pc, "[0-9]+")[[1]])[1]
     }
     # cat(d.pc, " ==> ", aa.pos.vec[idx], "\n")
   }

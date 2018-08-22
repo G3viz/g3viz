@@ -2,7 +2,7 @@
 % Please edit documentation in R/formatCamelCase.R
 \name{formatCamelCase}
 \alias{formatCamelCase}
-\title{format a give string to camel case (e.g., \emph{Abc_Efg})}
+\title{format a give string to camel case (e.g., from \emph{abc_efg} to \emph{Abc_Efg})}
 \usage{
 formatCamelCase(x, sep = "_")
 }
@@ -15,5 +15,5 @@ formatCamelCase(x, sep = "_")
 the string in camel format
 }
 \description{
-format a give string to camel case (e.g., \emph{Abc_Efg})
+format a give string to camel case (e.g., from \emph{abc_efg} to \emph{Abc_Efg})
 }

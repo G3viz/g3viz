@@ -12,7 +12,7 @@ readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
   mutation.type.to.class.df = NA, sep = "\\t", ...)
 }
 \arguments{
-\item{maf.file}{MAF file name.  Gunzipped input file allowed, with ".gz" file extension.}
+\item{maf.file}{MAF file name.  Gnuzipped input file allowed, with ".gz" file extension.}
 
 \item{gene.symbol.col}{Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.}
 
@@ -39,8 +39,8 @@ Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}
 \item{...}{additional parameters pass to \code{\link[utils]{read.table}}.}
 }
 \value{
-a data frame containg representation of the mutation data in the given MAF file.,
-        with optional columns of parsed \emph{Mutation_Class} and \emph{Protein_Position}.
+a data frame containing MAF information,
+			 plus optional columns of the parsed \emph{Mutation_Class} and \emph{Protein_Position}.
 }
 \description{
 Read MAF file.
