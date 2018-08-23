@@ -218,7 +218,7 @@ lollipop.circle.color | lollipop circle border color. Default `wheat`.
 lollipop.circle.width | lollipop circle border width. Default `0.5`.
 lollipop.label.ratio | lollipop click-out label font size to circle size ratio. Default `1.4`.
 lollipop.label.min.font.size | lollipop click-out label minimal font size. Default `10`.
-lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. (TODO: link to colorscheme demo)
+lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. [Live example](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/)
 title.text | title of chart. Default "".
 title.font | font of chart title. Default `normal 16px Arial`.
 title.color | color of chart title. Default `#424242`.
