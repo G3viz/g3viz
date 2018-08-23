@@ -6,5 +6,5 @@ dependencies:
   - name: g3Lollipop
     version: 0.0.1
     src: htmlwidgets/lib
-    script: ./g3Lollipop/g3Lollipop.js
+    script: ./g3Lollipop/g3Lollipop.min.js
     style: ./g3Lollipop/g3Lollipop.min.css

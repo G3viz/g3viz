@@ -1726,8 +1726,7 @@ function Lollipop(target, chartType, width) {
                 .key(d => d[snvDataFormat.factor])
                 .rollup(function (d) { return +d.length; })
                 .object(snvData);
-            
-            _currentStates = JSON.parse(JSON.stringify(_initStates));
+            _currentStates = Object.create(_initStates);
 
             // group by postion, sort
             snvData = d3.nest()
@@ -2126,7 +2125,7 @@ function Lollipop(target, chartType, width) {
         this.destroy();
 
         // reset states
-        _currentStates = JSON.parse(JSON.stringify(_initStates));
+        _currentStates = Object.create(_initStates);
         this.draw();
     };
 
