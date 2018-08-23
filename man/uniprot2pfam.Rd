@@ -24,3 +24,10 @@ a data frame with columns
 \description{
 Map from UniProt ID to Pfam-A domain compostion.
 }
+\examples{
+uniprot2pfam("Q5VWM5")  # PRAMEF9; PRAMEF15
+uniprot2pfam("P04637")
+
+
+
+}

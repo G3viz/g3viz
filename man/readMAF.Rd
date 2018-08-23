@@ -31,8 +31,8 @@ Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 \item{aa.pos.col}{Column name of the parsed amino-acid change position. Default \emph{AA_Position}.}
 
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
-\code{\link{getDefaultMutationMappingTable}} for details.
-Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
+\code{\link{mapMutationTypeToMutationClass}} for details.
+Default \code{NA}, which indicates to use default mappoings.}
 
 \item{sep}{separator of columns. Default \code{sep = "\\t"}.}
 
@@ -43,6 +43,6 @@ a data frame containing MAF information,
 			 plus optional columns of the parsed \emph{Mutation_Class} and \emph{Protein_Position}.
 }
 \description{
-Read MAF file.
-For MAF format specification, check \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
+Read mutation information from MAF file.
+For MAF format specification, see \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
 }

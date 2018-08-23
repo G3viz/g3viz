@@ -53,5 +53,7 @@ generateHgnc2pfam <- function() {
 
 
   message("Generate data ...")
-  saveRDS(hgnc2pfam.df, "data/hgnc2pfam.RDS")
+	rownames(hgnc2pfam.df) <- c()
+	
+  #saveRDS(hgnc2pfam.df, "data/hgnc2pfam.RDS")
 }

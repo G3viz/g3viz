@@ -1,7 +1,7 @@
 #' Read MAF file
 #'
-#' @description Read MAF file.
-#' For MAF format specification, check \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
+#' Read mutation information from MAF file.
+#' For MAF format specification, see \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
 #'
 #' @param maf.file MAF file name.  Gnuzipped input file allowed, with ".gz" file extension.
 #' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
@@ -14,8 +14,8 @@
 #' @param mutation.class.col Column name of the parsed mutation class. Default \emph{Mutation_Class}.
 #' @param aa.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
-#'   \code{\link{getDefaultMutationMappingTable}} for details.
-#'   Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
+#'   \code{\link{mapMutationTypeToMutationClass}} for details.
+#'   Default \code{NA}, which indicates to use default mappoings.
 #' @param sep separator of columns. Default \code{sep = "\\t"}.
 #' @param ... additional parameters pass to \code{\link[utils]{read.table}}.
 #'

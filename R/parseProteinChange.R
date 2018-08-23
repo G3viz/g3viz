@@ -2,8 +2,7 @@
 #
 #' @description Parse \emph{amino_acid_position} according to HGVSp_short format. \cr
 #'  For example, \emph{p.Q16Rfs*28}, amino-acid position is 16.
-#'   See \url{http://varnomen.hgvs.org/recommendations/protein/}. \cr
-#'   See \url{https://www.hgvs.org/mutnomen/recs-prot.html}. \cr
+#'   See \url{http://varnomen.hgvs.org/recommendations/protein/} or \url{https://www.hgvs.org/mutnomen/recs-prot.html}. \cr
 #'
 #' @param protein.change.vec a vector of strings with protein change information, usually in HGVSp_short format.
 #' @param mutation.class.vec a vector of strings with mutation class (or so-called variant classification) information.

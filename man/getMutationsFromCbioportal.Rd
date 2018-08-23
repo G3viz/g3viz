@@ -15,8 +15,8 @@ getMutationsFromCbioportal(study.id, gene.symbol, output.file = NA,
 \item{output.file}{if specified, output to a file in \emph{CSV} format. Default is \code{NA}.}
 
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
-\code{\link{getDefaultMutationMappingTable}} for details.
-Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.}
+See \code{\link{mapMutationTypeToMutationClass}} for details.
+Default \code{NA}, which indicates to use default mappings.}
 }
 \value{
 a data frame with columns

@@ -2,7 +2,8 @@
 #'
 #' @param chart.width chart width. Default 800.
 #' @param chart.type \emph{pie} or \emph{circle}. Default \emph{pie}.
-#' @param chart.margin specify chart margin in _list_ format. Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.
+#' @param chart.margin specify chart margin in _list_ format.\cr
+#'                     Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.
 #' @param chart.background chart background. Default \emph{transparent}.
 #' @param transition.time chart animation transition time in millisecond.  Default 600.
 #'

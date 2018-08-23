@@ -34,7 +34,8 @@ g3Lollipop.options(chart.width = 800, chart.type = "pie",
 
 \item{chart.type}{\emph{pie} or \emph{circle}. Default \emph{pie}.}
 
-\item{chart.margin}{specify chart margin in _list_ format. Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.}
+\item{chart.margin}{specify chart margin in _list_ format.\cr
+Default \code{list(left = 40, right = 20, top = 15, bottom = 25)}.}
 
 \item{chart.background}{chart background. Default \emph{transparent}.}
 

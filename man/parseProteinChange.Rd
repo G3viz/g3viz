@@ -14,6 +14,5 @@ parseProteinChange(protein.change.vec, mutation.class.vec)
 \description{
 Parse \emph{amino_acid_position} according to HGVSp_short format. \cr
  For example, \emph{p.Q16Rfs*28}, amino-acid position is 16.
-  See \url{http://varnomen.hgvs.org/recommendations/protein/}. \cr
-  See \url{https://www.hgvs.org/mutnomen/recs-prot.html}. \cr
+  See \url{http://varnomen.hgvs.org/recommendations/protein/} or \url{https://www.hgvs.org/mutnomen/recs-prot.html}. \cr
 }

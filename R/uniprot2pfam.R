@@ -12,6 +12,15 @@
 #' \item \emph{end} --- Pfam domain end position
 #' \item \emph{type} --- Pfam type, including domain/motif/family
 #' }
+#'
+#' @examples
+#' uniprot2pfam("Q5VWM5")  # PRAMEF9; PRAMEF15
+#' uniprot2pfam("P04637")
+#'
+#'
+#'
+#' @importFrom utils data
+#'
 #' @export
 uniprot2pfam <- function(uniprot.id){
   # Q5VWM5: PRAMEF9; PRAMEF15
@@ -20,9 +29,10 @@ uniprot2pfam <- function(uniprot.id){
     stop("Missing uniprot.id: need to specify a UniPort ID (HUMAN)")
   }
 
-  hgnc2pfam.file <- system.file('data', 'hgnc2pfam.RDS', package = 'g3viz')
+  #hgnc2pfam.file <- system.file('data', 'hgnc2pfam.RDS', package = 'g3viz')
   #hgnc2pfam.file = "data/hgnc2pfam.RDS"
-  hgnc2pfam.df <- readRDS(file = hgnc2pfam.file)
+  #hgnc2pfam.df <- readRDS(file = hgnc2pfam.file)
+  data("hgnc2pfam.df")
 
   uniprot.df <- unique(
     subset(hgnc2pfam.df,

@@ -6,8 +6,8 @@
 #' @param gene.symbol HGNC gene symbol.
 #' @param output.file if specified, output to a file in \emph{CSV} format. Default is \code{NA}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
-#' \code{\link{getDefaultMutationMappingTable}} for details.
-#' Default \code{NA}, indicating to use \code{\link{getDefaultMutationMappingTable}}.
+#' See \code{\link{mapMutationTypeToMutationClass}} for details.
+#' Default \code{NA}, which indicates to use default mappings.
 #' @examples
 #' # list all studies of cBioPortal
 #' library(cgdsr)

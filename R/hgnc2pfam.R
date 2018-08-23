@@ -17,6 +17,9 @@
 #' hgnc2pfam("GNAS", output.format = "list")
 #' hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84996")
 #' # hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+#'
+#' hgnc2pfam("PRAMEF9", output.format = "list") # no Pfam mappings
+#'
 #' @param hgnc.symbol primary Hugo symbol
 #' @param output.format output format: JSON or list
 #' @param uniprot.id UniProt ID, in case that gene symbol maps to multiple UniProt entries.

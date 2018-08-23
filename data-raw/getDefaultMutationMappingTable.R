@@ -1,0 +1,62 @@
+#' Default mapping between mutation type to mutation class
+#'
+#' @description Return the default mapping table between mutation type to mutation class
+#' @details
+#' Mutation type or variant classification, generally with column named \emph{Variant_Classficiation} or
+#' \emph{Mutation_Type} in MAF file, can be classified as follows
+#' \enumerate{
+#' \item Missense
+#' \itemize{
+#'   \item \emph{Missense_Mutation} --- the point mutation alters the protein structure by one amino acid.
+#'   See \url{https://en.wikipedia.org/wiki/Missense_mutation}.
+#' }
+#' \item Inframe
+#' \itemize{
+#' \item \emph{In_Frame_Del} --- deletion that keeps the sequence in frame
+#' \item \emph{In_Frame_Ins} --- insertion that keeps the sequence in frame
+#' \item \emph{Silent} --- variant is in coding region of the chosen transcript, but protein structure is identical (i.e., a synonymous mutation)
+#' \item \emph{Targeted_Region} --- targeted region
+#' }
+#' \item Truncating
+#' \itemize{
+#' \item \emph{Frame_Shift_Ins} --- insertion that moves the coding sequence out of frame.
+#'   See \url{https://en.wikipedia.org/wiki/Frameshift_mutation}.
+#' \item \emph{Frame_Shift_Del} --- deletion that moves the coding sequence out of frame.
+#'   See \url{https://en.wikipedia.org/wiki/Frameshift_mutation}.
+#' \item \emph{Nonsense_Mutation} --- a premature stop codon is created by the variant.
+#'   See \url{https://en.wikipedia.org/wiki/Nonsense_mutation}.
+#' \item \emph{Nonstop_Mutation} --- variant removes stop codon.
+#' \item \emph{Splice_Site} --- the variant is within two bases of a splice site.
+#' \item \emph{Splice_Region} --- the variant is within splice region.
+#' }
+#' \item Other
+#' \itemize{
+#' \item \emph{5'UTR} --- variant is on the 5'UTR for the chosen transcript
+#' \item \emph{3'UTR} --- variant is on the 3'UTR for the chosen transcript
+#' \item \emph{5'Flank} --- the variant is upstream of the chosen transcript (within 3kb)
+#' \item \emph{3'Flank} --- the variant is downstream of the chosen transcript (within 3kb)
+#' \item \emph{Fusion} --- gene fusion
+#' \item \emph{IGR} --- intergenic region. Does not overlap any transcript.
+#' \item \emph{Intron} --- variant lies between exons within the bounds of the chosen transcript.
+#' \item \emph{Translation_Start_Site} --- variant in translation start site.
+#' \item \emph{De_novo_Start_InFrame} --- New start codon is created by the given variant using the chosen transcript.
+#' However, it is in frame relative to the coded protein.
+#' \item \emph{De_novo_Start_OutOfFrame} --- New start codon is created by the given variant using the chosen transcript.
+#' However, it is out of frame relative to the coded protein.
+#' \item \emph{Start_Codon_SNP} --- point mutation that overlaps the start codon.
+#' \item \emph{Start_Codon_Ins} --- insertion that overlaps the start codon.
+#' \item \emph{Start_Codon_Del} --- selection that overlaps the start codon.
+#' \item \emph{RNA} --- variant lies on one of the RNA transcripts.
+#' \item \emph{lincRNA} --- variant lies on one of the lincRNAs.
+#' \item \emph{Unknown} --- Unknown
+#' }
+#' }
+#'
+#' @return A data frame with headers of \emph{Mutation_Type}, \emph{Mutation_Class}, \emph{Short_Name}
+#' @export
+getDefaultMutationMappingTable <- function(){
+  mutation.table.file <- "mutation_type_to_class_mapping.RDS"
+  mutation.table.rds <- system.file('data', mutation.table.file, package = 'g3viz')
+  mutation.table.df <- readRDS(mutation.table.rds)
+  mutation.table.df
+}
