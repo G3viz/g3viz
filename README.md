@@ -128,13 +128,11 @@ plot.options <- g3Lollipop.options(chart.width = 1600,
                                    anno.bar.margin = list(top = 5, bottom = 5),
                                    domain.color.scheme = "darjeeling2",
                                    domain.text.font = "normal 8px Arial",
-                                   domain.text.color = "white"
-                                   )
+                                   domain.text.color = "white")
 
 g3Lollipop(mutation.dat,
            gene.symbol = "APC",
-           gene.symbol.col = gene.symbol.colname,
-           protein.change.col = protein.change.colname,
+           protein.change.col = "amino_acid_change",
            plot.options = plot.options)
 ```
 >
@@ -250,13 +248,13 @@ zoom | if enable zoom feature. Default `TRUE`.
 
 Call `g3Lollipop` function to visualize genomic mutation data in a web browser.  For example
 
-`
+```r
 g3Lollipop(mutation.dat,
            gene.symbol = "APC",
            gene.symbol.col = gene.symbol.colname,
            protein.change.col = protein.change.colname,
            plot.options = plot.options)
-`
+```
 
 <br/>
 <div align="right">
