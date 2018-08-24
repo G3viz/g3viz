@@ -18,13 +18,12 @@ G3Viz is an [R](https://www.r-project.org/) package, which aims to provide a sui
 ## <a name="install"></a>Installation
 ```r
 # Install devtools
-install.packages("devtools")
-
-# load devtools
-library(devtools)
+if("devtools" %in% rownames(installed.packages()) == FALSE){ 
+  install.packages("devtools")
+}
 
 # install g3viz from github
-devtools::install_github("g3js/g3viz")
+devtools::install_github("g3js/lollipopR")
 
 ```
 
