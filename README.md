@@ -96,6 +96,7 @@ g3Lollipop(mutation.dat,
 ### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ formatted file
 
 Load user-defined file in _CSV_ or _TSV_ format.
+
 This example mimics the lollipop diagram of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper.jsp).
 
 The color scheme for lollipops are set to _bottlerocket2_ in this example.
