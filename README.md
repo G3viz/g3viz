@@ -99,8 +99,9 @@ Load user-defined file in _CSV_ or _TSV_ format.
 
 This example mimics the lollipop diagram of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper.jsp).
 
-The color scheme for lollipops are set to _bottlerocket2_ in this example.
-For all color schemes supported by the package, check this [demo](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/).
+The color scheme for Pfam domains are set to _bottlerocket2_ in this example.
+For all color schemes supported by the package, check this [demo1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/) or
+[demo2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/).
 
 ```r
 library(g3viz)
@@ -221,7 +222,7 @@ lollipop.circle.color | lollipop circle border color. Default `wheat`.
 lollipop.circle.width | lollipop circle border width. Default `0.5`.
 lollipop.label.ratio | lollipop click-out label font size to circle size ratio. Default `1.4`.
 lollipop.label.min.font.size | lollipop click-out label minimal font size. Default `10`.
-lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. [Live example](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/)
+lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. [demo1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/) or [demo2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/).
 title.text | title of chart. Default "".
 title.font | font of chart title. Default `normal 16px Arial`.
 title.color | color of chart title. Default `#424242`.
