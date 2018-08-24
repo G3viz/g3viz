@@ -64,7 +64,8 @@ mapMutationTypeToMutationClass <- function(mutation.type.vec,
   # ============================
   # read variant_type to variant_class mapping
   if(is.na(mutation.type.to.class.df)){
-    data(mutation.table.df)
+    #mutation.table.df <- NULL
+    #data("mutation.table.df", package = "g3viz")
     Map.df <- mutation.table.df
   } else {
     Map.df <- mutation.type.to.class.df

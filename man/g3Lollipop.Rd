@@ -32,11 +32,13 @@ otherwise, use specified.  Default \code{NA}.}
 Generate G3Lollipop chart from the given mutation data.
 }
 \examples{
+\dontrun{
 # Example 1: visualize mutation data from cBioPortal
+#   note: internet access required, may use more than 10 seconds
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 # lollipop diagram with default options
 g3Lollipop(mutation.dat, gene.symbol = "TP53")
-
+}
 # Example 2: visualize mutation data from MAF file
 # load MAF file
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")

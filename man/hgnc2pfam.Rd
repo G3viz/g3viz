@@ -41,7 +41,9 @@ hgnc2pfam("GNAS", guess = TRUE)
 hgnc2pfam("GNAS", guess = FALSE)
 hgnc2pfam("GNAS", output.format = "list")
 hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84996")
-# hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+\dontrun{
+hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+}
 
 hgnc2pfam("PRAMEF9", output.format = "list") # no Pfam mappings
 

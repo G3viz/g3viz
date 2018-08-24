@@ -9,6 +9,8 @@
 #' See \code{\link{mapMutationTypeToMutationClass}} for details.
 #' Default \code{NA}, which indicates to use default mappings.
 #' @examples
+#' \dontrun{
+#' # Note: internet access required.  May need more than 10 seconds.
 #' # list all studies of cBioPortal
 #' library(cgdsr)
 #' cgds <- CGDS("http://www.cbioportal.org/public-portal/")
@@ -18,22 +20,23 @@
 #' # pick a primary HGNC gene symbol to query
 #' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 #' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
+#' }
 #' @importFrom cgdsr CGDS getGeneticProfiles getCaseLists getMutationData
 #' @importFrom utils write.table
 #'
 #' @return a data frame with columns
-#' \itemize{
-#' \item \emph{Hugo_Symbol} --- Hugo gene symbol
-#' \item \emph{Protein_Change} --- Protein change information (cBioprotal uses \emph{HGVSp} format)
-#' \item \emph{Sample_ID} --- Sample ID
-#' \item \emph{Mutation_Type} --- mutation type, i.e.,
-#' \item \emph{Chromosome} --- chromosome
-#' \item \emph{Start_Position} --- start position
-#' \item \emph{End_Position} --- end position
-#' \item \emph{Reference_Allele} --- reference allele
-#' \item \emph{Variant_Allele} --- variant allele
-#' \item \emph{Mutation_Class} --- mutation class (e.g., Truncating/Missense/Inframe/Other)
-#' \item \emph{AA_Position} --- amino-acid position of the variant; if the variant is not in protein-coding region, \code{NA}
+#' \describe{
+#' \item{Hugo_Symbol}{Hugo gene symbol}
+#' \item{Protein_Change}{Protein change information (cBioprotal uses \emph{HGVSp} format)}
+#' \item{Sample_ID}{Sample ID}
+#' \item{Mutation_Type}{mutation type, aka, variant classification.}
+#' \item{Chromosome}{chromosome}
+#' \item{Start_Position}{start position}
+#' \item{End_Position}{end position}
+#' \item{Reference_Allele}{reference allele}
+#' \item{Variant_Allele}{variant allele}
+#' \item{Mutation_Class}{mutation class (e.g., Truncating/Missense/Inframe/Other)}
+#' \item{AA_Position}{amino-acid position of the variant; if the variant is not in protein-coding region, \code{NA}}
 #' }
 #' @export
 getMutationsFromCbioportal <- function(study.id,

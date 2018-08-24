@@ -32,12 +32,18 @@ uniprot2pfam <- function(uniprot.id){
   #hgnc2pfam.file <- system.file('data', 'hgnc2pfam.RDS', package = 'g3viz')
   #hgnc2pfam.file = "data/hgnc2pfam.RDS"
   #hgnc2pfam.df <- readRDS(file = hgnc2pfam.file)
-  data("hgnc2pfam.df")
+
+  #data("hgnc2pfam.df", package = "g3viz")
 
   uniprot.df <- unique(
-    subset(hgnc2pfam.df,
-           uniprot == uniprot.id,
-           select = c("uniprot", "length", "hmm.acc", "hmm.name", "start", "end", "type")))
+    hgnc2pfam.df[hgnc2pfam.df$uniprot == uniprot.id,
+                 c("uniprot", "length", "hmm.acc", "hmm.name", "start", "end", "type")]
+  )
+
+#  uniprot.df <- unique(
+#    subset(hgnc2pfam.df,
+#           uniprot == uniprot.id,
+#           select = c("uniprot", "length", "hmm.acc", "hmm.name", "start", "end", "type")))
 
   # sort by domain position
   uniprot.df <- uniprot.df[with(uniprot.df, order(start, end)),]

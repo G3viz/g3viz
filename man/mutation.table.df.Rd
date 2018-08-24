@@ -4,11 +4,20 @@
 \name{mutation.table.df}
 \alias{mutation.table.df}
 \title{Default mapping table between mutation type (aka, variant classification) to mutation class}
-\format{A data frame with three columns, \emph{Mutation_Type}, \emph{Mutation_Class}, and \emph{Short_Name}.}
+\format{A data frame with three columns:
+\describe{
+  \item{Mutation_Type}{Mutation type, aka, variant classification}
+  \item{Mutation_Class}{mutation class}
+  \item{Short_Name}{short name of mutation type}
+}}
 \usage{
 mutation.table.df
 }
 \description{
-A dataset containing the mapping table between genomic mutation type (aka, variant classification) to mutation class
+A dataset containing the mapping table between genomic mutation type (aka, variant classification) to mutation class.
+See \code{\link{mapMutationTypeToMutationClass}} for details.
+}
+\examples{
+mutation.table.df
 }
 \keyword{datasets}

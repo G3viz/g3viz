@@ -4,7 +4,17 @@
 \name{hgnc2pfam.df}
 \alias{hgnc2pfam.df}
 \title{Mapping table between gene.symbol, uniprot.id, and pfam}
-\format{A data frame with columns of symbol, uniprot, length, start, end, hmm.acc, hmm.name, type}
+\format{A data frame with columns:
+\describe{
+  \item{symbol}{Gene symbol}
+  \item{uniprot}{UniProt ID}
+  \item{length}{protein length}
+  \item{start}{starting position of Pfam domain}
+  \item{end}{ending position of Pfam domain}
+  \item{hmm.acc}{Pfam accession number}
+  \item{hmm.name}{Pfam name}
+  \item{type}{Pfam type, i.e., domain/family/motif/repeat/disordered/coiled-coil}
+}}
 \source{
 Pfam (v31.0) and UniProt
 }
@@ -13,5 +23,8 @@ hgnc2pfam.df
 }
 \description{
 A dataset containing the mapping table between Hugo symbol, UniProt ID, and Pfam ACC.
+}
+\examples{
+hgnc2pfam.df
 }
 \keyword{datasets}

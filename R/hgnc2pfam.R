@@ -16,7 +16,9 @@
 #' hgnc2pfam("GNAS", guess = FALSE)
 #' hgnc2pfam("GNAS", output.format = "list")
 #' hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84996")
-#' # hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+#' \dontrun{
+#' hgnc2pfam("GNAS", output.format = "list", uniprot.id = "P84997") # not exists, returns FALSE
+#' }
 #'
 #' hgnc2pfam("PRAMEF9", output.format = "list") # no Pfam mappings
 #'
@@ -59,7 +61,8 @@ hgnc2pfam <- function(hgnc.symbol,
   if(!is.na(uniprot.id)){
     if(uniprot.id %in% uniprot.df$uniprot){
       message("Choose ", uniprot.id)
-      uniprot.df <- subset(uniprot.df, uniprot == uniprot.id)
+      uniprot.df <- uniprot.df[uniprot.df$uniprot == uniprot.id, ]
+      #uniprot.df <- subset(uniprot.df, uniprot == uniprot.id)
     } else {
       stop(uniprot.id, " is not mapped to ", hgnc.symbol)
     }
