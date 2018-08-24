@@ -96,6 +96,10 @@ g3Lollipop(mutation.dat,
 ### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ formatted file
 
 Load user-defined file in _CSV_ or _TSV_ format.
+This example mimics the lollipop diagram of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper.jsp).
+
+The color scheme for lollipops are set to _bottlerocket2_ in this example.
+For all color schemes supported by the package, check this [demo](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/).
 
 ```r
 library(g3viz)
@@ -110,9 +114,7 @@ mutation.dat <- readMAF(mutation.csv,
                         protein.change.col = "amino_acid_change",
                         sep = ",")  # separator of csv file
 
-# plot options: try to mimic MutationMapper (http://www.cbioportal.org/mutation_mapper.jsp)
-#               change color scheme of mutation track and domain annotation track
-# color scheme in g3viz package, check this [demo](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/)
+# try to mimic MutationMapper (http://www.cbioportal.org/mutation_mapper.jsp)
 plot.options <- g3Lollipop.options(chart.width = 1600,
                                    chart.type = "circle",
                                    lollipop.track.background = "transparent",
