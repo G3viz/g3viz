@@ -112,6 +112,7 @@ mutation.dat <- readMAF(mutation.csv,
 
 # plot options: try to mimic MutationMapper (http://www.cbioportal.org/mutation_mapper.jsp)
 #               change color scheme of mutation track and domain annotation track
+# color scheme in g3viz package, check this [demo](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/)
 plot.options <- g3Lollipop.options(chart.width = 1600,
                                    chart.type = "circle",
                                    lollipop.track.background = "transparent",
