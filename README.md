@@ -17,6 +17,11 @@ G3Viz is an [R](https://www.r-project.org/) package, which aims to provide a sui
 
 ## <a name="install"></a>Installation
 ```r
+# install package
+install.packages('g3viz')
+```
+or
+```r
 # Install devtools
 if("devtools" %in% rownames(installed.packages()) == FALSE){ 
   install.packages("devtools")
