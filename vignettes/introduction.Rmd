@@ -1,6 +1,19 @@
-## <a name="top"></a>G3viz: Interactively visualize genomic data in a web browser
+---
+title: "G3viz: Interactively visualize genomic data in a web browser"
+date: "2018-08-30"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
-Date: 2018-08-30
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 Easily and effectively visualizing genomic data can help researchers to better understand their data. 
 This G3viz package aims to provide some easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies.  As of version 0.1.3, the package contains an interactive lollipop diagram to enable users to visualize genomic mutation data.
@@ -52,7 +65,7 @@ g3Lollipop(mutation.dat, gene.symbol = "TP53")
 
  [Live example](https://bl.ocks.org/phoeguo/raw/583a12e04c6b9d7ca1825cdbdc62f531/)
 
- <img src="./vignettes/figures/MSK_IMPACT_2017_TP53.png" width="580px">
+ <img src="./figures/MSK_IMPACT_2017_TP53.png" width="580px">
 
 
 #### Note:
@@ -67,11 +80,8 @@ all.studies <- cgdsr::getCancerStudies(cgds)
 mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 ```
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
+[↥ back to top](#top)
+
 
 ### <a name="ex2"></a>Example 2: visualize mutation data in _MAF_ format
 
@@ -100,13 +110,11 @@ g3Lollipop(mutation.dat,
 
 [Live example](https://bl.ocks.org/phoeguo/raw/302a0ff5729f6aa773c33d4bfd3061c4/)
 
-<img src="./vignettes/figures/TCGA_BRCA_PIK3CA.png" width="600px">
+<img src="./figures/TCGA_BRCA_PIK3CA.png" width="600px">
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
+
+[↥ back to top](#top)
+
 
 ### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ file
 
@@ -152,7 +160,7 @@ g3Lollipop(mutation.dat,
 
  [Live example](https://bl.ocks.org/phoeguo/raw/60f804c6683de30650e36ee912304754/)
 
- <img src="./vignettes/figures/CCLE_APC.png" width="800px">
+ <img src="./figures/CCLE_APC.png" width="800px">
 
 
 #### Note:
@@ -162,12 +170,8 @@ g3Lollipop(mutation.dat,
 [demo_2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/).
 
 
+[↥ back to top](#top)
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
 
 ## <a name="usage"></a>Usage
 
@@ -202,11 +206,9 @@ mutation.dat <- readMAF(mutation.csv,
                         sep = ",")  # separator of csv file
 ```
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
+
+[↥ back to top](#top)
+
 
 2.  <a name="options"></a>Set chart options
 
@@ -260,11 +262,9 @@ tooltip | if show tooltip. Default `TRUE`.
 brush | if show brush. Default `TRUE`.
 zoom | if enable zoom feature. Default `TRUE`.
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
+
+[↥ back to top](#top)
+
 
 3.  <a name="view"></a>Visualize genomic mutation data via a lollipop diagram in a web browser
 
@@ -278,9 +278,5 @@ g3Lollipop(mutation.dat,
            plot.options = plot.options)
 ```
 
-<br/>
-<div align="right">
-    <b><a href="#top">↥ back to top</a></b>
-</div>
-<br/>
 
+[↥ back to top](#top)

@@ -44,6 +44,8 @@ hgnc2pfam <- function(hgnc.symbol,
     stop("Missing hgnc.symbol: need to specify a HUGO symbol.")
   }
 
+  hgnc.symbol <- toupper(hgnc.symbol)
+
   # check output.format
   output.format <- tolower(output.format)
   if(!output.format %in% c("json", "list")){

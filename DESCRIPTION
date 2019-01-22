@@ -16,7 +16,10 @@ Imports:
     stringr,
     htmlwidgets
 Suggests:
-    shiny (>= 1.0.0)
+    shiny (>= 1.0.0),
+    knitr,
+    rmarkdown
 URL: https://github.com/G3js/lollipopR
 BugReports: https://github.com/G3js/lollipopR/issues
 RoxygenNote: 6.1.0
+VignetteBuilder: knitr
