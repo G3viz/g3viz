@@ -2,7 +2,9 @@ Package: g3viz
 Type: Package
 Title: Visualize Genomic Mutation Data Using an Interactive Lollipop Diagram
 Version: 0.1.3
-Author: person("Xin", "Guo", , "phoeguo@gmail.com", c("aut", "cre"))
+Authors@R: c(
+    person("Xin", "Guo", , "phoeguo@gmail.com", c("aut", "cre"))
+    )
 Maintainer: Xin Guo <phoeguo@gmail.com>
 Description: R interface for 'g3viz' JavaScript library. Using an interactive lollipop diagram to visualize genomic mutation data in a web browser.
 License: MIT + file LICENSE
