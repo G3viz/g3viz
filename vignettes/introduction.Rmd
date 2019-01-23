@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 ```
 
 Easily and effectively visualizing genomic data can help researchers to better understand their data. 
-This G3viz package aims to provide some easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies.  As of version 0.1.3, the package contains an interactive lollipop diagram to enable users to visualize genomic mutation data.
+This G3viz package aims to provide some easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies.  As of version 0.1.4, the package contains an interactive lollipop diagram to enable users to visualize genomic mutation data.
 
 ## Content
 *   [Installation](#installation)
