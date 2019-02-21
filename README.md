@@ -2,7 +2,7 @@
 
 Date: 2018-08-30
 
-Easily and effectively visualizing genomic data can help researchers to better understand their data. 
+Easily and effectively visualizing genomic data can help researchers to better understand their genomic data. 
 This G3viz package aims to provide some easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies.  As of version 0.1.4, the package contains an interactive lollipop diagram to enable users to visualize genomic mutation data.
 
 ## Content
@@ -157,7 +157,7 @@ g3Lollipop(mutation.dat,
 
 #### Note:
 
-+ The color scheme for Pfam domains are set to _darjeeling2_ in this example.
++ The color scheme of Pfam protein domains is _darjeeling2_ in this example.
 + Total 35 color schemes are supported.  For all color schemes supported by the package, check this [demo_1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/) or
 [demo_2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/).
 
