@@ -3,7 +3,7 @@ title: "G3viz: Interactively visualize genomic data in a web browser"
 date: "2018-08-30"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{G3viz: interactively visualize genomic data in a web browser}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

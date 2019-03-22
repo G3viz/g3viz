@@ -6,6 +6,8 @@
 #' @param gene.symbol HGNC gene symbol.
 #' @param output.file if specified, output to a file in \emph{CSV} format. Default is \code{NA}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
+#' @param cgds.url the URL for the public CGDS server, refer to
+#' @param test.cbioportal test CGDS connection
 #' See \code{\link{mapMutationTypeToMutationClass}} for details.
 #' Default \code{NA}, which indicates to use default mappings.
 #' @examples
@@ -13,7 +15,9 @@
 #' # Note: internet access required.  May need more than 10 seconds.
 #' # list all studies of cBioPortal
 #' library(cgdsr)
-#' cgds <- CGDS("http://www.cbioportal.org/public-portal/")
+#' cgds <- CGDS("http://www.cbioportal.org/")
+#' # test if connection is OK (warning: sometimes it may fail)
+#' test(cgds)
 #' all.studies <- getCancerStudies(cgds)
 #'
 #' # pick a "caner_study_id" (contain a mutation data set)
@@ -42,7 +46,9 @@
 getMutationsFromCbioportal <- function(study.id,
                                        gene.symbol,
                                        output.file = NA,
-                                       mutation.type.to.class.df = NA){
+                                       mutation.type.to.class.df = NA,
+                                       cbioportal.url = "http://www.cbioportal.org/",
+                                       test.cbioportal = FALSE){
   # =============================
   # define mutation columns
   aa.pos.col <- "AA_Position"

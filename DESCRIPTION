@@ -1,12 +1,13 @@
-Package: g3viz
+Package: g3lollipop
 Type: Package
-Title: Visualize Genomic Mutation Data Using an Interactive Lollipop Diagram
-Version: 0.1.4
+Title: Visualize Genomic Mutation Data via an Interactive Lollipop Diagram
+Version: 0.3
 Authors@R: c(
-    person("Xin", "Guo", , "phoeguo@gmail.com", c("aut", "cre"))
+    person("Xin", "Guo", email = "phoeguo@gmail.com", role = c("aut", "cre"))
     )
 Maintainer: Xin Guo <phoeguo@gmail.com>
-Description: R interface for 'g3viz' JavaScript library. Using an interactive lollipop diagram to visualize genomic mutation data in a web browser.
+Description: R interface for 'g3viz' JavaScript library.
+    Visualize Genomic Mutation Data Using a rich interactive lollipop diagram in Rstudio or your browser.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
@@ -21,7 +22,7 @@ Suggests:
     shiny (>= 1.0.0),
     knitr,
     rmarkdown
-URL: https://github.com/G3js/lollipopR
-BugReports: https://github.com/G3js/lollipopR/issues
+URL: https://github.com/G3viz/g3lollipop
+BugReports: https://github.com/G3viz/g3lollipop/issues
 RoxygenNote: 6.1.1
 VignetteBuilder: knitr
