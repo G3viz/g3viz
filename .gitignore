@@ -4,7 +4,7 @@ inst/doc
 .RData
 .Ruserdata
 packrat/lib*/
-data-raw/temp/
+data-raw/
 R/temp/
 inst/backup/
 inst/extdata/backup/

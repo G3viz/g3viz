@@ -6,22 +6,29 @@
 #' @param gene.symbol HGNC gene symbol.
 #' @param output.file if specified, output to a file in \emph{CSV} format. Default is \code{NA}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
-#' @param cgds.url the URL for the public CGDS server, refer to
-#' @param test.cbioportal test CGDS connection
 #' See \code{\link{mapMutationTypeToMutationClass}} for details.
 #' Default \code{NA}, which indicates to use default mappings.
+#' @param cgds.url the URL for the public CGDS server (Cancer Genomic Data Server).
+#' Default is \url{http://www.cbioportal.org/}.
+#' Check \href{https://cran.r-project.org/web/packages/cgdsr/}{cgdsr} package for details.
+#' @param test.cgds if test CGDS connection.  Default is \code{FALSE}
 #' @examples
 #' \dontrun{
-#' # Note: internet access required.  May need more than 10 seconds.
-#' # list all studies of cBioPortal
+#' # Usage:
+#' # Connection to CGDS (Cange Genomic Data Server). Internet access required.
+#' # Note: this may need more than 10 seconds, and sometimes it may fail.
 #' library(cgdsr)
 #' cgds <- CGDS("http://www.cbioportal.org/")
+#'
 #' # test if connection is OK (warning: sometimes it may fail)
 #' test(cgds)
+#'
+#' # list all studies of cBioPortal
 #' all.studies <- getCancerStudies(cgds)
 #'
-#' # pick a "caner_study_id" (contain a mutation data set)
-#' # pick a primary HGNC gene symbol to query
+#' # First, select a cancer study that contains mutation data set ("caner_study_id")
+#' # then, query genomic mutation data using a HGNC gene symbol,
+#' # for example
 #' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 #' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
 #' }
@@ -47,8 +54,8 @@ getMutationsFromCbioportal <- function(study.id,
                                        gene.symbol,
                                        output.file = NA,
                                        mutation.type.to.class.df = NA,
-                                       cbioportal.url = "http://www.cbioportal.org/",
-                                       test.cbioportal = FALSE){
+                                       cgds.url = "http://www.cbioportal.org/",
+                                       test.cgds = FALSE){
   # =============================
   # define mutation columns
   aa.pos.col <- "AA_Position"
@@ -56,7 +63,13 @@ getMutationsFromCbioportal <- function(study.id,
 
   # ========================
   # cgds server
-  cgds <- CGDS("http://www.cbioportal.org/public-portal/")
+  cgds <- cgdsr::CGDS(cgds.url)
+
+  # ========================
+  # test cgds
+  if(test.cgds){
+    cgdsr::test(cgds)
+  }
 
   # ========================
   # get study information
