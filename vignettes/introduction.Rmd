@@ -1,11 +1,11 @@
 ---
-title: "G3viz: Interactively visualize genomic data in a web browser"
-date: "2018-08-30"
+title: "G3viz: Interactively visualize genomic mutation data using a lollipop-diagram"
+date: "2019-03-01"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{G3viz: interactively visualize genomic data in a web browser}
+  %\VignetteIndexEntry{G3viz: interactively visualize genomic mutation data using a lollipop-diagram}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
+  %\VignetteEncoding{utf8}
 ---
 
 ```{r setup, include = FALSE}
@@ -15,39 +15,55 @@ knitr::opts_chunk$set(
 )
 ```
 
-Easily and effectively visualizing genomic data can help researchers to better understand their data. 
-This G3viz package aims to provide some easy-to-use visualization tools to enable users to interactively visualize genomic data in a web browser, without having to know any HTML5/JavaScript technologies.  As of version 0.1.4, the package contains an interactive lollipop diagram to enable users to visualize genomic mutation data.
+Easily and effectively visualizing genomic mutation data can help researchers to better understand their genomic data and validate their findings.
+This `G3viz` package provides a ready-to-use lollipop-diagram tool which enables users to interactively visualize annotated genomic mutation data in Rstudio or a web browser, without having to know any HTML5/JavaScript technologies.  The `G3viz` package has a number of useful features
 
-## Content
-*   [Installation](#installation)
-*   [Quick Start](#quickstart)
-    1.  [Example 1](#ex1): visualize mutation data from _cBioPortal_
-    1.  [Example 2](#ex2): visualize mutation data in _MAF_  file
-    1.  [Example 3](#ex3): visualize mutation data in _CSV_ or _TSV_ formatted file
-*   [Usage](#usage)
-    1.   [Read Data](#readdata)
-    1.   [Set chart options](#options)
-    1.   [Visualize genomic mutation data via a lollipop diagram in a web browser](#view)
+- Extract Pfam domain composition for a given HUGO gene
+- Automatically classify genomic annotations
+- Rich chart options
+- Interactive chart legend
+- Zoom and brush functions to view every details
+- Enable highlighting and labeling findings
+- Over 30 color schemes
+- Save charts to publication-quality figures in SVG or PNG format
 
 
-## <a name="install"></a>Installation
+## Table of contents
+1. [Install package](#install)
+
+1. [Quick Start](#quickstart)
+    * [Example 1](#ex1): visualize genomic mutation data from `MAF` file
+    * [Example 2](#ex2): visualize genomic mutation data from `CSV` or `TSV` file
+    * [Example 3](#ex3): visualize genomic mutation data from `cBioPortal`
+    * [Example 4](#ex4): some predefined chart themes
+    
+1. [Usage](#usage)
+    * [Read Data](#readdata)
+    * [Set chart options](#options)
+    * [Visualize genomic mutation data via a lollipop diagram in a web browser](#view)
+    * [Save charts and html](#output)
+    
+1. [Sessioninfo](#sessioninfo)
+
+
+## 1. <a name="install"></a>Install package
+Install package from R repository
 ```r
 # install package
 install.packages("g3viz", repos = "http://cran.us.r-project.org")
 ```
-or if you want to install development version from github
+or if you prefer to install development version from github
 ```r
 # Install devtools
 if("devtools" %in% rownames(installed.packages()) == FALSE){ 
   install.packages("devtools")
 }
 
-# install g3viz from github
-devtools::install_github("g3js/lollipopR")
-
+# install from github
+devtools::install_github("g3viz/g3viz")
 ```
 
-## <a name="quickstart"></a>Quick Start
+## 2. <a name="quickstart"></a>Quick Start
 
 ### <a name="ex1"></a>Example 1: visualize mutation data from cBioPortal
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
@@ -82,7 +98,6 @@ mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 
 [↥ back to top](#top)
 
-
 ### <a name="ex2"></a>Example 2: visualize mutation data in _MAF_ format
 
 Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a tab-delimited text file with aggregated mutation information from [VCF](https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/) files.  The translational effect of variant alleles in _MAF_ files are usually in the column of _Variant\_Classification_ (i.e., _Frame\_Shift\_Del_, _Split\_Site_).  In this example, the annotated somatic mutation data is downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal, and then visualized according to _Variant\_Classification_ information.
@@ -111,7 +126,6 @@ g3Lollipop(mutation.dat,
 [Live example](https://bl.ocks.org/phoeguo/raw/302a0ff5729f6aa773c33d4bfd3061c4/)
 
 <img src="./figures/TCGA_BRCA_PIK3CA.png" width="600px">
-
 
 [↥ back to top](#top)
 
@@ -173,7 +187,7 @@ g3Lollipop(mutation.dat,
 [↥ back to top](#top)
 
 
-## <a name="usage"></a>Usage
+## 3. <a name="usage"></a>Usage
 
 1.  <a name="readdata"></a>Read data
 
@@ -278,5 +292,33 @@ g3Lollipop(mutation.dat,
            plot.options = plot.options)
 ```
 
+
+[↥ back to top](#top)
+
+## 4. <a name="sessioninfo"></a>Session Info
+
+```r
+R version 3.5.1 (2018-07-02)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS  10.14.3
+
+Matrix products: default
+BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] g3viz_1.0.0
+
+loaded via a namespace (and not attached):
+ [1] htmlwidgets_1.3   compiler_3.5.1    magrittr_1.5      htmltools_0.3.6   tools_3.5.1       yaml_2.2.0       
+ [7] cgdsr_1.2.10      Rcpp_1.0.0        stringi_1.3.1     R.methodsS3_1.7.1 stringr_1.4.0     jsonlite_1.6     
+[13] digest_0.6.18     R.oo_1.22.0
+```
 
 [↥ back to top](#top)

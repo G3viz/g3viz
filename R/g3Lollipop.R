@@ -1,18 +1,21 @@
-#' G3Lollipop diagram for mutation data
+#' Render g3lollipop diagram for the given mutation data
 #'
-#' @description Generate G3Lollipop chart from the given mutation data.
+#' @description Render g3lollipop diagram for the given mutation data
 #'
-#' @param mutation.dat Mutation data frame.
-#' @param gene.symbol HGNC gene symbol.
-#' @param uniprot.id UniProt ID, in case that gene symbol maps to multiple UniProt entries.
-#'
+#' @param mutation.dat Input genomic mutation data frame
+#' @param gene.symbol HGNC primary gene symbol
+#' @param uniprot.id UniProt ID, in case that the specified gene symbol links to multiple UniProt entries (isoforms).
+#'    For example, \emph{AKAP7} gene has two isoforms in \link[https://www.uniprot.org/]{UniProt},
+#'    \link[https://www.uniprot.org/uniprot/O43687]{O43687} and \link[https://www.uniprot.org/uniprot/Q9P0M2]{Q9P0M2}.
 #' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
 #' @param aa.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
 #' @param protein.change.col Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
 #'   Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.
 #' @param factor.col column of classes in the plot legend. IF \code{NA}, use parsed \emph{Mutation_Class} column,
 #'   otherwise, use specified.  Default \code{NA}.
-#' @param plot.options options of lollipop plot in list format
+#' @param plot.options options of g3lollipop plot in list format
+#' @param save.png.btn If add \emph{save-as-png} button to the diagram
+#' @param save.svg.btn If add \emph{save-as-svg} button to the diagram
 #'
 #' @examples
 #' \dontrun{
@@ -87,7 +90,9 @@ g3Lollipop <- function(mutation.dat,
                        aa.pos.col = "AA_Position", # x-axis
                        protein.change.col = c("Protein_Change", "HGVSp_Short"), # y-axis, detailed information, required for tooltip information
                        factor.col = "Mutation_Class",  # legend factor
-                       plot.options = list()
+                       plot.options = list(),
+                       save.png.btn = TRUE,
+                       save.svg.btn = TRUE
                        ){
   stopifnot(is.data.frame(mutation.dat))
 
@@ -153,7 +158,9 @@ g3Lollipop <- function(mutation.dat,
     domainDataFormat = domain.data.format.json,
     snvData = snv.data.json,
     snvDataFormat = snv.data.format.json,
-    plotSettings = plot.options.json
+    plotSettings = plot.options.json,
+    pngButton = save.png.btn,
+    svgButton = save.svg.btn
   )
 
   htmlwidgets::createWidget(
@@ -167,7 +174,7 @@ g3Lollipop <- function(mutation.dat,
 
 #' Shiny bindings for g3Lollipop
 #'
-#' Output and render functions for using g3-lollipop within Shiny
+#' Output and render functions for using g3viz lollipop diagram within Shiny
 #' applications and interactive Rmd documents.
 #'
 #' @param outputId output variable to read from

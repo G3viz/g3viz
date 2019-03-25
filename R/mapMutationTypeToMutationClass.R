@@ -5,24 +5,23 @@
 #' \itemize{
 #'   \item Missense
 #'   \itemize{
-#'     \item \emph{Missense_Mutation} --- the point mutation alters the protein structure by one amino acid.
+#'     \item \emph{Missense_Mutation} --- a point mutation in which a single nucleotide change results in a codon that codes for a different amino acid
 #'           See \url{https://en.wikipedia.org/wiki/Missense_mutation}.
 #'   }
 #'   \item Inframe
 #'   \itemize{
-#'     \item \emph{In_Frame_Del} --- deletion that keeps the sequence in frame
-#'     \item \emph{In_Frame_Ins} --- insertion that keeps the sequence in frame
+#'     \item \emph{In_Frame_Del} --- a deletion that keeps the sequence in frame
+#'     \item \emph{In_Frame_Ins} --- an insertion that keeps the sequence in frame
 #'     \item \emph{Silent} --- variant is in coding region of the chosen transcript, but protein structure is identical (i.e., a synonymous mutation)
 #'     \item \emph{Targeted_Region} --- targeted region
 #'   }
 #'   \item Truncating
 #'     \itemize{
-#'       \item \emph{Frame_Shift} --- moves the coding sequence out of frame.
-#'             However, insertion or deletion can not be determined.
+#'       \item \emph{Frame_Shift} --- a variant caused by indels of a number of nucleotides in a DNA sequence that is not divisible by three.
 #'             See \url{https://en.wikipedia.org/wiki/Frameshift_mutation}.
-#'       \item \emph{Frame_Shift_Ins} --- an insertion that moves the coding sequence out of frame.
+#'       \item \emph{Frame_Shift_Ins} --- a variant caused by insertion that moves the coding sequence out of frame.
 #'             See \url{https://en.wikipedia.org/wiki/Frameshift_mutation}.
-#'       \item \emph{Frame_Shift_Del} --- a deletion that moves the coding sequence out of frame.
+#'       \item \emph{Frame_Shift_Del} --- a variant caused by deletion that moves the coding sequence out of frame.
 #'             See \url{https://en.wikipedia.org/wiki/Frameshift_mutation}.
 #'       \item \emph{Nonsense_Mutation} --- a premature stop codon that is created by the variant.
 #'             See \url{https://en.wikipedia.org/wiki/Nonsense_mutation}.

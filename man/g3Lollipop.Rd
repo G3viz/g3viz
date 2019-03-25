@@ -2,19 +2,22 @@
 % Please edit documentation in R/g3Lollipop.R
 \name{g3Lollipop}
 \alias{g3Lollipop}
-\title{G3Lollipop diagram for mutation data}
+\title{Render g3lollipop diagram for the given mutation data}
 \usage{
 g3Lollipop(mutation.dat, gene.symbol, uniprot.id = NA,
   gene.symbol.col = "Hugo_Symbol", aa.pos.col = "AA_Position",
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
-  factor.col = "Mutation_Class", plot.options = list())
+  factor.col = "Mutation_Class", plot.options = list(),
+  save.png.btn = TRUE, save.svg.btn = TRUE)
 }
 \arguments{
-\item{mutation.dat}{Mutation data frame.}
+\item{mutation.dat}{Input genomic mutation data frame}
 
-\item{gene.symbol}{HGNC gene symbol.}
+\item{gene.symbol}{HGNC primary gene symbol}
 
-\item{uniprot.id}{UniProt ID, in case that gene symbol maps to multiple UniProt entries.}
+\item{uniprot.id}{UniProt ID, in case that the specified gene symbol links to multiple UniProt entries (isoforms).
+For example, \emph{AKAP7} gene has two isoforms in \link[https://www.uniprot.org/]{UniProt},
+\link[https://www.uniprot.org/uniprot/O43687]{O43687} and \link[https://www.uniprot.org/uniprot/Q9P0M2]{Q9P0M2}.}
 
 \item{gene.symbol.col}{Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.}
 
@@ -26,10 +29,14 @@ Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 \item{factor.col}{column of classes in the plot legend. IF \code{NA}, use parsed \emph{Mutation_Class} column,
 otherwise, use specified.  Default \code{NA}.}
 
-\item{plot.options}{options of lollipop plot in list format}
+\item{plot.options}{options of g3lollipop plot in list format}
+
+\item{save.png.btn}{If add \emph{save-as-png} button to the diagram}
+
+\item{save.svg.btn}{If add \emph{save-as-svg} button to the diagram}
 }
 \description{
-Generate G3Lollipop chart from the given mutation data.
+Render g3lollipop diagram for the given mutation data
 }
 \examples{
 \dontrun{
