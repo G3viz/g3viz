@@ -13,9 +13,10 @@
 #'   Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.
 #' @param factor.col column of classes in the plot legend. IF \code{NA}, use parsed \emph{Mutation_Class} column,
 #'   otherwise, use specified.  Default \code{NA}.
-#' @param plot.options options of g3lollipop plot in list format
-#' @param save.png.btn If add \emph{save-as-png} button to the diagram
-#' @param save.svg.btn If add \emph{save-as-svg} button to the diagram
+#' @param plot.options options of g3lollipop plot in list format.
+#' @param save.png.btn If add \emph{save-as-png} button to the diagram. Default \code{TRUE}.
+#' @param save.svg.btn If add \emph{save-as-svg} button to the diagram. Default \code{TRUE}.
+#' @param output.filename Specify output file name.
 #'
 #' @examples
 #' \dontrun{
@@ -92,7 +93,8 @@ g3Lollipop <- function(mutation.dat,
                        factor.col = "Mutation_Class",  # legend factor
                        plot.options = list(),
                        save.png.btn = TRUE,
-                       save.svg.btn = TRUE
+                       save.svg.btn = TRUE,
+                       output.filename = "output"
                        ){
   stopifnot(is.data.frame(mutation.dat))
 
@@ -160,7 +162,8 @@ g3Lollipop <- function(mutation.dat,
     snvDataFormat = snv.data.format.json,
     plotSettings = plot.options.json,
     pngButton = save.png.btn,
-    svgButton = save.svg.btn
+    svgButton = save.svg.btn,
+    outputFN = output.filename
   )
 
   htmlwidgets::createWidget(

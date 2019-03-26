@@ -3,8 +3,8 @@ dependencies:
     version: 4.13.0
     src: htmlwidgets/lib
     script: ./d3/d3.v4.min.js
-  - name: g3Lollipop
-    version: 0.0.1
+  - name: g3viz
+    version: 0.4.0
     src: htmlwidgets/lib
-    script: ./g3Lollipop/g3Lollipop.min.js
-    style: ./g3Lollipop/g3Lollipop.min.css
+    script: ./g3viz/g3-lollipop.min.js
+    style: ./g3viz/g3-lollipop.min.css

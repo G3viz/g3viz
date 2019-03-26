@@ -10,8 +10,9 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
+	echo = TRUE,
+	collapse = TRUE,
+	comment = "#>"
 )
 ```
 
@@ -38,9 +39,10 @@ This `G3viz` package provides a ready-to-use lollipop-diagram tool which enables
     * [Example 4](#ex4): some predefined chart themes
     
 1. [Usage](#usage)
+    * [Input data format](#inputdata)
     * [Read Data](#readdata)
     * [Set chart options](#options)
-    * [Visualize genomic mutation data via a lollipop diagram in a web browser](#view)
+    * [Generate g3-lollipop diagram](#view)
     * [Save charts and html](#output)
     
 1. [Sessioninfo](#sessioninfo)
@@ -63,76 +65,53 @@ if("devtools" %in% rownames(installed.packages()) == FALSE){
 devtools::install_github("g3viz/g3viz")
 ```
 
+```{r include = FALSE}
+# install package
+library(g3viz)
+```
+
+
 ## 2. <a name="quickstart"></a>Quick Start
 
-### <a name="ex1"></a>Example 1: visualize mutation data from cBioPortal
-[cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
-The package provides an easy way to retrieve from this portal.  For example, to retrieve genomic mutation data of the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ and visualize the data using a lollipop diagram
-
-```r
-library(g3viz)
-
-# get mutation data of msk_impact_2017 study from cBioPortal
-mutation.dat <- g3viz::getMutationsFromCbioportal("msk_impact_2017", "TP53")
-
-# lollipop diagram with default options
-g3Lollipop(mutation.dat, gene.symbol = "TP53")
-```
-
- [Live example](https://bl.ocks.org/phoeguo/raw/583a12e04c6b9d7ca1825cdbdc62f531/)
-
- <img src="./figures/MSK_IMPACT_2017_TP53.png" width="580px">
 
 
-#### Note:
-- Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/), and it may take more than 10 seconds.
-- To list all studies of cBioPortal
-```r
-cgds <- cgdsr::CGDS("http://www.cbioportal.org/public-portal/")
-all.studies <- cgdsr::getCancerStudies(cgds)
 
-# Pick a "caner_study_id" (contain a mutation data set)
-# then, query the data using a primary HGNC gene symbol
-mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
-```
 
-[↥ back to top](#top)
-
-### <a name="ex2"></a>Example 2: visualize mutation data in _MAF_ format
+### <a name="ex1"></a>Example 1: visualize genomic mutation data from `MAF` file
 
 Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a tab-delimited text file with aggregated mutation information from [VCF](https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/) files.  The translational effect of variant alleles in _MAF_ files are usually in the column of _Variant\_Classification_ (i.e., _Frame\_Shift\_Del_, _Split\_Site_).  In this example, the annotated somatic mutation data is downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal, and then visualized according to _Variant\_Classification_ information.
 
-```r
-library(g3viz)
-
+```{r, include = TRUE}
 # load and read MAF file
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
 mutation.dat <- readMAF(maf.file)
 
 # lollipop diagram, classified by "Variant_Classification"
 # plot options: add chart title
-plot.options <- g3Lollipop.options(chart.margin = list(left = 40, right = 40, top = 30, bottom = 25),
+plot.options <- g3Lollipop.options(chart.width = 680,
+                                   chart.margin = list(left = 40, right = 10, top = 30, bottom = 25),
+                                   chart.background = "transparent",
                                    title.text = "PIK3CA (TCGA-BRCA)", 
-                                   title.font = "normal 20px Sans",
+                                   title.font = "normal 20px Verdana",
                                    title.color = "steelblue", 
                                    title.alignment = "middle", 
-                                   title.dy = "0.3em")
+                                   title.dy = "0.3em",
+                                   lollipop.track.background = "#ffffee")
 g3Lollipop(mutation.dat,
            gene.symbol = "PIK3CA",
            factor.col = "Variant_Classification",
            plot.options = plot.options)
 ```
 
-[Live example](https://bl.ocks.org/phoeguo/raw/302a0ff5729f6aa773c33d4bfd3061c4/)
-
-<img src="./figures/TCGA_BRCA_PIK3CA.png" width="600px">
 
 [↥ back to top](#top)
 
 
-### <a name="ex3"></a>Example 3: visualize mutation data in _CSV_ or _TSV_ file
 
-Loading variant data from _CSV_ or _TSV_ format, this example mimics the lollipop diagram as of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper).
+
+### <a name="ex3"></a>Example 3: visualize genomic mutation data from `CSV` or `TSV` file
+
+Loading variant data from `CSV` or `TSV` format, this example mimics the lollipop diagram as of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper).
 
 
 ```r
@@ -172,9 +151,7 @@ g3Lollipop(mutation.dat,
            plot.options = plot.options)
 ```
 
- [Live example](https://bl.ocks.org/phoeguo/raw/60f804c6683de30650e36ee912304754/)
 
- <img src="./figures/CCLE_APC.png" width="800px">
 
 
 #### Note:
@@ -185,6 +162,44 @@ g3Lollipop(mutation.dat,
 
 
 [↥ back to top](#top)
+
+
+
+
+### <a name="ex3"></a>Example 3: visualize mutation data from cBioPortal
+[cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
+The package provides an easy way to retrieve from this portal.  For example, to retrieve genomic mutation data of the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ and visualize the data using a lollipop diagram
+
+```r
+# get mutation data of msk_impact_2017 study from cBioPortal
+mutation.dat <- g3viz::getMutationsFromCbioportal("msk_impact_2017", "TP53")
+
+# lollipop diagram with default options
+g3Lollipop(mutation.dat, gene.symbol = "TP53")
+```
+
+#### Note:
+- Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/), and it may take more than 10 seconds.
+- To list all studies of cBioPortal
+```r
+cgds <- cgdsr::CGDS("http://www.cbioportal.org/public-portal/")
+all.studies <- cgdsr::getCancerStudies(cgds)
+
+# Pick a "caner_study_id" (contain a mutation data set)
+# then, query the data using a primary HGNC gene symbol
+mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
+```
+
+
+[↥ back to top](#top)
+
+
+
+
+
+
+
+
 
 
 ## 3. <a name="usage"></a>Usage
@@ -231,7 +246,7 @@ These options are listed in the following table.
 
 Option name             | Description
 ----------------------- | --------------------------------------
-chart.width             | chart width in px.  Default `800`.
+chart.width             | chart width in px.  Default `800`.  Note: `chart.height` is calculated by adding `lollipop.track.height` and `anno.height`.
 chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
 chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
 chart.background        | chart background.  Default `transparent`.
@@ -297,28 +312,8 @@ g3Lollipop(mutation.dat,
 
 ## 4. <a name="sessioninfo"></a>Session Info
 
-```r
-R version 3.5.1 (2018-07-02)
-Platform: x86_64-apple-darwin15.6.0 (64-bit)
-Running under: macOS  10.14.3
-
-Matrix products: default
-BLAS: /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/3.5/Resources/lib/libRlapack.dylib
-
-locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
-
-attached base packages:
-[1] stats     graphics  grDevices utils     datasets  methods   base     
-
-other attached packages:
-[1] g3viz_1.0.0
-
-loaded via a namespace (and not attached):
- [1] htmlwidgets_1.3   compiler_3.5.1    magrittr_1.5      htmltools_0.3.6   tools_3.5.1       yaml_2.2.0       
- [7] cgdsr_1.2.10      Rcpp_1.0.0        stringi_1.3.1     R.methodsS3_1.7.1 stringr_1.4.0     jsonlite_1.6     
-[13] digest_0.6.18     R.oo_1.22.0
+```{r, include=TRUE}
+sessionInfo()
 ```
 
 [↥ back to top](#top)

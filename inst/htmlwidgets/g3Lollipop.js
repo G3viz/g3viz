@@ -4,62 +4,84 @@ HTMLWidgets.widget({
   factory: function (el) {
     return {
       renderValue: function (x) {
-        //input = x;
-        //domID = el;
+        //console.log(x);
+        //console.log("root id = ", el.id);
 
-        console.log(x);
+        // root div
+        var root_div = document.getElementById(el.id);
 
-        var root_id = document.getElementById(el.id);
+        // if add button
+        var btn_div, svg_btn, png_btn;
 
         if (x.pngButton || x.svgButton) {
-          var btn_group = document.createElement('div')
+          btn_div = document.createElement('div')
+          btn_div.style.height = "24px";
+          btn_div.style.width = "100%";
 
           if (x.svgButton) {
-            var svg_btn = document.createElement('BUTTON')
+            svg_btn = document.createElement('BUTTON')
             svg_btn.innerHTML = 'save as SVG'
             svg_btn.id = 'save-as-svg'
 
-            svg_btn.onclick = function (e) {
-              g3.output().toSVG('g3-lollipop')
-            }
-            btn_group.appendChild(svg_btn)
+            btn_div.appendChild(svg_btn)
           }
 
           if (x.pngButton) {
-            var png_btn = document.createElement('BUTTON')
+            png_btn = document.createElement('BUTTON')
             png_btn.innerHTML = 'save as PNG'
             png_btn.id = 'save-as-png'
 
-            png_btn.onclick = function (e) {
-              g3.output().toPNG('g3-lollipop')
-            }
-
-            btn_group.appendChild(png_btn)
+            btn_div.appendChild(png_btn)
           }
 
-          root_id.appendChild(btn_group)
+          root_div.appendChild(btn_div)
         }
 
+        // lollipop div
         var main_div = document.createElement('div');
         main_div.id = "lollipop-container";
-
-        root_id.appendChild(main_div);
-
-        var snvData = x.snvData;
-        var domainData = x.domainData;
-        var snvDataFormat = x.snvDataFormat;
-        var domainDataFormat = x.domainDataFormat;
-        var plotSettings = x.plotSettings;
+        root_div.appendChild(main_div);
 
         var lollipop = g3.Lollipop(main_div.id);
 
-        lollipop.data.snvData = snvData;
-        lollipop.data.domainData = domainData;
-        lollipop.format.snvData = snvDataFormat;
-        lollipop.format.domainData = domainDataFormat;
-        lollipop.setOptions(plotSettings);
+        lollipop.data.snvData = x.snvData;
+        lollipop.data.domainData = x.domainData;
+        lollipop.format.snvData = x.snvDataFormat;
+        lollipop.format.domainData = x.domainDataFormat;
+        lollipop.setOptions(x.plotSettings);
 
         lollipop.draw();
+
+        var lollipop_height = lollipop.options.chartHeight,
+            lollipop_width = lollipop.options.chartWidth;
+
+        //console.log("lollipop h = ", lollipop_height, "  w = ", lollipop_width);
+
+        // main_div height and width
+        main_div.style.height = lollipop_height+"px";
+        main_div.style.width = lollipop_width+"px";
+
+        // root div height and width
+        var root_height = lollipop_height + 24;
+            root_width = lollipop_width;
+        root_div.style.height = root_height+"px";
+        root_div.style.width = root_width+"px";
+
+        // add button function
+        var chartID = lollipop.options.chartID;
+        //console.log("chart id = ", chartID);
+
+        if (x.svgButton) {
+          svg_btn.onclick = function (e) {
+            g3.output().toSVG(x.outputFN, chartID)
+          }
+        }
+
+        if (x.pngButton) {
+          png_btn.onclick = function (e) {
+            g3.output().toPNG(x.outputFN, chartID)
+          }
+        }
 
         el.chart = lollipop;
       },

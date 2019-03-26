@@ -8,7 +8,8 @@ g3Lollipop(mutation.dat, gene.symbol, uniprot.id = NA,
   gene.symbol.col = "Hugo_Symbol", aa.pos.col = "AA_Position",
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
   factor.col = "Mutation_Class", plot.options = list(),
-  save.png.btn = TRUE, save.svg.btn = TRUE)
+  save.png.btn = TRUE, save.svg.btn = TRUE,
+  output.filename = "output")
 }
 \arguments{
 \item{mutation.dat}{Input genomic mutation data frame}
@@ -29,11 +30,13 @@ Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.}
 \item{factor.col}{column of classes in the plot legend. IF \code{NA}, use parsed \emph{Mutation_Class} column,
 otherwise, use specified.  Default \code{NA}.}
 
-\item{plot.options}{options of g3lollipop plot in list format}
+\item{plot.options}{options of g3lollipop plot in list format.}
 
-\item{save.png.btn}{If add \emph{save-as-png} button to the diagram}
+\item{save.png.btn}{If add \emph{save-as-png} button to the diagram. Default \code{TRUE}.}
 
-\item{save.svg.btn}{If add \emph{save-as-svg} button to the diagram}
+\item{save.svg.btn}{If add \emph{save-as-svg} button to the diagram. Default \code{TRUE}.}
+
+\item{output.filename}{Specify output file name.}
 }
 \description{
 Render g3lollipop diagram for the given mutation data
