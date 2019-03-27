@@ -6,7 +6,7 @@
 \alias{renderG3Lollipop}
 \title{Shiny bindings for g3Lollipop}
 \usage{
-g3LollipopOutput(outputId, width = "100\%", height = "400px")
+g3LollipopOutput(outputId, width = "100\%", height = "520px")
 
 renderG3Lollipop(expr, env = parent.frame(), quoted = FALSE)
 }

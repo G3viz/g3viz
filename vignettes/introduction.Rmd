@@ -16,18 +16,17 @@ knitr::opts_chunk$set(
 )
 ```
 
-Easily and effectively visualizing genomic mutation data can help researchers to better understand their genomic data and validate their findings.
-This `G3viz` package provides a ready-to-use lollipop-diagram tool which enables users to interactively visualize annotated genomic mutation data in Rstudio or a web browser, without having to know any HTML5/JavaScript technologies.  The `G3viz` package has a number of useful features
+Easily and effectively visualizing genomic mutation data can help researchers to better understand the data and validate the findings.
+`G3viz` is a R-package which provides an easy-to-use lollipop-diagram tool.  It enables users to interactively visualize annotated genomic mutation data in Rstudio or a web browser, without having to know any HTML5/JavaScript technologies.  The features of `g3viz3` include
 
-- Extract Pfam domain composition for a given HUGO gene
-- Automatically classify genomic annotations
-- Rich chart options
-- Interactive chart legend
-- Zoom and brush functions to view every details
-- Enable highlighting and labeling findings
-- Over 30 color schemes
-- Save charts to publication-quality figures in SVG or PNG format
-
+- easily retrieve protein domain information for the given gene
+- built-in function to map from mutation annotation types (a.k.a, variant classification; _e.g._, Frame\_Shift\_Del, In\_Frame\_Ins) to mutation annotation classes (_e.g._, Inframe/Missense/Truncating)
+- interactive chart legend
+- zoom and brush tools to view every details
+- highlighting findings in charts
+- rich chart options, with easy-to-use built-in chart themes 
+- over [30 color schemes](https://bl.ocks.org/phoeguo/81dffe0c7c6c8caae06f6a5f60c70d19)
+- save charts to publication-quality figures in SVG or PNG format
 
 ## Table of contents
 1. [Install package](#install)
@@ -36,11 +35,12 @@ This `G3viz` package provides a ready-to-use lollipop-diagram tool which enables
     * [Example 1](#ex1): visualize genomic mutation data from `MAF` file
     * [Example 2](#ex2): visualize genomic mutation data from `CSV` or `TSV` file
     * [Example 3](#ex3): visualize genomic mutation data from `cBioPortal`
-    * [Example 4](#ex4): some predefined chart themes
-    
+
 1. [Usage](#usage)
     * [Input data format](#inputdata)
-    * [Read Data](#readdata)
+    * [Pfam domain information](#pfamdomain)
+    * [Read data](#readdata)
+    * [Color scheme](#colorscheme)
     * [Set chart options](#options)
     * [Generate g3-lollipop diagram](#view)
     * [Save charts and html](#output)
@@ -73,54 +73,84 @@ library(g3viz)
 
 ## 2. <a name="quickstart"></a>Quick Start
 
+### <a name="ex1"></a>Example 1: Visualize genomic mutation data from `MAF` file
 
-
-
-
-### <a name="ex1"></a>Example 1: visualize genomic mutation data from `MAF` file
-
-Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a tab-delimited text file with aggregated mutation information from [VCF](https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/) files.  The translational effect of variant alleles in _MAF_ files are usually in the column of _Variant\_Classification_ (i.e., _Frame\_Shift\_Del_, _Split\_Site_).  In this example, the annotated somatic mutation data is downloaded directly from [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project GDC Data Portal, and then visualized according to _Variant\_Classification_ information.
+Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a widely-used tab-delimited text file with annotated genomic mutation information.  The translational effect of variant alleles in `MAF` files are usually in the column of `Variant_Classification` (i.e., `Frame_Shift_Del`, `Split_Site`).
+The input somatic mutation data of this example was downloaded directly from GDC Data Portal for the [TCGA-BRCA](https://portal.gdc.cancer.gov/projects/TCGA-BRCA) project.
+The data was visualized according to the parsed `Mutation_Class` information.
 
 ```{r, include = TRUE}
-# load and read MAF file
+# load MAF file
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
+
+# read in MAF file
+# Note: "Mutation_Class" information is parsed according to "Variant_Classification" column
 mutation.dat <- readMAF(maf.file)
 
-# lollipop diagram, classified by "Variant_Classification"
-# plot options: add chart title
-plot.options <- g3Lollipop.options(chart.width = 680,
-                                   chart.margin = list(left = 40, right = 10, top = 30, bottom = 25),
-                                   chart.background = "transparent",
-                                   title.text = "PIK3CA (TCGA-BRCA)", 
-                                   title.font = "normal 20px Verdana",
-                                   title.color = "steelblue", 
-                                   title.alignment = "middle", 
-                                   title.dy = "0.3em",
-                                   lollipop.track.background = "#ffffee")
+# chart 1: using default chart options (except chart.width)
+chart1.options <- g3Lollipop.options(chart.width = 680)
+
 g3Lollipop(mutation.dat,
            gene.symbol = "PIK3CA",
-           factor.col = "Variant_Classification",
-           plot.options = plot.options)
-```
+           plot.options = chart1.options,
+           factor.col = "Mutation_Class")
 
+# chart 2: add some chart options, and visualize according to "Variant_Classification" information
+chart2.options <- g3Lollipop.options(# chart options
+                                    chart.width = 680,
+                                    chart.type = "pie",
+                                    chart.margin = list(left = 40, right = 20, top = 30, bottom = 25),
+                                    chart.background = "#deebf7",
+                                    # lollipop axis
+                                    y.axis.label = "# of mutations",
+                                    axis.label.font = "bold 16px Sans",
+                                    axis.label.alignment = "middle",
+                                    axis.label.dy = "-1em",
+                                    # legend options
+                                    legend.title = "Variant classification",
+                                    # lollipop track options
+                                    lollipop.track.height = 300,
+                                    lollipop.track.background = "white",
+                                    lollipop.pop.info.color = "white",
+                                    lollipop.color.scheme = "set3",
+                                    # domain annotation track options
+                                    domain.color.scheme = "google5",
+                                    domain.text.color = "white",
+                                    # title
+                                    title.text = "Tumor protein p53 (TP53, from TCGA-BRCA project)", 
+                                    title.font = "normal 16px Verdana",
+                                    title.color = "steelblue", 
+                                    title.alignment = "middle",
+                                    title.dy = "0.3em",
+                                    # domain brush options
+                                    brush.selection.background = "steelblue",
+                                    brush.selection.opacity = 0.3,
+                                    brush.border.color = "#666666",
+                                    brush.handler.color = "#666666"
+                                    )
+
+g3Lollipop(mutation.dat,
+           gene.symbol = "TP53",
+           factor.col = "Variant_Classification",
+           # style of output buttons
+           btn.style = "blueBtn",
+           plot.options = chart2.options)
+```
 
 [↥ back to top](#top)
 
 
+### <a name="ex2"></a>Example 2: visualize genomic mutation data from `CSV` or `TSV` file
+
+Loading annotated genomic mutation data from `CSV` or `TSV` format, this example mimics the lollipop diagram as of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper).
 
 
-### <a name="ex3"></a>Example 3: visualize genomic mutation data from `CSV` or `TSV` file
-
-Loading variant data from `CSV` or `TSV` format, this example mimics the lollipop diagram as of [cBioPortal MutationMapper](http://www.cbioportal.org/mutation_mapper).
-
-
-```r
-library(g3viz)
-
-# load and read data
+```{r, include=TRUE}
+# load data
 mutation.csv <- system.file("extdata", "ccle.csv", package = "g3viz")
 
-# customized column names
+# read in data
+# specify "gene.symbol.col", "variant.class.col", and "protein.change.col"
 mutation.dat <- readMAF(mutation.csv,
                         gene.symbol.col = "Hugo_Symbol",
                         variant.class.col = "Variant_Classification",
@@ -128,54 +158,59 @@ mutation.dat <- readMAF(mutation.csv,
                         sep = ",")  # separator of csv file
 
 # try to mimic MutationMapper (http://www.cbioportal.org/mutation_mapper.jsp)
-plot.options <- g3Lollipop.options(chart.width = 1600,
+plot.options <- g3Lollipop.options(
+                                   # chart options
+                                   chart.width = 680,
                                    chart.type = "circle",
+                                   # lollipop track options
+                                   lollipop.track.height = 200,
                                    lollipop.track.background = "transparent",
                                    lollipop.pop.max.size = 4,
                                    lollipop.pop.min.size = 4,
-                                   lollipop.pop.info.limit = 4.1, # same pop size
-                                   y.axis.label = "# Mutations",
+                                   # set larger than lollipop.pop.max.size to turn off pop info
+                                   lollipop.pop.info.limit = 4.1, 
+                                   # y-axis label
+                                   y.axis.label = "# of TP53 Mutations",
                                    lollipop.line.color = "grey",
                                    lollipop.line.width = 0.5,
-                                   lollipop.circle.color = "black",
+                                   lollipop.circle.color = "grey",
                                    lollipop.circle.width = 0.5,
                                    lollipop.color.scheme = "bottlerocket2",
-                                   anno.bar.margin = list(top = 5, bottom = 5),
+                                   # domain annotation bar
+                                   anno.bar.fill = "#969696",
+                                   anno.bar.margin = list(top = 4, bottom = 8),
+                                   # domain track options
+                                   domain.margin = list(top = 2, bottom = 6),
                                    domain.color.scheme = "darjeeling2",
-                                   domain.text.font = "normal 8px Arial",
-                                   domain.text.color = "white")
+                                   domain.text.font = "normal 12px Arial",
+                                   domain.text.color = "white",
+                                   # disable brush
+                                   brush = FALSE,
+                                   # disable legend
+                                   legend = FALSE)
 
 g3Lollipop(mutation.dat,
-           gene.symbol = "APC",
+           gene.symbol = "TP53",
            protein.change.col = "amino_acid_change",
+           save.png.btn = FALSE,
+           save.svg.btn = FALSE,
            plot.options = plot.options)
 ```
-
-
-
-
-#### Note:
-
-+ The color scheme for Pfam domains are set to _darjeeling2_ in this example.
-+ Total 35 color schemes are supported.  For all color schemes supported by the package, check this [demo_1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/) or
-[demo_2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/).
 
 
 [↥ back to top](#top)
 
 
-
-
-### <a name="ex3"></a>Example 3: visualize mutation data from cBioPortal
+### <a name="ex3"></a>Example 3: visualize genomic mutation data from `cBioPortal`
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
-The package provides an easy way to retrieve from this portal.  For example, to retrieve genomic mutation data of the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene _TP53_ and visualize the data using a lollipop diagram
+The package provides an easy way to retrieve from this portal.  For example, to retrieve genomic mutation data of the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study for the gene `BRCA1` and visualize the data using `g3viz`
 
-```r
-# get mutation data of msk_impact_2017 study from cBioPortal
-mutation.dat <- g3viz::getMutationsFromCbioportal("msk_impact_2017", "TP53")
+```{r, include=TRUE}
+# get genomic mutation data of "msk_impact_2017"" study from cBioPortal
+mutation.dat <- g3viz::getMutationsFromCbioportal("msk_impact_2017", "BRCA1")
 
 # lollipop diagram with default options
-g3Lollipop(mutation.dat, gene.symbol = "TP53")
+g3Lollipop(mutation.dat, gene.symbol = "BRCA1")
 ```
 
 #### Note:
@@ -222,7 +257,7 @@ mutation.dat <- readMAF(maf.file)
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 ```
 
-  * from _CSV_ or _TSV_ formatted file
+  * from `CSV` or `TSV` formatted file
 
 ```r
 # load and read data
@@ -237,6 +272,14 @@ mutation.dat <- readMAF(mutation.csv,
 
 
 [↥ back to top](#top)
+
+
+3.  <a name="colorscheme"></a>Ordinal color schemes
+
+The `g3viz` package is built in with over 30 color schemes as shown in [this example](https://bl.ocks.org/phoeguo/81dffe0c7c6c8caae06f6a5f60c70d19).
+Examples of applying these color schemes to lollipop pops and domain composition are shown in [demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/) and 
+[demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), respectively.
+
 
 
 2.  <a name="options"></a>Set chart options

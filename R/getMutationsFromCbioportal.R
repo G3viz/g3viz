@@ -10,7 +10,7 @@
 #' Default \code{NA}, which indicates to use default mappings.
 #' @param cgds.url the URL for the public CGDS server (Cancer Genomic Data Server).
 #' Default is \url{http://www.cbioportal.org/}.
-#' Check \href{https://cran.r-project.org/web/packages/cgdsr/}{cgdsr} package for details.
+#' Check \code{\link[cgdsr]{CGDS}} for details.
 #' @param test.cgds if test CGDS connection.  Default is \code{FALSE}
 #' @examples
 #' \dontrun{

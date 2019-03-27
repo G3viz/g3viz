@@ -2,6 +2,7 @@
 
 export(g3Lollipop)
 export(g3Lollipop.options)
+export(g3Lollipop.theme.options)
 export(g3LollipopOutput)
 export(getMutationsFromCbioportal)
 export(guessMAFColumnName)
