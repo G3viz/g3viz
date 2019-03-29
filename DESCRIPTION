@@ -7,7 +7,7 @@ Authors@R: c(
     )
 Maintainer: Xin Guo <g3viz.group@gmail.com>
 Description: R interface for 'g3-lollipop' JavaScript library.
-    Visualize genomic mutation data using an interactive lollipop diagram in Rstudio or your browser.
+    Visualize genomic mutation data using an interactive lollipop diagram in RStudio or your browser.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 
 Easily and effectively visualizing genomic mutation data can help researchers to better understand the data and validate the findings.
 `G3viz` is a R-package which provides an easy-to-use lollipop-diagram tool.  
-It enables users to interactively visualize detailed translational effects of genomic mutations in Rstudio or a web browser, without having to know any HTML5/JavaScript technologies.
+It enables users to interactively visualize detailed translational effects of genomic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
 
 The features of `g3viz` include
 
