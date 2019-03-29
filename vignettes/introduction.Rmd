@@ -1,5 +1,5 @@
 ---
-title: "G3viz: Interactively visualize genomic mutation data using a lollipop-diagram"
+title: "G3viz: an R package to interactively visualize genomic mutation data using a lollipop-diagram"
 date: "2019-03-01"
 output: rmarkdown::html_vignette
 vignette: >

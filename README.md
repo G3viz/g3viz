@@ -1,4 +1,4 @@
-# <a name="top"></a>G3viz: Interactively visualize genomic mutation data using a lollipop-diagram
+# <a name="top"></a>G3viz: an R package to interactively visualize genomic mutation data using a lollipop-diagram
 
   **Version: 1.0.0**<br>
   **Date: 2019-03-20**
