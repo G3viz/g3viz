@@ -11,15 +11,15 @@ Easily and effectively visualizing genomic mutation data can help researchers to
 
 The features of `g3viz` include
 
-- zoom in/out, pan, tooltip, and brush tools to view data details
-- interactive chart legend
-- highlight and label findings
-- built-in chart themes
-- rich chart options
-- over 35 color schemes
-- save charts in SVG or PNG format
-- built-in function to retrieve protein domain information for a given gene, and resolve gene symbol ambiguity and isoforms.
-- built-in function to map mutations types (a.k.a, variant classification; _e.g._, `Frame_Shift_Del`, `In_Frame_Ins`) to mutation classes (namely `Inframe`, `Missense`, `Truncating`, and `Other`).
+   - zoom in/out, pan, tooltip, and brush tools to view data details
+   - interactive chart legend
+   - highlight and label findings
+   - built-in chart themes
+   - rich chart options
+   - over 35 color schemes
+   - save charts in SVG or PNG format
+   - built-in function to retrieve protein domain information for a given gene, and resolve gene symbol ambiguity and isoforms.
+   - built-in function to map mutations types (a.k.a, variant classification; _e.g._, `Frame_Shift_Del`, `In_Frame_Ins`) to mutation classes (namely `Inframe`, `Missense`, `Truncating`, and `Other`).
 
 
 ## Table of contents
