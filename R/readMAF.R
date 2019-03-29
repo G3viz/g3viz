@@ -1,30 +1,38 @@
-#' Read MAF file
+#'Read MAF file
 #'
-#' Read mutation information from MAF file.
-#' For MAF format specification, see \url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
+#'Read mutation information from MAF file. For MAF format specification, see
+#'\url{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}.
 #'
-#' @param maf.file MAF file name.  Gnuzipped input file allowed, with ".gz" file extension.
-#' @param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default \emph{Hugo_Symbol}.
-#' @param variant.class.col Column name of variant class information
-#' (e.g., \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of \emph{Variant_Classification} and \emph{Mutation_Class}.
-#' @param protein.change.col Column name of protein change information (e.g., p.K960R, G658S, L14Sfs*15).
-#' Default is a list of \emph{Protein_Change}, \emph{HGVSp_Short}.
-#' @param if.parse.aa.pos if parse amino-acid position of mutations. Default is \code{TRUE}.
-#' @param if.parse.mutation.class if parse mutation class from mutation type (variant classification) information. Default is \code{TRUE}.
-#' @param mutation.class.col Column name of the parsed mutation class. Default \emph{Mutation_Class}.
-#' @param aa.pos.col Column name of the parsed amino-acid change position. Default \emph{AA_Position}.
-#' @param mutation.type.to.class.df mapping table from mutation type to class.
-#'   \code{\link{mapMutationTypeToMutationClass}} for details.
-#'   Default \code{NA}, which indicates to use default mappoings.
-#' @param sep separator of columns. Default \code{sep = "\\t"}.
-#' @param ... additional parameters pass to \code{\link[utils]{read.table}}.
+#'@param maf.file MAF file name.  Gnuzipped input file allowed, with ".gz" file
+#'  extension.
+#'@param gene.symbol.col Column name of Hugo gene symbols (e.g., TP53). Default
+#'  \emph{Hugo_Symbol}.
+#'@param variant.class.col Column name of variant class information (e.g.,
+#'  \emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of
+#'  \emph{Variant_Classification} and \emph{Mutation_Class}.
+#'@param protein.change.col Column name of protein change information (e.g.,
+#'  p.K960R, G658S, L14Sfs*15). Default is a list of \emph{Protein_Change},
+#'  \emph{HGVSp_Short}.
+#'@param if.parse.aa.pos if parse amino-acid position of mutations. Default is
+#'  \code{TRUE}.
+#'@param if.parse.mutation.class if parse mutation class from mutation type
+#'  (variant classification) information. Default is \code{TRUE}.
+#'@param mutation.class.col Column name of the parsed mutation class. Default
+#'  \emph{Mutation_Class}.
+#'@param aa.pos.col Column name of the parsed amino-acid change position.
+#'  Default \emph{AA_Position}.
+#'@param mutation.type.to.class.df mapping table from mutation type to class.
+#'  \code{\link{mapMutationTypeToMutationClass}} for details. Default \code{NA},
+#'  which indicates to use default mappoings.
+#'@param sep separator of columns. Default \code{sep = "\\t"}.
+#'@param ... additional parameters pass to \code{\link[utils]{read.table}}.
 #'
-#' @importFrom utils write.table read.table
+#'@importFrom utils write.table read.table
 #'
-#' @return a data frame containing MAF information,
-#'				 plus optional columns of the parsed \emph{Mutation_Class} and \emph{Protein_Position}.
+#'@return a data frame containing MAF information, plus optional columns of the
+#'  parsed \emph{Mutation_Class} and \emph{Protein_Position}.
 #'
-#' @export
+#'@export
 readMAF <- function(maf.file,
                     gene.symbol.col = "Hugo_Symbol",
                     variant.class.col = c("Variant_Classification", "Mutation_Class"),

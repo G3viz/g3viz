@@ -15,7 +15,8 @@
 
 #' Mapping table between gene.symbol, uniprot.id, and pfam
 #'
-#' A dataset containing the mapping table between Hugo symbol, UniProt ID, and Pfam ACC.
+#' A dataset containing the mapping table between Hugo symbol, UniProt ID, and
+#' Pfam ACC.
 #'
 #' @format A data frame with columns:
 #' \describe{
@@ -32,9 +33,4 @@
 #' hgnc2pfam.df
 #' @source Pfam (v31.0) and UniProt
 "hgnc2pfam.df"
-
-
-
-
-
 

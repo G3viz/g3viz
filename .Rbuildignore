@@ -1,8 +1,15 @@
-^.*\.Rproj$
-^\.Rproj\.user$
+visual_test
+^.*\.Rproj/$
+^\.Rproj\.user/$
+^\.travis\.yml$
 ^data-raw$
-^packrat/
+^packrat/$
 ^\.Rprofile$
 ^README.md$
-^inst/htmlwidgets/lib/g3Lollipop/backup/$
+^\.git/
+^\.gitignore$
+^.*\.DS_Store$
+^\.gitignore
 
+^.*\.Rproj$
+^\.Rproj\.user$

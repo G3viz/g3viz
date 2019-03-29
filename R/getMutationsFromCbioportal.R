@@ -1,16 +1,17 @@
 #' Query cancer genomic mutation data from cBioPortal
 #'
-#' @description Retrieve and parse mutation data from cBioPortal
-#' by the given cBioPortal cancer study ID and the gene symbol.
+#' @description Retrieve and parse mutation data from cBioPortal by the given
+#'   cBioPortal cancer study ID and the gene symbol.
 #' @param study.id cbioprotal study ID
 #' @param gene.symbol HGNC gene symbol.
-#' @param output.file if specified, output to a file in \emph{CSV} format. Default is \code{NA}.
+#' @param output.file if specified, output to a file in \emph{CSV} format.
+#'   Default is \code{NA}.
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
-#' See \code{\link{mapMutationTypeToMutationClass}} for details.
-#' Default \code{NA}, which indicates to use default mappings.
-#' @param cgds.url the URL for the public CGDS server (Cancer Genomic Data Server).
-#' Default is \url{http://www.cbioportal.org/}.
-#' Check \code{\link[cgdsr]{CGDS}} for details.
+#'   See \code{\link{mapMutationTypeToMutationClass}} for details. Default
+#'   \code{NA}, which indicates to use default mappings.
+#' @param cgds.url the URL for the public CGDS server (Cancer Genomic Data
+#'   Server). Default is \url{http://www.cbioportal.org/}. Check
+#'   \emph{cgdsr} R-package for details.
 #' @param test.cgds if test CGDS connection.  Default is \code{FALSE}
 #' @examples
 #' \dontrun{
@@ -36,19 +37,20 @@
 #' @importFrom utils write.table
 #'
 #' @return a data frame with columns
-#' \describe{
-#' \item{Hugo_Symbol}{Hugo gene symbol}
-#' \item{Protein_Change}{Protein change information (cBioprotal uses \emph{HGVSp} format)}
-#' \item{Sample_ID}{Sample ID}
-#' \item{Mutation_Type}{mutation type, aka, variant classification.}
-#' \item{Chromosome}{chromosome}
-#' \item{Start_Position}{start position}
-#' \item{End_Position}{end position}
-#' \item{Reference_Allele}{reference allele}
-#' \item{Variant_Allele}{variant allele}
-#' \item{Mutation_Class}{mutation class (e.g., Truncating/Missense/Inframe/Other)}
-#' \item{AA_Position}{amino-acid position of the variant; if the variant is not in protein-coding region, \code{NA}}
-#' }
+#'   \describe{
+#'       \item{Hugo_Symbol}{Hugo gene symbol}
+#'       \item{Protein_Change}{Protein change information (cBioprotal uses \emph{HGVSp} format)}
+#'       \item{Sample_ID}{Sample ID}
+#'       \item{Mutation_Type}{mutation type, aka, variant classification.}
+#'       \item{Chromosome}{chromosome}
+#'       \item{Start_Position}{start position}
+#'       \item{End_Position}{end position}
+#'       \item{Reference_Allele}{reference allele}
+#'       \item{Variant_Allele}{variant allele}
+#'       \item{Mutation_Class}{mutation class (e.g., Truncating/Missense/Inframe/Other)}
+#'       \item{AA_Position}{amino-acid position of the variant; if the variant is not in
+#'       protein-coding region, \code{NA}}
+#'       }
 #' @export
 getMutationsFromCbioportal <- function(study.id,
                                        gene.symbol,

@@ -1,16 +1,19 @@
-#' G3Lollipop chart themes
+#' G3Lollipop chart options of built-in themes.
 #'
-#' @param theme.name theme name.  Default \emph{default}
+#' @param theme.name theme name, including \emph{default}, \emph{cbioportal},
+#'   \emph{nature}, \emph{blue}, \emph{ggplot2}, and \emph{simple}. Default
+#'   \emph{default}
 #' @param y.axis.label Y-axis label text. Default \emph{"# of mutations"}.
-#' @param legend.title legend title.  If \code{NA}, \emph{factor.col} in \code{\link{g3Lollipop}} is used.
-#'                     Default is \code{NA}.
+#' @param legend.title legend title.  If \code{NA}, \emph{factor.col} in
+#'   \code{\link{g3Lollipop}} is used. Default is \code{NA}.
 #' @param title.text title of chart. Default is empty.
 #'
 #' @return a list with g3Lollipop plot options
 #'
 #' @return a list with g3Lollipop plot options
+#'
 #' @export
-g3Lollipop.theme.options <- function(
+g3Lollipop.theme <- function(
   theme.name = "default",
   title.text = "",
   y.axis.label = "# of mutations",
@@ -65,12 +68,12 @@ g3Lollipop.theme.options <- function(
     chart.width = 640,
     chart.type = "pie",
     chart.background = "transparent",
-    lollipop.track.background = "#ffffcc",
+    lollipop.track.background = "#F5F5DC",
     lollipop.track.height = 360,
     anno.height = 30,
-    anno.background = "#ffffcc",
+    anno.background = "#F5F5DC",
     anno.margin = list(top = 0, bottom = 0),
-    anno.bar.fill = "#b4b4b4",
+    anno.bar.fill = "#F5F5DC",
     anno.bar.margin = list(top = 8, bottom = 8),
     domain.text.color = "white",
     domain.text.font = "italic 12px Serif",
@@ -79,11 +82,11 @@ g3Lollipop.theme.options <- function(
     lollipop.pop.max.size = 6,
     lollipop.pop.info.limit = 6.1,
     lollipop.color.scheme = "pie5",
-    lollipop.circle.color = "#b4b4b4",
+    lollipop.circle.color = "#b2b3b4",
     lollipop.circle.width = 1,
     brush.selection.background = "transparent",
-    brush.border.color = "#666666",
-    brush.handler.color = "#666666"
+    brush.border.color = "#808000",
+    brush.handler.color = "#808000"
     #    anno.bar.fill = "transparent"
   )
 

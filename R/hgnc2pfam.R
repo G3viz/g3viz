@@ -75,7 +75,7 @@ hgnc2pfam <- function(hgnc.symbol,
   } else if(nrow(uniprot.df) ==  0){
     stop(hgnc.symbol, " has no uniprot mappings (wrong name or non-protein-coding gene).")
   } else {
-    if(guess){
+    if(guess == TRUE){
       max.idx <- which(uniprot.df$length == max(uniprot.df$length))[1]
       uniprot.df <- uniprot.df[max.idx, ]
       pfam.df <- uniprot2pfam(uniprot.df[1, "uniprot"])

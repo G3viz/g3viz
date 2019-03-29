@@ -22,7 +22,8 @@ Pfam (v31.0) and UniProt
 hgnc2pfam.df
 }
 \description{
-A dataset containing the mapping table between Hugo symbol, UniProt ID, and Pfam ACC.
+A dataset containing the mapping table between Hugo symbol, UniProt ID, and
+Pfam ACC.
 }
 \examples{
 hgnc2pfam.df

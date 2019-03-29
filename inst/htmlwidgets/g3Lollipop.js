@@ -4,7 +4,7 @@ HTMLWidgets.widget({
   factory: function (el) {
     return {
       renderValue: function (x) {
-        console.log(x);
+        //console.log(x);
         //console.log("root id = ", el.id);
 
         // root div
@@ -15,9 +15,13 @@ HTMLWidgets.widget({
         // if add button
         var btn_div, svg_btn, png_btn;
 
+        if(btnStyle != null){
+          btnStyle = btnStyle + "Btn";
+        }
+
         if (x.pngButton || x.svgButton) {
           btn_div = document.createElement('div');
-          btn_div.style.height = "32px";
+          btn_div.style.height = "40px";
           btn_div.style.width = "100%";
           //btn_div.className = "btn-group";
 
@@ -72,7 +76,7 @@ HTMLWidgets.widget({
         main_div.style.width = lollipop_width + 'px';
 
         // root div height and width
-        var root_height = lollipop_height + 24;
+        var root_height = lollipop_height + 40;
         root_width = lollipop_width;
         root_div.style.height = root_height + 'px';
         root_div.style.width = root_width + 'px';
