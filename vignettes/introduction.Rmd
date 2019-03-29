@@ -355,7 +355,7 @@ If attribute `guess` is set to `TRUE`, the Pfam domain information of the longes
 
 ```{r, include = TRUE}
 # ===============================
-# TP54 has single UniProt entry
+# TP53 has single UniProt entry
 hgnc2pfam("TP53", output.format = "list")
 # ===============================
 # GNAS gene has multiple UniProt entries
