@@ -21,7 +21,6 @@ The features of `g3viz` include
    - built-in function to retrieve protein domain information for a given gene, and resolve gene symbol ambiguity and isoforms.
    - built-in function to map mutations types (a.k.a, variant classification; _e.g._, `Frame_Shift_Del`, `In_Frame_Ins`) to mutation classes (namely `Inframe`, `Missense`, `Truncating`, and `Other`).
 
-
 ## Table of contents
 1. [Installation](#install)
 
@@ -49,7 +48,7 @@ Install `g3viz` package from R repository
 # install package
 install.packages("g3viz", repos = "http://cran.us.r-project.org")
 ```
-or if you prefer to install development version from github
+or if you prefer to install the development version from github
 ```r
 # ============================================
 # Install devtools
@@ -133,7 +132,7 @@ g3Lollipop(mutation.dat,
 #> legend title is set to Variant_Classification
 ```
 
-### [live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#nature_theme)
+### [Live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#nature_theme)
 
 <img src="./vignettes/figures/nature_theme.png" width="640px">
 
@@ -252,7 +251,7 @@ g3Lollipop(mutation.dat,
 ```
 
 
-### [live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#customized)
+### [Live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#customized)
 
 <img src="./vignettes/figures/customized_plot.png" width="600px">
 
@@ -433,10 +432,11 @@ As shown in [Fig1](#color_scheme_fig1), this `g3viz` package supports with over 
 
 <a name="color_scheme_fig1"></a>
 
-### [live demo](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/)
+### [Live demo](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/)
+
+<img src="./vignettes/figures/color_scheme.png" width="660px">
 
 **Figure 1** *list of color schemes*
-<img src="./vignettes/figures/color_scheme.png" width="660px">
 
 <br/>
 <div align="right">
@@ -489,7 +489,7 @@ g3Lollipop(mutation.dat,
 #> legend title is set to Mutation_Class
 ```
 
-### [live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#ggplot2_theme)
+### [Live demo](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html#ggplot2_theme)
 
 <img src="./vignettes/figures/ggplot2_theme.png" width="680px">
 
@@ -505,61 +505,61 @@ g3Lollipop(mutation.dat,
 Chart options can be specified using `g3Lollipop.options()` function (see [example 2](#ex2)).
 Here is the full list of chart options,
 
-Option                     | Description
----------------------------|---------------------------------------
-chart.width             | chart width in px.  Default `800`.  Note: `chart.height` is calculated by adding `lollipop.track.height`, `anno.height`, and the height of `legend`.
-chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
-chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
-chart.background        | chart background.  Default `transparent`.
-transition.time         | chart animation transition time in millisecond.  Default `600`.
-y.axis.label            | Y-axis label text.  Default `mutations`.
-axis.label.font         | css font style shorthand (font-style font-variant font-weight font-size/line-height font-family).  Default `normal 12px Arial`.
-axis.label.color        | axis label text color.  Default `#4f4f4f`.
-axis.label.alignment    | axis label text alignment (start/end/middle). Default `middle`
-axis.label.dy           | text adjustment of axis label text.  Default `-2em`.
-y.axis.line.color	      | color of y-axis in-chart lines (ticks). Default `#c4c8ca`.
-y.axis.line.style	      | style of y-axis in-chart lines (ticks), `dash` or `line`. Default `dash`.
-y.axis.line.width	      | width of y-axis in-chart lines (ticks). Default `1`.
-legend.margin           | legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
-legend.interactive      | legend interactive mode. Default `TRUE`.
-legend.title            | legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
-lollipop.track.height   | height of lollipop track. Default `420`.
-lollipop.track.background  | background of lollipop track. Default `rgb(244,244,244)`.
-lollipop.pop.min.size  | lollipop pop minimal size in px. Default `2`.
-lollipop.pop.max.size | lollipop pop maximal size in px. Default `12`.
-lollipop.pop.info.limit | threshold of lollipop pop size to show count information in middle of pop. Default `8`.
-lollipop.pop.info.color | lollipop pop information text color. Default `#EEE`.
-lollipop.pop.info.dy	| y-axis direction text adjustment of lollipop pop information. Default `-0.35em`.
-lollipop.line.color | lollipop line color. Default `rgb(42,42,42)`.
-lollipop.line.width | lollipop line width. Default `0.5`.
-lollipop.circle.color | lollipop circle border color. Default `wheat`.
-lollipop.circle.width | lollipop circle border width. Default `0.5`.
-lollipop.label.ratio | lollipop click-out label font size to circle size ratio. Default `1.4`.
+Option                       | Description
+-----------------------------|---------------------------------------
+chart.width                  | chart width in px.  Default `800`.  Note: `chart.height` is calculated by adding `lollipop.track.height`, `anno.height`, and the height of `legend`.
+chart.type                   | pop type, _pie_ or _circle_.  Default `pie`.
+chart.margin                 | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
+chart.background             | chart background.  Default `transparent`.
+transition.time              | chart animation transition time in millisecond.  Default `600`.
+y.axis.label                 | Y-axis label text.  Default `mutations`.
+axis.label.font              | css font style shorthand (font-style font-variant font-weight font-size/line-height font-family).  Default `normal 12px Arial`.
+axis.label.color             | axis label text color.  Default `#4f4f4f`.
+axis.label.alignment         | axis label text alignment (start/end/middle). Default `middle`
+axis.label.dy                | text adjustment of axis label text.  Default `-2em`.
+y.axis.line.color	           | color of y-axis in-chart lines (ticks). Default `#c4c8ca`.
+y.axis.line.style	           | style of y-axis in-chart lines (ticks), `dash` or `line`. Default `dash`.
+y.axis.line.width	           | width of y-axis in-chart lines (ticks). Default `1`.
+legend.margin                | legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
+legend.interactive           | legend interactive mode. Default `TRUE`.
+legend.title                 | legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
+lollipop.track.height        | height of lollipop track. Default `420`.
+lollipop.track.background    | background of lollipop track. Default `rgb(244,244,244)`.
+lollipop.pop.min.size        | lollipop pop minimal size in px. Default `2`.
+lollipop.pop.max.size        | lollipop pop maximal size in px. Default `12`.
+lollipop.pop.info.limit      | threshold of lollipop pop size to show count information in middle of pop. Default `8`.
+lollipop.pop.info.color      | lollipop pop information text color. Default `#EEE`.
+lollipop.pop.info.dy         | y-axis direction text adjustment of lollipop pop information. Default `-0.35em`.
+lollipop.line.color          | lollipop line color. Default `rgb(42,42,42)`.
+lollipop.line.width          | lollipop line width. Default `0.5`.
+lollipop.circle.color        | lollipop circle border color. Default `wheat`.
+lollipop.circle.width        | lollipop circle border width. Default `0.5`.
+lollipop.label.ratio         | lollipop click-out label font size to circle size ratio. Default `1.4`.
 lollipop.label.min.font.size | lollipop click-out label minimal font size. Default `10`.
-lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. Check [demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/), [demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and [demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
-title.text | title of chart. Default "".
-title.font | font of chart title. Default `normal 16px Arial`.
-title.color | color of chart title. Default `#424242`.
-title.alignment | text alignment of chart title (start/middle/end). Default `middle`.
-title.dy | text adjustment of chart title. Default `0.35em`.
-anno.height | height of protein structure annotation track. Default `30`.
-anno.margin | margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
-anno.background | background of protein structure annotation track. Default `transparent`.
-anno.bar.fill | background of protein bar in protein structure annotation track. Default `#E5E3E1`.
-anno.bar.margin | margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.
-domain.color.scheme | color scheme of protein domains. Default `category10`.
-domain.margin | margin of protein domains. Default `list(top = 0, bottom = 0)`.
-domain.text.font | domain label text font in shorthand format. Default `normal 11px Arial`.
-domain.text.color | domain label text color. Default `#F2F2F2`.
-brush	 | if show brush. Default `TRUE`.
-brush.selection.background	| background color of selection brush. Default `#666`.
-brush.selection.opacity	| background opacity of selection brush. Default `0.2`.
-brush.border.color	| border color of selection brush. Default `#969696`.
-brush.handler.color	| color of left and right handlers of selection brush. Default `#333`.
-brush.border.width	| border width of selection brush. Default `1`.
-legend | if show legend. Default `TRUE`.
-tooltip | if show tooltip. Default `TRUE`.
-zoom | if enable zoom feature. Default `TRUE`.
+lollipop.color.scheme        | color scheme to fill lollipop pops. Default `accent`. Check [demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/), [demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and [demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
+title.text                   | title of chart. Default "".
+title.font                   | font of chart title. Default `normal 16px Arial`.
+title.color                  | color of chart title. Default `#424242`.
+title.alignment              | text alignment of chart title (start/middle/end). Default `middle`.
+title.dy                     | text adjustment of chart title. Default `0.35em`.
+anno.height                  | height of protein structure annotation track. Default `30`.
+anno.margin                  | margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
+anno.background              | background of protein structure annotation track. Default `transparent`.
+anno.bar.fill                | background of protein bar in protein structure annotation track. Default `#E5E3E1`.
+anno.bar.margin              | margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.
+domain.color.scheme          | color scheme of protein domains. Default `category10`.
+domain.margin                | margin of protein domains. Default `list(top = 0, bottom = 0)`.
+domain.text.font             | domain label text font in shorthand format. Default `normal 11px Arial`.
+domain.text.color            | domain label text color. Default `#F2F2F2`.
+brush	                       | if show brush. Default `TRUE`.
+brush.selection.background	 | background color of selection brush. Default `#666`.
+brush.selection.opacity	     | background opacity of selection brush. Default `0.2`.
+brush.border.color	         | border color of selection brush. Default `#969696`.
+brush.handler.color	         | color of left and right handlers of selection brush. Default `#333`.
+brush.border.width	         | border width of selection brush. Default `1`.
+legend                       | if show legend. Default `TRUE`.
+tooltip                      | if show tooltip. Default `TRUE`.
+zoom                         | if enable zoom feature. Default `TRUE`.
 
 
 <br/>
