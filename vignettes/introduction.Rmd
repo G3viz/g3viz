@@ -1,9 +1,9 @@
 ---
-title: "G3viz: an R package to interactively visualize genomic mutation data using a lollipop-diagram"
+title: "G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram"
 date: "2019-03-01"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{G3viz: interactively visualize genomic mutation data using a lollipop-diagram}
+  %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{utf8}
 ---
@@ -16,9 +16,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Easily and effectively visualizing genomic mutation data can help researchers to better understand the data and validate the findings.
-`G3viz` is a R-package which provides an easy-to-use lollipop-diagram tool.  
-It enables users to interactively visualize detailed translational effects of genomic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
+Easily and effectively visualizing genetic mutation data can help researchers to better understand the data and validate the findings.
+`G3viz` is an R package which provides an easy-to-use lollipop-diagram tool.  
+It enables users to interactively visualize detailed translational effects of genetic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
 
 The features of `g3viz` include
 
@@ -36,9 +36,9 @@ The features of `g3viz` include
 1. [Installation](#install)
 
 1. [Quick Start](#quickstart)
-    * [Example 1](#ex1): visualize genomic mutation data from `MAF` file
-    * [Example 2](#ex2): visualize genomic mutation data from `CSV` or `TSV` file
-    * [Example 3](#ex3): visualize genomic mutation data from `cBioPortal`
+    * [Example 1](#ex1): visualize genetic mutation data from `MAF` file
+    * [Example 2](#ex2): visualize genetic mutation data from `CSV` or `TSV` file
+    * [Example 3](#ex3): visualize genetic mutation data from `cBioPortal`
 
 1. [Usage](#usage)
     * [Read in data](#readdata)
@@ -80,9 +80,9 @@ library(g3viz)
 
 ## 2. <a name="quickstart"></a>Quick Start
 
-### <a name="ex1"></a>Example 1: Visualize genomic mutation data from `MAF` file
+### <a name="ex1"></a>Example 1: Visualize genetic mutation data from `MAF` file
 
-Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a widely-used tab-delimited text file with annotated genomic mutation information.
+Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a widely-used tab-delimited text file with annotated genetic mutation information.
 Translational effect of variant alleles in `MAF` files are usually in the column of `Variant_Classification` (_i.e._, `Frame_Shift_Del`, `Split_Site`).
 In this example, the somatic mutation data of the `TCGA-BRCA` study was directly downloaded from the [GDC Data Portal](https://portal.gdc.cancer.gov/projects/TCGA-BRCA).
 
@@ -141,9 +141,9 @@ g3Lollipop(mutation.dat,
 [↥ back to top](#top)
 
 
-### <a name="ex2"></a>Example 2: visualize genomic mutation data from `CSV` or `TSV` file
+### <a name="ex2"></a>Example 2: visualize genetic mutation data from `CSV` or `TSV` file
 
-In this example, we load genomic mutation data from `CSV` or `TSV` files, and visualize it using some
+In this example, we load genetic mutation data from `CSV` or `TSV` files, and visualize it using some
 customized [chart options](#options)
 
 <a name="customized"></a>
@@ -250,18 +250,18 @@ g3Lollipop(mutation.dat,
 
 [↥ back to top](#top)
 
-### <a name="ex3"></a>Example 3: visualize genomic mutation data from `cBioPortal`
+### <a name="ex3"></a>Example 3: visualize genetic mutation data from `cBioPortal`
 
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
 `g3viz` package also provides a convenient way to retrieve data from this portal.
 
-In this example, we first retrieve genomic mutation data of `TP53` gene for the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study,
+In this example, we first retrieve genetic mutation data of `TP53` gene for the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study,
 and then visualize the data using the built-in `cbioportal` theme, to miminc cBioPortal's [mutation_mapper](https://www.cbioportal.org/mutation_mapper).
 
 <a name="cbioportal_theme"></a>
 ```{r, include=TRUE}
 # ============================================
-# get genomic mutation data of "msk_impact_2017"" study from cBioPortal
+# get genetic mutation data of "msk_impact_2017"" study from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 
 # g3viz has built-in "cbioportal" theme
@@ -300,7 +300,7 @@ mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 
 ### 3.1 <a name="readdata"></a>Read in data
 
-Genomic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded in three ways in `g3viz`
+Genetic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded in three ways in `g3viz`
 
 1. from [MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/) file, as shown in [Example 1](#ex1).
 
