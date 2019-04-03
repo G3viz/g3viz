@@ -9,8 +9,8 @@ g3Lollipop.theme(theme.name = "default", title.text = "",
 }
 \arguments{
 \item{theme.name}{theme name, including \emph{default}, \emph{cbioportal},
-\emph{nature}, \emph{blue}, \emph{ggplot2}, and \emph{simple}. Default
-\emph{default}}
+\emph{nature}, \emph{nature2}, \emph{dark}, \emph{blue}, \emph{ggplot2}, and \emph{simple}. Default
+\emph{default}.}
 
 \item{title.text}{title of chart. Default is empty.}
 

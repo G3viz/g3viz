@@ -5,7 +5,7 @@
 \title{Read MAF file}
 \usage{
 readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
-  variant.class.col = c("Variant_Classification", "Mutation_Class"),
+  variant.class.col = c("Variant_Classification", "Mutation_Type"),
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
   if.parse.aa.pos = TRUE, if.parse.mutation.class = TRUE,
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
@@ -18,13 +18,13 @@ extension.}
 \item{gene.symbol.col}{Column name of Hugo gene symbols (e.g., TP53). Default
 \emph{Hugo_Symbol}.}
 
-\item{variant.class.col}{Column name of variant class information (e.g.,
-\emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is a list of
-\emph{Variant_Classification} and \emph{Mutation_Class}.}
+\item{variant.class.col}{Column name for variant class information (e.g.,
+\emph{Missense_Mutation}, \emph{Nonsense_Mutation}). Default is the first
+match of \emph{Variant_Classification} or \emph{Mutation_Type}.}
 
-\item{protein.change.col}{Column name of protein change information (e.g.,
-p.K960R, G658S, L14Sfs*15). Default is a list of \emph{Protein_Change},
-\emph{HGVSp_Short}.}
+\item{protein.change.col}{Column name for protein change information (e.g.,
+p.K960R, G658S, L14Sfs*15). Default is the first match of
+\emph{Protein_Change} or \emph{HGVSp_Short}.}
 
 \item{if.parse.aa.pos}{if parse amino-acid position of mutations. Default is
 \code{TRUE}.}

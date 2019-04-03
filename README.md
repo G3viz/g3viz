@@ -1,7 +1,9 @@
 # <a name="top"></a>G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram
 
-  **Version: 1.0.0**<br>
-  **Date: 2019-03-20**
+  **Version: 1.0.4**<br>
+  **Date: 2019-04-01**
+  
+  [![](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
 
 ***
 ### Note: this Readme with live demos are availabe at [R repository Vignette page ](https://cran.r-project.org/web/packages/g3viz/vignettes/introduction.html)

@@ -1,8 +1,8 @@
 #' G3Lollipop chart options of built-in themes.
 #'
 #' @param theme.name theme name, including \emph{default}, \emph{cbioportal},
-#'   \emph{nature}, \emph{blue}, \emph{ggplot2}, and \emph{simple}. Default
-#'   \emph{default}
+#'   \emph{nature}, \emph{nature2}, \emph{dark}, \emph{blue}, \emph{ggplot2}, and \emph{simple}. Default
+#'   \emph{default}.
 #' @param y.axis.label Y-axis label text. Default \emph{"# of mutations"}.
 #' @param legend.title legend title.  If \code{NA}, \emph{factor.col} in
 #'   \code{\link{g3Lollipop}} is used. Default is \code{NA}.
@@ -90,6 +90,32 @@ g3Lollipop.theme <- function(
     #    anno.bar.fill = "transparent"
   )
 
+  theme.list[["nature2"]] <- g3Lollipop.options(
+    chart.width = 800,
+    chart.type = "pie",
+    chart.background = "transparent",
+    lollipop.track.background = "#F5F5DC",
+    lollipop.track.height = 360,
+    anno.height = 30,
+    anno.background = "#F5F5DC",
+    anno.margin = list(top = 2, bottom = 0),
+    anno.bar.fill = "grey",
+    anno.bar.margin = list(top = 8, bottom = 8),
+    domain.text.color = "white",
+    domain.text.font = "italic 18px Serif",
+    domain.color.scheme = "dark2",
+    lollipop.pop.min.size = 2,
+    lollipop.pop.max.size = 12,
+    lollipop.pop.info.limit = 8,
+    #  lollipop.color.scheme = "pie5",
+    lollipop.circle.color = "#b2b3b4",
+    lollipop.circle.width = 1,
+    brush.selection.background = "transparent",
+    brush.border.color = "#808000",
+    brush.handler.color = "#808000"
+    #    anno.bar.fill = "transparent"
+  )
+
   # ggplot2 theme
   theme.list[["ggplot2"]] <- g3Lollipop.options(
     chart.width = 680,
@@ -103,13 +129,13 @@ g3Lollipop.theme <- function(
     axis.label.dy = "-2em",
     # anno track
     anno.height = 24,
-    anno.background = "#f2f2f2",
+    anno.background = "#f5f5f5",
     anno.margin = list(top = 0, bottom = 0),
     anno.bar.fill = "#999999",
     anno.bar.margin = list(top = 3, bottom = 3),
     # lollipop track options
     lollipop.track.height = 320,
-    lollipop.track.background = "#f2f2f2",
+    lollipop.track.background = "#f5f5f5",
     lollipop.pop.info.color = "white",
     lollipop.color.scheme = "dark2",
     # yline
@@ -196,6 +222,79 @@ g3Lollipop.theme <- function(
     brush.border.color = "#525252",
     brush.handler.color = "#525252"
 #    anno.bar.fill = "transparent"
+  )
+
+  # dark theme
+  theme.list[["dark"]] <- g3Lollipop.options(
+    # chart options
+    chart.width = 600,
+    chart.type = "pie",
+    chart.margin = list(left = 30, right = 20, top = 20, bottom = 30),
+    chart.background = "#d3d3d3",
+    # transition time
+    transition.time = 300,
+    axis.label.color = "#303030",
+    axis.label.alignment = "end",
+    axis.label.font = "italic 12px Serif",
+    axis.label.dy = "-1.5em",
+    # in-chart tick lines
+    y.axis.line.color = "#303030",
+    y.axis.line.width = 0.5,
+    y.axis.line.style = "line",
+    # legend
+    legend = TRUE,
+    legend.margin = list(left=20, right = 0, top = 10, bottom = 5),
+    legend.interactive = TRUE,
+    # lollipop track
+    lollipop.track.height = 200,
+    lollipop.track.background = "#d3d3d3",
+    # lollipop pop
+    lollipop.pop.min.size = 1,
+    lollipop.pop.max.size = 8,
+    # lollipop in-pop information
+    lollipop.pop.info.limit = 5.5,
+    lollipop.pop.info.dy = "0.24em",
+    lollipop.pop.info.color = "white",
+    # lollipop line
+    lollipop.line.color = "#a9A9A9",
+    lollipop.line.width = 3,
+    # lollipop circle
+    lollipop.circle.color = "#ffdead",
+    lollipop.circle.width = 0.4,
+    # lollipop click-on-pop highlight label
+    lollipop.label.ratio = 2,
+    lollipop.label.min.font.size = 12,
+    # lollipop color scheme
+    lollipop.color.scheme = "dark2",
+    # highlight text angle
+    highlight.text.angle = 60,
+    # chart title
+    title.color = "#303030",
+    title.font = "bold 12px monospace",
+    title.alignment = "start",
+    # annotation track
+    anno.height = 16,
+    anno.margin = list(top = 0, bottom = 0),
+    anno.background = "#d3d3d3",
+    # annotation track bar
+    anno.bar.fill = "#a9a9a9",
+    anno.bar.margin = list(top = 4, bottom = 4),
+    # protein domain
+    domain.color.scheme = "pie5",
+    domain.margin = list(top = 2, bottom = 2),
+    domain.text.color = "white",
+    domain.text.font = "italic 8px Serif",
+    # selection brush
+    brush = TRUE,
+    brush.selection.background = "#F8F8FF",
+    brush.selection.opacity = 0.3,
+    brush.border.color = "#a9a9a9",
+    brush.border.width = 1,
+    brush.handler.color = "#303030",
+    # tooltip
+    tooltip = TRUE,
+    # zoom
+    zoom = TRUE
   )
 
   if(is.null(theme.list[[theme.name]])){

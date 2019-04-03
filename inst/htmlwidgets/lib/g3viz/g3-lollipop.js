@@ -1438,14 +1438,15 @@ function Lollipop(target, chartType, width) {
             // get text length
             let _fontSize = Math.max(d._currentState.radius * lollipopOpt.popLabel.fontsizeToRadius, lollipopOpt.popLabel.minFontSize) + "px";
             let _font = lollipopOpt.popLabel["font-weight"] + " " + _fontSize + " " + lollipopOpt.popLabel["font-family"];
+
             // text length in dimention
-            let _txtLen = getTextWidth(_dominant.entry, _font);
-            _txtLen = Math.max(0, _txtLen * Math.sin(options.highlightTextAngle / 180 * Math.PI));
+            let _totalTxtLen = getTextWidth(_dominant.entry, _font) + lollipopOpt.popLabel.padding + d._currentState.radius;
+
+            let _rotatedTxtLen = _totalTxtLen * Math.sin(options.highlightTextAngle / 180 * Math.PI) + 
+                                 d._currentState.radius * Math.cos(options.highlightTextAngle / 180 * Math.PI);
 
             // note: y axis 0 is at top-left cornor
-            let _txtH = d._currentState.radius + lollipopOpt.popLabel.padding + _txtLen;
-            let _txtY = (_yRange[1] - _yRange[0]) * (_txtH / _mainH);
-            let _txtYMax = d._currentState.count + _txtY;
+            let _txtYMax = _mainH * d._currentState.count / (_mainH - _rotatedTxtLen);
 
             _updateYBahavior(_txtYMax, Add);
 
@@ -1562,13 +1563,11 @@ function Lollipop(target, chartType, width) {
         // update pop
         let _popR = d._currentState.radius = _getPopR(d);
 
-        switch (chartType) {
-            case "pie":
-                _pieTransition(d, _popGroup, _popR);
-                break;
-            default:
-                _circleTransition(d, _popGroup, _popR);
+        if(chartType == "pie"){
+            _pieTransition(d, _popGroup, _popR);
         }
+        
+        _circleTransition(d, _popGroup, _popR);
 
         let _popText = _popGroup.select("." + lollipopOpt.popClassName.text);
         // add text if large enough
@@ -1877,7 +1876,7 @@ function Lollipop(target, chartType, width) {
         // y
         _calcYRange();
         _yScale = d3.scaleLinear().domain(_yRange).range([_mainH, 0]);
-        _yAxis = d3.axisLeft(_yScale).tickSize(-_mainW).ticks(9).tickFormat(d3.format("d"));
+        _yAxis = d3.axisLeft(_yScale).tickSize(-_mainW).ticks(6).tickFormat(d3.format("d"));
 
         // x
         _xRange = [0, domainData[domainDataFormat.length]];
@@ -1897,10 +1896,10 @@ function Lollipop(target, chartType, width) {
         yValue = _getYMaxAfterNice(yValue * lollipopOpt.yPaddingRatio);
         yValue = Math.max(_yValueMax, yValue);
 
-        // yValue > yValueMax
+        // if yValue > yValueMax
         if (behavior === Add) {
             _yUpperValueArray.push(yValue);
-            _yUpperValueArray = _yUpperValueArray.sort();
+            _yUpperValueArray = _yUpperValueArray.sort(function(a, b){return a - b});
         } else {
             let _idx = _yUpperValueArray.indexOf(yValue);
             if (_idx != -1) {
@@ -2121,6 +2120,7 @@ function Lollipop(target, chartType, width) {
         set yAxisLineColor(_) { lollipopOpt.ylab.lineColor = _; }, get yAxisLineColor() { return lollipopOpt.ylab.lineColor; },
         set yAxisLineWidth(_) { lollipopOpt.ylab.lineWidth = _; }, get yAxisLineWidth() { return lollipopOpt.ylab.lineWidth; },
         set yAxisLineStyle(_) { lollipopOpt.ylab.lineStyle = _; }, get yAxisLineStyle() { return lollipopOpt.ylab.lineStyle; },
+        set yMaxRangeRatio(_) { lollipopOpt.yPaddingRatio = _; }, get yMaxRangeRatio() { return lollipopOpt.yPaddingRatio; },
 
         // axis settings (label font / color / alignment / y-adjustment)
         set axisLabelFont(_) { lollipopOpt.axisLabel.font = _; }, get axisLabelFont() { return lollipopOpt.axisLabel.font; },

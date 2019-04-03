@@ -11,8 +11,9 @@ g3Lollipop.options(chart.width = 800, chart.type = "circle",
   axis.label.font = "normal 12px Arial", axis.label.color = "#4f4f4f",
   axis.label.alignment = "middle", axis.label.dy = "-2em",
   y.axis.line.color = "#c4c8ca", y.axis.line.style = "dash",
-  y.axis.line.width = 1, legend.margin = list(left = 10, right = 0, top
-  = 5, bottom = 5), legend.interactive = TRUE, legend.title = NA,
+  y.axis.line.width = 1, y.max.range.ratio = 1.1,
+  legend.margin = list(left = 10, right = 0, top = 5, bottom = 5),
+  legend.interactive = TRUE, legend.title = NA,
   lollipop.track.height = 420,
   lollipop.track.background = "rgb(233,233,233)",
   lollipop.pop.min.size = 2, lollipop.pop.max.size = 12,
@@ -64,6 +65,8 @@ Default \emph{"normal 12px Arial"}.}
 \item{y.axis.line.style}{style of y-axis in-chart lines (ticks), "dash" or "line".  Default \emph{dash}.}
 
 \item{y.axis.line.width}{width of y-axis in-chart lines (ticks).  Default 1.}
+
+\item{y.max.range.ratio}{ratio of y-axis range to data value range.  Default 1.1.}
 
 \item{legend.margin}{legend margin in \emph{list}.  Default \code{list(left = 10, right = 0, top = 5, bottom = 5)}.}
 

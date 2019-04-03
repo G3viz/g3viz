@@ -46,11 +46,26 @@ g3Lollipop(mutation.dat,
                               legend.title = "legend-title"),
            gene.symbol = "TP53")
 
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "nature2",
+                              title.text = "nature2 theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           gene.symbol = "TP53")
 
 g3Lollipop(mutation.dat,
            plot.options =
              g3Lollipop.theme(theme.name = "ggplot2",
                               title.text = "ggplot2 theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           gene.symbol = "TP53")
+
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "dark",
+                              title.text = "dark theme title",
                               y.axis.label = "y-label",
                               legend.title = "legend-title"),
            gene.symbol = "TP53")

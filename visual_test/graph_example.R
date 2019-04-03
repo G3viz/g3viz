@@ -6,14 +6,18 @@ mutation.dat <- readMAF(maf.file)
 
 # lollipop diagram with default options
 
+# ===
 plot.options =
   g3Lollipop.theme(theme.name = "nature",
                    title.text = "nature theme title",
                    y.axis.label = "y-label",
                    legend.title = "legend-title")
 
-plot.options$chartType
+g3Lollipop(mutation.dat,
+           plot.options = plot.options,
+           gene.symbol = "TP53")
 
+# ===
 
 g3Lollipop(mutation.dat,
            plot.options =
@@ -67,12 +71,15 @@ g3Lollipop(mutation.dat,
 
 # demo chart
 
+# query data from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 
+# draw g3lollipop with built-in theme
 g3Lollipop(mutation.dat,
-           plot.options =
-             g3Lollipop.theme(theme.name = "nature",
-                              title.text = "nature theme title",
-                              y.axis.label = "y-label",
-                              legend.title = "legend-title"),
-           gene.symbol = "TP53")
+           plot.options = g3Lollipop.theme(
+                              theme.name = "nature2",
+                              title.text = "TP53 gene mutation (MSK-IMPACT study)",
+                              y.axis.label = "# of TP53 mutations",
+                              legend.title = "Mutation Class"),
+           gene.symbol = "TP53",
+           btn.style = "blue")

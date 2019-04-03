@@ -18,6 +18,7 @@
 #' @param y.axis.line.color color of y-axis in-chart lines (ticks).  Default \emph{#c4c8ca}.
 #' @param y.axis.line.style style of y-axis in-chart lines (ticks), "dash" or "line".  Default \emph{dash}.
 #' @param y.axis.line.width width of y-axis in-chart lines (ticks).  Default 1.
+#' @param y.max.range.ratio ratio of y-axis range to data value range.  Default 1.1.
 #'
 #' @param legend.margin legend margin in \emph{list}.  Default \code{list(left = 10, right = 0, top = 5, bottom = 5)}.
 #' @param legend.interactive legend interactive mode.  Default \code{TRUE}.
@@ -86,6 +87,7 @@ g3Lollipop.options <- function(# chart
                                y.axis.line.color = "#c4c8ca",
                                y.axis.line.style = "dash",
                                y.axis.line.width = 1,
+                               y.max.range.ratio = 1.1,
                                # legend
                                legend.margin = list(left = 10, right = 0, top = 5, bottom = 5),
                                legend.interactive = TRUE,
@@ -153,6 +155,7 @@ g3Lollipop.options <- function(# chart
                        yAxisLineColor = y.axis.line.color,
                        yAxisLineStyle = y.axis.line.style,
                        yAxisLineWidth = y.axis.line.width,
+                       yMaxRangeRatio = y.max.range.ratio,
                        # legend
                        legendMargin = legend.margin,
                        legendInteractive = legend.interactive,

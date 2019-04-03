@@ -1,12 +1,33 @@
 ---
 title: "G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram"
-date: "2019-03-01"
-output: rmarkdown::html_vignette
+author: "Xin Guo"
+date: "2019-04-01"
+output: 
+  html_document:
+    #code_folding: show
+    df_print: kable
+    fig_caption: yes
+    highlight: tango
+    number_sections: yes
+    theme: lumen
+    toc: yes
+    toc_depth: 2
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
 vignette: >
+  %\VignetteEncoding{utf8}
   %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram}
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{utf8}
 ---
+
+```{r, message=FALSE, include = FALSE}
+# install package
+library(g3viz)
+library(knitr)
+library(kableExtra)
+```
+
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
@@ -16,9 +37,11 @@ knitr::opts_chunk$set(
 )
 ```
 
-Easily and effectively visualizing genetic mutation data can help researchers to better understand the data and validate the findings.
-`G3viz` is an R package which provides an easy-to-use lollipop-diagram tool.  
-It enables users to interactively visualize detailed translational effects of genetic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
+
+# <a name="introduction"></a>Introduction
+
+Easily and effectively visualizing genetic mutation data can help researchers to better understand genomic data and validate findings.
+`G3viz` is an R package which provides an easy-to-use lollipop-diagram tool.  It enables users to interactively visualize detailed translational effects of genetic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
 
 The features of `g3viz` include
 
@@ -32,27 +55,11 @@ The features of `g3viz` include
 - built-in function to retrieve protein domain information for a given gene, and resolve gene symbol ambiguity and isoforms.
 - built-in function to map mutations types (a.k.a, variant classification; _e.g._, `Frame_Shift_Del`, `In_Frame_Ins`) to mutation classes (namely `Inframe`, `Missense`, `Truncating`, and `Other`).
 
-## Table of contents
-1. [Installation](#install)
-
-1. [Quick Start](#quickstart)
-    * [Example 1](#ex1): visualize genetic mutation data from `MAF` file
-    * [Example 2](#ex2): visualize genetic mutation data from `CSV` or `TSV` file
-    * [Example 3](#ex3): visualize genetic mutation data from `cBioPortal`
-
-1. [Usage](#usage)
-    * [Read in data](#readdata)
-    * [Mutation Type and Class mappings](#mutation)
-    * [Retrieve Pfam domain compostion](#pfamdomain)
-    * [Color schemes](#schemes)
-    * [Chart themes](#themes)
-    * [Chart options](#options)
-    * [Save charts and HTML](#save)
-    
-1. [Sessioninfo](#sessioninfo)
+[↥ back to top](#top)
 
 
-## 1. <a name="install"></a>Install `g3viz`
+
+# <a name="install"></a>Install `g3viz`
 Install `g3viz` package from R repository
 ```r
 # ============================================
@@ -73,27 +80,21 @@ devtools::install_github("g3viz/g3viz")
 
 [↥ back to top](#top)
 
-```{r include = FALSE}
-# install package
-library(g3viz)
-```
 
-## 2. <a name="quickstart"></a>Quick Start
+# <a name="quickstart"></a>Quick Start
 
-### <a name="ex1"></a>Example 1: Visualize genetic mutation data from `MAF` file
+## <a name="ex1"></a>Example 1: Visualize genetic mutation data from `MAF` file
 
-Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a widely-used tab-delimited text file with annotated genetic mutation information.
-Translational effect of variant alleles in `MAF` files are usually in the column of `Variant_Classification` (_i.e._, `Frame_Shift_Del`, `Split_Site`).
-In this example, the somatic mutation data of the `TCGA-BRCA` study was directly downloaded from the [GDC Data Portal](https://portal.gdc.cancer.gov/projects/TCGA-BRCA).
+Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a commonly-used tab-delimited text file for storing aggregated mutation information.  It could be generated from [VCF](https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/) file using tools like [vcf2maf](https://github.com/mskcc/vcf2maf).  Translational effect of variant alleles in `MAF` files are usually in the column named `Variant_Classification` or `Mutation_Class` (_i.e._, `Frame_Shift_Del`, `Split_Site`).  In this example, the somatic mutation data of the `TCGA-BRCA` study was directly downloaded from the [GDC Data Portal](https://portal.gdc.cancer.gov/projects/TCGA-BRCA).
 
 
-```{r, include = TRUE}
+```{r include = TRUE}
 # ============================================
 # System file
 maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package = "g3viz")
 # ============================================
 # Read in MAF file
-#   In addition to read data in, the built-in "readMAF" function also
+#   In addition to read data in, g3viz::readMAF function also
 #     1. parses "Mutation_Class" information according to the "Variant_Classification" column 
 #        (also named "Mutation_Class" column in some files)
 #     2. parses "AA_position" (amino-acid position) according to "HGVSp_Short" information
@@ -101,7 +102,7 @@ maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package =
 mutation.dat <- readMAF(maf.file)
 ```
 <a name="default_theme"></a>
-```{r, include = TRUE}
+```{r include = TRUE}
 # ============================================
 # Chart 1
 # use "default"" chart theme
@@ -121,7 +122,7 @@ g3Lollipop(mutation.dat,
            output.filename = "default_theme")
 ```
 <a name="nature_theme"></a>
-```{r, include = TRUE}
+```{r include = TRUE}
 # ============================================
 # Chart 2
 # Visualize data according to "Variant_Classification" information
@@ -141,13 +142,18 @@ g3Lollipop(mutation.dat,
 [↥ back to top](#top)
 
 
-### <a name="ex2"></a>Example 2: visualize genetic mutation data from `CSV` or `TSV` file
+
+
+
+
+
+## <a name="ex2"></a>Example 2: visualize genetic mutation data from `CSV` or `TSV` file
 
 In this example, we load genetic mutation data from `CSV` or `TSV` files, and visualize it using some
 customized [chart options](#options)
 
 <a name="customized"></a>
-```{r, include=TRUE}
+```{r include=TRUE}
 # ============================================
 # load data
 mutation.csv <- system.file("extdata", "ccle.csv", package = "g3viz")
@@ -181,6 +187,7 @@ plot.options <- g3Lollipop.options(
   y.axis.line.color = "#303030",
   y.axis.line.width = 0.5,
   y.axis.line.style = "line",
+  y.max.range.ratio = 1.1,
   # legend
   legend = TRUE,
   legend.margin = list(left=20, right = 0, top = 10, bottom = 5),
@@ -250,7 +257,12 @@ g3Lollipop(mutation.dat,
 
 [↥ back to top](#top)
 
-### <a name="ex3"></a>Example 3: visualize genetic mutation data from `cBioPortal`
+
+
+
+
+
+## <a name="ex3"></a>Example 3: visualize genetic mutation data from `cBioPortal`
 
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
 `g3viz` package also provides a convenient way to retrieve data from this portal.
@@ -259,7 +271,7 @@ In this example, we first retrieve genetic mutation data of `TP53` gene for the 
 and then visualize the data using the built-in `cbioportal` theme, to miminc cBioPortal's [mutation_mapper](https://www.cbioportal.org/mutation_mapper).
 
 <a name="cbioportal_theme"></a>
-```{r, include=TRUE}
+```{r include=TRUE}
 # ============================================
 # get genetic mutation data of "msk_impact_2017"" study from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
@@ -296,9 +308,14 @@ mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 
 [↥ back to top](#top)
 
-## 3. <a name="usage"></a>Usage (TLDR)
 
-### 3.1 <a name="readdata"></a>Read in data
+
+
+
+
+# <a name="usage"></a>Usage (TL;DR)
+
+## <a name="readdata"></a>Read in data
 
 Genetic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.cancer.gov/Encyclopedia/pages/Aggregated_Somatic_Mutation/)) can be loaded in three ways in `g3viz`
 
@@ -311,44 +328,24 @@ Genetic mutation data (_e.g._, [aggregated somatic mutations](https://docs.gdc.c
 [↥ back to top](#top)
 
 
-### 3.2 <a name="mutation"></a>Mutation Type and Class mappings
 
-In addtion to read in mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type (_a.k.a._, variant classification) to mutation class (check `g3viz::mapMutationTypeToMutationClass` function).  The default mutation type to mutation class mapping table is,
+## <a name="mutation"></a>Map mutation types to mutation classes
 
-| Mutation_Type            | Mutation_Class | Short_Name               |
-|--------------------------|----------------|--------------------------|
-| In_Frame_Del             | Inframe        | IF del                   |
-| In_Frame_Ins             | Inframe        | IF ins                   |
-| Silent                   | Inframe        | Silent                   |
-| Targeted_Region          | Inframe        | IF                       |
-| Missense_Mutation        | Missense       | Missense                 |
-| Frame_Shift              | Truncating     | FS                       |
-| Frame_Shift_Del          | Truncating     | FS del                   |
-| Frame_Shift_Ins          | Truncating     | FS ins                   |
-| Nonsense_Mutation        | Truncating     | Nonsense                 |
-| Nonstop_Mutation         | Truncating     | Nonstop                  |
-| Splice_Region            | Truncating     | Splice                   |
-| Splice_Site              | Truncating     | Splice                   |
-| 3'Flank                  | Other          | 3'Flank                  |
-| 3'UTR                    | Other          | 3'UTR                    |
-| 5'Flank                  | Other          | 5'Flank                  |
-| 5'UTR                    | Other          | 5'UTR                    |
-| De_novo_Start_InFrame    | Other          | de_novo_start_inframe    |
-| De_novo_Start_OutOfFrame | Other          | de_novo_start_outofframe |
-| Fusion                   | Other          | Fusion                   |
-| IGR                      | Other          | IGR                      |
-| Intron                   | Other          | Intron                   |
-| lincRNA                  | Other          | lincRNA                  |
-| RNA                      | Other          | RNA                      |
-| Start_Codon_Del          | Other          | Nonstart                 |
-| Start_Codon_Ins          | Other          | start_codon_ins          |
-| Start_Codon_SNP          | Other          | Nonstart                 |
-| Translation_Start_Site   | Other          | TSS                      |
-| Unknown                  | Other          | Unknown                  |
+In addtion to read in mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type (_a.k.a._, variant classification) to mutation class (check `g3viz::mapMutationTypeToMutationClass` function).  The default mutation type to mutation class mapping is,
+
+
+```{r, include=TRUE, echo=FALSE}
+mutation.mapping.df = read.table("tables/mutation_mapping.tsv", sep="\t", header=TRUE, quote="")
+kable(mutation.mapping.df, caption = "Mutation type (variant classification) to mutation class mapping") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "bordered", "condensed"), full_width = TRUE)
+```
+
 
 [↥ back to top](#top)
 
-### 3.3 <a name="pfamdomain"></a>Retrieve Pfam domain compostion
+
+
+## <a name="pfamdomain"></a>Retrieve Pfam domain inforamtion
 Given a [HUGO](https://www.genenames.org/) gene symbol, users can either use `hgnc2pfam` function to retrieve Pfam protein domain composition or use all-in-one `g3Lollipop` function to create lollipop-diagram.
 In case that the given gene has multiple isoforms, `hgnc2pfam` returns all [UniProt](https://www.uniprot.org/) entries.
 If attribute `guess` is set to `TRUE`, the Pfam domain information of the longest UniProt entry is returned.
@@ -366,22 +363,10 @@ hgnc2pfam("GNAS", guess = TRUE)
 
 [↥ back to top](#top)
 
-### 3.4 <a name="schemes"></a>`g3viz` built-in color schemes
 
-As shown in [Fig1](#color_scheme_fig1), this `g3viz` package supports with over 30 color schemes.  More demos are available at
-[demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/),
-[demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and
-[demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
 
-<a name="color_scheme_fig1"></a>
-**Figure 1** *list of color schemes*
-```{r, out.width = "620px", echo = FALSE}
-knitr::include_graphics("figures/color_scheme.png")
-```
 
-[↥ back to top](#top)
-
-### 3.5. <a name="themes"></a>`g3viz` built-in chart themes
+## <a name="themes"></a> Chart themes
 
 So far, `g3viz` has 5 built-in chart schemes, namely, `default`, `nature`, `ggplot2`, `cbioportal`, and `simple`.  Examples of `g3viz` charts using [default](#default_theme), [nature](#nature_theme), and [cbioportal](#cbioportal_theme) are shown previously.
 
@@ -422,75 +407,62 @@ g3Lollipop(mutation.dat,
 
 [↥ back to top](#top)
 
-### 3.6.  <a name="options"></a>Lollipop-diagram chart options
+
+
+
+
+
+## <a name="schemes"></a> Color schemes
+
+As shown in [Fig1](#color_scheme_fig1), this `g3viz` package supports with over 30 color schemes.  More demos are available at
+[demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/),
+[demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and
+[demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
+
+<a name="color_scheme_fig1"></a>
+```{r, chunk-label, out.width = "620px", fig.align='center', fig.cap='**Figure 1.** List of color schemes supported by `g3viz`', echo = FALSE}
+knitr::include_graphics("figures/color_scheme.png")
+```
+
+[↥ back to top](#top)
+
+
+
+
+
+
+## <a name="options"></a> Chart options
 
 Chart options can be specified using `g3Lollipop.options()` function (see [example 2](#ex2)).
 Here is the full list of chart options,
 
-Option                     | Description
----------------------------|---------------------------------------
-chart.width             | chart width in px.  Default `800`.  Note: `chart.height` is calculated by adding `lollipop.track.height`, `anno.height`, and the height of `legend`.
-chart.type              | pop type, _pie_ or _circle_.  Default `pie`.
-chart.margin            | specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
-chart.background        | chart background.  Default `transparent`.
-transition.time         | chart animation transition time in millisecond.  Default `600`.
-y.axis.label            | Y-axis label text.  Default `mutations`.
-axis.label.font         | css font style shorthand (font-style font-variant font-weight font-size/line-height font-family).  Default `normal 12px Arial`.
-axis.label.color        | axis label text color.  Default `#4f4f4f`.
-axis.label.alignment    | axis label text alignment (start/end/middle). Default `middle`
-axis.label.dy           | text adjustment of axis label text.  Default `-2em`.
-y.axis.line.color	      | color of y-axis in-chart lines (ticks). Default `#c4c8ca`.
-y.axis.line.style	      | style of y-axis in-chart lines (ticks), `dash` or `line`. Default `dash`.
-y.axis.line.width	      | width of y-axis in-chart lines (ticks). Default `1`.
-legend.margin           | legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
-legend.interactive      | legend interactive mode. Default `TRUE`.
-legend.title            | legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
-lollipop.track.height   | height of lollipop track. Default `420`.
-lollipop.track.background  | background of lollipop track. Default `rgb(244,244,244)`.
-lollipop.pop.min.size  | lollipop pop minimal size in px. Default `2`.
-lollipop.pop.max.size | lollipop pop maximal size in px. Default `12`.
-lollipop.pop.info.limit | threshold of lollipop pop size to show count information in middle of pop. Default `8`.
-lollipop.pop.info.color | lollipop pop information text color. Default `#EEE`.
-lollipop.pop.info.dy	| y-axis direction text adjustment of lollipop pop information. Default `-0.35em`.
-lollipop.line.color | lollipop line color. Default `rgb(42,42,42)`.
-lollipop.line.width | lollipop line width. Default `0.5`.
-lollipop.circle.color | lollipop circle border color. Default `wheat`.
-lollipop.circle.width | lollipop circle border width. Default `0.5`.
-lollipop.label.ratio | lollipop click-out label font size to circle size ratio. Default `1.4`.
-lollipop.label.min.font.size | lollipop click-out label minimal font size. Default `10`.
-lollipop.color.scheme | color scheme to fill lollipop pops. Default `accent`. Check [demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/), [demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and [demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
-title.text | title of chart. Default "".
-title.font | font of chart title. Default `normal 16px Arial`.
-title.color | color of chart title. Default `#424242`.
-title.alignment | text alignment of chart title (start/middle/end). Default `middle`.
-title.dy | text adjustment of chart title. Default `0.35em`.
-anno.height | height of protein structure annotation track. Default `30`.
-anno.margin | margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
-anno.background | background of protein structure annotation track. Default `transparent`.
-anno.bar.fill | background of protein bar in protein structure annotation track. Default `#E5E3E1`.
-anno.bar.margin | margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.
-domain.color.scheme | color scheme of protein domains. Default `category10`.
-domain.margin | margin of protein domains. Default `list(top = 0, bottom = 0)`.
-domain.text.font | domain label text font in shorthand format. Default `normal 11px Arial`.
-domain.text.color | domain label text color. Default `#F2F2F2`.
-brush	 | if show brush. Default `TRUE`.
-brush.selection.background	| background color of selection brush. Default `#666`.
-brush.selection.opacity	| background opacity of selection brush. Default `0.2`.
-brush.border.color	| border color of selection brush. Default `#969696`.
-brush.handler.color	| color of left and right handlers of selection brush. Default `#333`.
-brush.border.width	| border width of selection brush. Default `1`.
-legend | if show legend. Default `TRUE`.
-tooltip | if show tooltip. Default `TRUE`.
-zoom | if enable zoom feature. Default `TRUE`.
+```{r, include=TRUE, echo=FALSE}
+chart.options.df = read.table("tables/chart_options.tsv", sep="\t", header=TRUE, quote="", comment.char="")
+kable(chart.options.df, caption = "Chart options of `g3viz`") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "bordered", "condensed"), full_width = TRUE) %>%
+  pack_rows("Chart settings", 1, 5)  %>%
+  pack_rows("Lollipop track settings", 6, 19) %>%
+  pack_rows("Domain annotation track settings", 20, 28) %>%
+  pack_rows("Y-axis settings", 29, 37) %>%
+  pack_rows("Chart title settings", 38, 42) %>%
+  pack_rows("Chart legend settings", 43, 45) %>%
+  pack_rows("Brush selection tool settings", 46, 51) %>%
+  pack_rows("Legend, Tooltip, Zoom (on/off)", 52, 54)
+```
+
+
 
 
 [↥ back to top](#top)
 
 
-### 3.7  <a name="save"></a>Save charts and HTML
+
+
+
+## <a name="save"></a> Save chart as HTML
 
 `g3Lollipop` function provides two buttons over the lollipop-diagram, enabling users to save chart in SVG or PNG file.
-If you want to save chart in HTML file, you can use `htmlwidgets::saveWidget` function.
+If you want to save chart as HTML file, you can use `htmlwidgets::saveWidget` function.
 
 ```r
 chart <- g3Lollipop(mutation.dat,
@@ -502,7 +474,11 @@ htmlwidgets::saveWidget(chart, "g3lollipop_chart.html")
 
 [↥ back to top](#top)
 
-## 4. <a name="sessioninfo"></a>Session Info
+
+
+
+
+# <a name="sessioninfo"></a>Session Info
 
 ```{r, include=TRUE}
 sessionInfo()

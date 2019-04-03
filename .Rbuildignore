@@ -10,6 +10,6 @@ visual_test
 ^\.gitignore$
 ^.*\.DS_Store$
 ^\.gitignore
-
 ^.*\.Rproj$
 ^\.Rproj\.user$
+docs
