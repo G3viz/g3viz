@@ -15,8 +15,10 @@ output:
     toc_float:
       collapsed: no
       smooth_scroll: yes
-vignette: |
-  %\VignetteEncoding{utf8} %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram} %\VignetteEngine{knitr::rmarkdown}
+vignette: >
+  %\VignetteEncoding{utf8}
+  %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram}
+  %\VignetteEngine{knitr::rmarkdown}
 ---
 
 ```{r, message=FALSE, include = FALSE}
