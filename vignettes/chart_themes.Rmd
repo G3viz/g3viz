@@ -2,7 +2,7 @@
 title: "G3viz: chart themes"
 author: "Xin Guo <g3viz.group at gmail.com>"
 date: "2019-04-01"
-output: 
+output:
   html_document:
     df_print: kable
     highlight: tango
