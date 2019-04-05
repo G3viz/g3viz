@@ -6,6 +6,7 @@
   [![CRAN_monthly_download](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
   [![CRAN_download_total](http://cranlogs.r-pkg.org/badges/grand-total/g3viz)](https://cran.r-project.org/package=g3viz)
 
+## Check [github pages](https://g3viz.github.io/g3viz/) for tutorial and demos
 
 
 ## Introduction
@@ -40,6 +41,3 @@ if("devtools" %in% rownames(installed.packages()) == FALSE){
 devtools::install_github("g3viz/g3viz")
 ```
 
-## Usage
-
-Find more tutorial and examples at [R repository](https://cran.r-project.org/web/packages/g3viz/)

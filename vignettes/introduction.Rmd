@@ -326,7 +326,7 @@ hgnc2pfam("GNAS", guess = TRUE)
 
 ## <a name="themes"></a> Chart themes
 
-The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  Check [this vignette](https://cran.r-project.org/web/packages/g3viz/chart_themes.html) for examples and usage.
+The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  Check [this tutorial](chart_themes.html) for examples and usage.
 
 [↥ back to top](#top)
 
