@@ -1,0 +1,143 @@
+---
+title: "G3viz: chart themes"
+author: "Xin Guo <g3viz.group at gmail.com>"
+date: "2019-04-01"
+output: 
+  html_document:
+    df_print: kable
+    highlight: tango
+    number_sections: yes
+    theme: lumen
+    toc: yes
+    toc_depth: 2
+    toc_float:
+      collapsed: no
+      smooth_scroll: yes
+vignette: >
+  %\VignetteEncoding{utf8}
+  %\VignetteIndexEntry{G3viz: chart themes}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r, message=FALSE, include = FALSE}
+# install package
+library(g3viz)
+library(cgdsr)
+library(knitr)
+```
+
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	collapse = TRUE,
+	comment = "#>"
+)
+```
+
+The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  
+
+
+```{r, include = TRUE}
+# get TP53 mutation data of "msk_impact_2017"" study from cBioPortal
+mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
+```
+
+# *default* theme
+```{r, include = TRUE}
+chart.options = g3Lollipop.theme(
+      theme.name = "default",
+      title.text = "default theme title",
+      y.axis.label = "y-label",
+      legend.title = "legend-title")
+
+g3Lollipop(mutation.dat,
+           plot.options = chart.options,
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *blue* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "blue",
+                              title.text = "blue theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *simple* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "simple",
+                              title.text = "simple theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *cbioportal* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "cbioportal",
+                              title.text = "cbioportal theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *nature* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "nature",
+                              title.text = "nature theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *nature2* theme
+```{r, include = TRUE}
+
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "nature2",
+                              title.text = "nature2 theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *ggplot2* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "ggplot2",
+                              title.text = "ggplot2 theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```
+
+# *dark* theme
+```{r, include = TRUE}
+g3Lollipop(mutation.dat,
+           plot.options =
+             g3Lollipop.theme(theme.name = "dark",
+                              title.text = "dark theme title",
+                              y.axis.label = "y-label",
+                              legend.title = "legend-title"),
+           btn.style = "blue",
+           gene.symbol = "TP53")
+```

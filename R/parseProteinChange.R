@@ -7,6 +7,7 @@
 #' @param protein.change.vec a vector of strings with protein change information, usually in HGVSp_short format.
 #' @param mutation.class.vec a vector of strings with mutation class (or so-called variant classification) information.
 #'
+#' @return a vector of parsed amino-acid position
 #' @importFrom stringr str_extract_all
 #' @export
 parseProteinChange <- function(protein.change.vec, mutation.class.vec) {

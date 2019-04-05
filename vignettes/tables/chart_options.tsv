@@ -18,6 +18,7 @@ lollipop.circle.width	lollipop circle border width. Default `0.5`.
 lollipop.label.ratio	lollipop click-out label font size to circle size ratio. Default `1.4`.
 lollipop.label.min.font.size	lollipop click-out label minimal font size. Default `10`.
 lollipop.color.scheme	color scheme to fill lollipop pops. Default `accent`. Check [color schemes](#schemes) for details.
+highlight.text.angle	the rotation angle of on-click highlight text in degree.  Default `90`.
 anno.height	height of protein structure annotation track. Default `30`.
 anno.margin	margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
 anno.background	background of protein structure annotation track. Default `transparent`.
@@ -41,6 +42,7 @@ title.font	font of chart title. Default `normal 16px Arial`.
 title.color	color of chart title. Default `#424242`.
 title.alignment	text alignment of chart title (start/middle/end). Default `middle`.
 title.dy	text adjustment of chart title. Default `0.35em`.
+legend	if show legend. Default `TRUE`.
 legend.margin	legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
 legend.interactive	legend interactive mode. Default `TRUE`.
 legend.title	legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
@@ -50,6 +52,5 @@ brush.selection.opacity	background opacity of selection brush. Default `0.2`.
 brush.border.color	border color of selection brush. Default `#969696`.
 brush.handler.color	color of left and right handlers of selection brush. Default `#333`.
 brush.border.width	border width of selection brush. Default `1`.
-legend	if show legend. Default `TRUE`.
 tooltip	if show tooltip. Default `TRUE`.
 zoom	if enable zoom feature. Default `TRUE`.

@@ -17,8 +17,6 @@
 #' uniprot2pfam("Q5VWM5")  # PRAMEF9; PRAMEF15
 #' uniprot2pfam("P04637")
 #'
-#'
-#'
 #' @importFrom utils data
 #'
 #' @export

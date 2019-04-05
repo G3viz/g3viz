@@ -10,8 +10,6 @@
 #'
 #' @return a list with g3Lollipop plot options
 #'
-#' @return a list with g3Lollipop plot options
-#'
 #' @export
 g3Lollipop.theme <- function(
   theme.name = "default",
@@ -241,6 +239,7 @@ g3Lollipop.theme <- function(
     y.axis.line.color = "#303030",
     y.axis.line.width = 0.5,
     y.axis.line.style = "line",
+		y.max.range.ratio = 1.1,
     # legend
     legend = TRUE,
     legend.margin = list(left=20, right = 0, top = 10, bottom = 5),

@@ -21,7 +21,8 @@ Imports:
 Suggests:
     shiny (>= 1.0.0),
     knitr,
-    rmarkdown
+    rmarkdown,
+    kableExtra
 URL: https://github.com/G3viz/g3viz
 BugReports: https://github.com/G3viz/g3viz/issues
 RoxygenNote: 6.1.1
