@@ -39,8 +39,8 @@ The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *s
 
 
 ```{r, include = TRUE}
-# get TP53 mutation data of "msk_impact_2017"" study from cBioPortal
-mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
+# read data
+mutation.dat <- readMAF("tables/tp53-msk_impact_2017.tsv", sep="\t")
 ```
 
 # *default* theme

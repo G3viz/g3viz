@@ -11,6 +11,9 @@ parseProteinChange(protein.change.vec, mutation.class.vec)
 
 \item{mutation.class.vec}{a vector of strings with mutation class (or so-called variant classification) information.}
 }
+\value{
+a vector of parsed amino-acid position
+}
 \description{
 Parse \emph{amino_acid_position} according to HGVSp_short format. \cr
  For example, \emph{p.Q16Rfs*28}, amino-acid position is 16.

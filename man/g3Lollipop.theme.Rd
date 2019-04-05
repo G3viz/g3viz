@@ -21,8 +21,6 @@ g3Lollipop.theme(theme.name = "default", title.text = "",
 }
 \value{
 a list with g3Lollipop plot options
-
-a list with g3Lollipop plot options
 }
 \description{
 G3Lollipop chart options of built-in themes.

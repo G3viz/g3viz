@@ -12,4 +12,4 @@ visual_test
 ^\.gitignore
 ^.*\.Rproj$
 ^\.Rproj\.user$
-docs
+^docs$
