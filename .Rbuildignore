@@ -13,3 +13,4 @@ visual_test
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^docs$
+^\.DS_Store$
