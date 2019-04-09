@@ -1,9 +1,9 @@
 language: r
-sudo: true
+sudo: false
 cache: packages
 
 install:
-- R -e 'install.packages("jsonlite", "cgdsr", "stringr", "htmlwidgets", "knitr", "rmarkdown", "kableExtra", "shiny")'
+- R -e 'install.packages(c("jsonlite", "cgdsr", "stringr", "htmlwidgets", "knitr", "rmarkdown", "kableExtra", "shiny"))'
 
 script:
 - R CMD build .
