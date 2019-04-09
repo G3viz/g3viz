@@ -3,7 +3,7 @@ sudo: false
 cache: packages
 
 install:
-- R -e 'install.packages("cjsonlite", "cgdsr", "stringr", "htmlwidgets", "knitr", "rmarkdown", "kableExtra", "shiny")'
+- R -e 'install.packages("jsonlite", "cgdsr", "stringr", "htmlwidgets", "knitr", "rmarkdown", "kableExtra", "shiny")'
 
 script:
 - R CMD build .
