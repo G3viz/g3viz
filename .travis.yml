@@ -3,7 +3,7 @@ sudo: false
 cache: packages
 
 install:
-- R -e 'devtools::install_deps(dependencies = NA, upgrade = "always")'
+- R -e 'install.packages("devtools");devtools::install_deps(dependencies = NA, upgrade = "always")'
 
 script:
 - R CMD build .
