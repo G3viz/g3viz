@@ -1,5 +1,5 @@
 ---
-title: "G3viz: figure and supplementary"
+title: "Figure 1"
 author: "Xin Guo <g3viz.group at gmail.com>"
 date: "2019-04-01"
 output:

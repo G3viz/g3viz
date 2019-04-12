@@ -1,0 +1,56 @@
+Option	Description
+chart.width	chart width in px.  Default `800`.
+chart.type	pop type, `pie` or `circle`.  Default `pie`.
+chart.margin	specify chart margin in _list_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.
+chart.background	chart background.  Default `transparent`.
+transition.time	chart animation transition time in millisecond.  Default `600`.
+lollipop.track.height	height of lollipop track. Default `420`.
+lollipop.track.background	background of lollipop track. Default `rgb(244,244,244)`.
+lollipop.pop.min.size	lollipop pop minimal size in px. Default `2`.
+lollipop.pop.max.size	lollipop pop maximal size in px. Default `12`.
+lollipop.pop.info.limit	threshold of lollipop pop size to show count information in middle of pop. Default `8`.
+lollipop.pop.info.color	lollipop pop information text color. Default `#EEE`.
+lollipop.pop.info.dy	y-axis direction text adjustment of lollipop pop information. Default `-0.35em`.
+lollipop.line.color	lollipop line color. Default `rgb(42,42,42)`.
+lollipop.line.width	lollipop line width. Default `0.5`.
+lollipop.circle.color	lollipop circle border color. Default `wheat`.
+lollipop.circle.width	lollipop circle border width. Default `0.5`.
+lollipop.label.ratio	lollipop click-out label font size to circle size ratio. Default `1.4`.
+lollipop.label.min.font.size	lollipop click-out label minimal font size. Default `10`.
+lollipop.color.scheme	color scheme to fill lollipop pops. Default `accent`. Check [color schemes](#schemes) for details.
+highlight.text.angle	the rotation angle of on-click highlight text in degree.  Default `90`.
+anno.height	height of protein structure annotation track. Default `30`.
+anno.margin	margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.
+anno.background	background of protein structure annotation track. Default `transparent`.
+anno.bar.fill	background of protein bar in protein structure annotation track. Default `#E5E3E1`.
+anno.bar.margin	margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.
+domain.color.scheme	color scheme of protein domains. Default `category10`.  Check [color schemes](#schemes) for details.
+domain.margin	margin of protein domains. Default `list(top = 0, bottom = 0)`.
+domain.text.font	domain label text font in shorthand format. Default `normal 11px Arial`.
+domain.text.color	domain label text color. Default `#F2F2F2`.
+y.axis.label	Y-axis label text.  Default `# of mutations`.
+axis.label.font	css font style shorthand (font-style font-variant font-weight font-size/line-height font-family).  Default `normal 12px Arial`.
+axis.label.color	axis label text color.  Default `#4f4f4f`.
+axis.label.alignment	axis label text alignment (start/end/middle). Default `middle`
+axis.label.dy	text adjustment of axis label text.  Default `-2em`.
+y.axis.line.color	color of y-axis in-chart lines (ticks). Default `#c4c8ca`.
+y.axis.line.style	style of y-axis in-chart lines (ticks), `dash` or `line`. Default `dash`.
+y.axis.line.width	width of y-axis in-chart lines (ticks). Default `1`.
+y.max.range.ratio	ratio of y-axis range to data value range.  Default `1.1`.
+title.text	title of chart. Default "".
+title.font	font of chart title. Default `normal 16px Arial`.
+title.color	color of chart title. Default `#424242`.
+title.alignment	text alignment of chart title (start/middle/end). Default `middle`.
+title.dy	text adjustment of chart title. Default `0.35em`.
+legend	if show legend. Default `TRUE`.
+legend.margin	legend margin in _list_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.
+legend.interactive	legend interactive mode. Default `TRUE`.
+legend.title	legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.
+brush	if show brush. Default `TRUE`.
+brush.selection.background	background color of selection brush. Default `#666`.
+brush.selection.opacity	background opacity of selection brush. Default `0.2`.
+brush.border.color	border color of selection brush. Default `#969696`.
+brush.handler.color	color of left and right handlers of selection brush. Default `#333`.
+brush.border.width	border width of selection brush. Default `1`.
+tooltip	if show tooltip. Default `TRUE`.
+zoom	if enable zoom feature. Default `TRUE`.

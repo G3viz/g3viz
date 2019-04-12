@@ -1,0 +1,29 @@
+Mutation_Type	Mutation_Class	Short_Name
+In_Frame_Del	Inframe	IF del
+In_Frame_Ins	Inframe	IF ins
+Silent	Inframe	Silent
+Targeted_Region	Inframe	IF
+Missense_Mutation	Missense	Missense
+Frame_Shift	Truncating	FS
+Frame_Shift_Del	Truncating	FS del
+Frame_Shift_Ins	Truncating	FS ins
+Nonsense_Mutation	Truncating	Nonsense
+Nonstop_Mutation	Truncating	Nonstop
+Splice_Region	Truncating	Splice
+Splice_Site	Truncating	Splice
+3’Flank	Other	3’Flank
+3’UTR	Other	3’UTR
+5’Flank	Other	5’Flank
+5’UTR	Other	5’UTR
+De_novo_Start_InFrame	Other	de_novo_start_inframe
+De_novo_Start_OutOfFrame	Other	de_novo_start_outofframe
+Fusion	Other	Fusion
+IGR	Other	IGR
+Intron	Other	Intron
+lincRNA	Other	lincRNA
+RNA	Other	RNA
+Start_Codon_Del	Other	Nonstart
+Start_Codon_Ins	Other	start_codon_ins
+Start_Codon_SNP	Other	Nonstart
+Translation_Start_Site	Other	TSS
+Unknown	Other	Unknown
