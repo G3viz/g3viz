@@ -6,8 +6,8 @@
   [![CRAN_version](http://www.r-pkg.org/badges/version/g3viz)](https://cran.r-project.org/package=g3viz)
   [![CRAN_monthly_download](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
 
-## Check [introduction](https://g3viz.github.io/g3viz/)
-## Check [demos](https://g3viz.github.io/g3viz/chart_themes.html)
+## Check [introduction (live demo)](https://g3viz.github.io/g3viz/)
+## Check [g3viz chart themes (live demo)](https://g3viz.github.io/g3viz/chart_themes.html)
 
 ## Introduction
 
