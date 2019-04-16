@@ -1181,15 +1181,18 @@ function Lollipop(target, chartType, width) {
 
     var _updateX = function () {
         _xScale.domain(_xRange);
-        _domXAxis.call(_xReAxis);
 
-        // update domains
-        _domainRect
-            .attr("x", function (d) { return _getDomainStart(d); })
-            .attr("width", function (d) { return _getDomainRectWidth(d); });
+        if (!domainOpt.brush.enabled){
+            _domXAxis.call(_xReAxis);
 
-        _domainText
-            .attr("x", function (d) { return (_getDomainStart(d) + _getDomainEnd(d)) / 2; });
+            // update domains
+            _domainRect
+                .attr("x", function (d) { return _getDomainStart(d); })
+                .attr("width", function (d) { return _getDomainRectWidth(d); });
+
+            _domainText
+                .attr("x", function (d) { return (_getDomainStart(d) + _getDomainEnd(d)) / 2; });
+        }
 
         // update lines of lollipops
         _popLines//.transition().duration(_options.transitionTime)
@@ -1254,7 +1257,7 @@ function Lollipop(target, chartType, width) {
             .style("font", domainOpt.domain.label.font)
             .text(function (d) { return d[domainDataFormat.details.name]; });
 
-        if (domainOpt.brush) {
+        if (domainOpt.brush.enabled) {
             _domainBrush = d3.brushX()
                 .extent([[0, 0], [_domainW, _domainH]])
                 .on("brush end", _domainBrushMove);
@@ -1764,7 +1767,7 @@ function Lollipop(target, chartType, width) {
         let _t = d3.event.transform;
         _xRange = _t.rescaleX(_xScaleOrig).domain();
 
-        if (domainOpt.brush) {
+        if (domainOpt.brush.enabled) {
             _domainViz.select("." + domainOpt.className.brush)
                 .call(_domainBrush.move, _xScaleOrig.range().map(_t.invertX, _t));
         }
@@ -2139,84 +2142,127 @@ function Lollipop(target, chartType, width) {
         get lollipopTrackID() { return lollipopOpt.id; },
 
         // lollipop track height and background
-        set lollipopTrackHeight(_) { lollipopOpt.height = _; }, get lollipopTrackHeight() { return lollipopOpt.height; },
-        set lollipopTrackBackground(_) { lollipopOpt.background = _; }, get lollipopTrackBackground() { return lollipopOpt.background; },
+        set lollipopTrackHeight(_) { lollipopOpt.height = _; }, 
+        get lollipopTrackHeight() { return lollipopOpt.height; },
+
+        set lollipopTrackBackground(_) { lollipopOpt.background = _; }, 
+        get lollipopTrackBackground() { return lollipopOpt.background; },
 
         // pop circle size (min / max)
-        set lollipopPopMinSize(_) { lollipopOpt.popParams.rMin = _; }, get lollipopPopMinSize() { return lollipopOpt.popParams.rMin; },
-        set lollipopPopMaxSize(_) { lollipopOpt.popParams.rMax = _; }, get lollipopPopMaxSize() { return lollipopOpt.popParams.rMax; },
+        set lollipopPopMinSize(_) { lollipopOpt.popParams.rMin = _; }, 
+        get lollipopPopMinSize() { return lollipopOpt.popParams.rMin; },
+
+        set lollipopPopMaxSize(_) { lollipopOpt.popParams.rMax = _; }, 
+        get lollipopPopMaxSize() { return lollipopOpt.popParams.rMax; },
 
         // pop cicle text (radius cutoff to show info, info text color)
-        set lollipopPopInfoLimit(_) { lollipopOpt.popParams.addNumRCutoff = _; }, get lollipopPopInfoLimit() { return lollipopOpt.popParams.addNumRCutoff; },
-        set lollipopPopInfoColor(_) { lollipopOpt.popText.fill = _; }, get lollipopPopInfoColor() { return lollipopOpt.popText.fill; },
-        set lollipopPopInfoDy(_) { lollipopOpt.popText.dy = _; }, get lollipopPopInfoDy() { return lollipopOpt.popText.dy; },
+        set lollipopPopInfoLimit(_) { lollipopOpt.popParams.addNumRCutoff = _; }, 
+        get lollipopPopInfoLimit() { return lollipopOpt.popParams.addNumRCutoff; },
+
+        set lollipopPopInfoColor(_) { lollipopOpt.popText.fill = _; }, 
+        get lollipopPopInfoColor() { return lollipopOpt.popText.fill; },
+
+        set lollipopPopInfoDy(_) { lollipopOpt.popText.dy = _; }, 
+        get lollipopPopInfoDy() { return lollipopOpt.popText.dy; },
 
         // lollipop line (color / width)
-        set lollipopLineColor(_) { lollipopOpt.lollipopLine.stroke = _; }, get lollipopLineColor() { return lollipopOpt.lollipopLine.stroke; },
-        set lollipopLineWidth(_) { lollipopOpt.lollipopLine["stroke-width"] = _; }, get lollipopLineWidth() { return lollipopOpt.lollipopLine["stroke-width"]; },
+        set lollipopLineColor(_) { lollipopOpt.lollipopLine.stroke = _; }, 
+        get lollipopLineColor() { return lollipopOpt.lollipopLine.stroke; },
+
+        set lollipopLineWidth(_) { lollipopOpt.lollipopLine["stroke-width"] = _; }, 
+        get lollipopLineWidth() { return lollipopOpt.lollipopLine["stroke-width"]; },
 
         // lollipop circle (color / width)
-        set lollipopCircleColor(_) { lollipopOpt.popCircle.stroke = _; }, get lollipopCircleColor() { return lollipopOpt.popCircle.stroke; },
-        set lollipopCircleWidth(_) { lollipopOpt.popCircle["stroke-width"] = _; }, get lollipopCircleWidth() { return lollipopOpt.popCircle["stroke-width"]; },
+        set lollipopCircleColor(_) { lollipopOpt.popCircle.stroke = _; }, 
+        get lollipopCircleColor() { return lollipopOpt.popCircle.stroke; },
+
+        set lollipopCircleWidth(_) { lollipopOpt.popCircle["stroke-width"] = _; }, 
+        get lollipopCircleWidth() { return lollipopOpt.popCircle["stroke-width"]; },
 
         // pop click label (font size ratio to pop size / minimal font size)
-        set lollipopLabelRatio(_) { lollipopOpt.popLabel.fontsizeToRadius = _; }, get lollipopLabelRatio() { return lollipopOpt.popLabel.fontsizeToRadius; },
-        set lollipopLabelMinFontSize(_) { lollipopOpt.popLabel.minFontSize = _; }, get lollipopLabelMinFontSize() { return lollipopOpt.popLabel.minFontSize; },
+        set lollipopLabelRatio(_) { lollipopOpt.popLabel.fontsizeToRadius = _; }, 
+        get lollipopLabelRatio() { return lollipopOpt.popLabel.fontsizeToRadius; },
+        
+        set lollipopLabelMinFontSize(_) { lollipopOpt.popLabel.minFontSize = _; }, 
+        get lollipopLabelMinFontSize() { return lollipopOpt.popLabel.minFontSize; },
 
         // pop color scheme
         set lollipopColorScheme(_) { lollipopOpt.popColorSchemeName = _; lollipopOpt.popColorScheme = scaleOrdinal(_); },
-        get lollipopColorScheme() { return lollipopOpt.popColorSchemeName;},
+        get lollipopColorScheme() { return lollipopOpt.popColorSchemeName; },
 
         // title related settings (text / font / color / alignment / y-adjustment)
         // note : font (font-style font-variant font-weight font-size/line-height font-family)
         // i.e., italic small-caps normal 13px sans-serif
-        set titleText(_) { lollipopOpt.title.text = _; }, get titleText() { return lollipopOpt.title.text; },
-        set titleFont(_) { lollipopOpt.title.font = _; }, get titleFont() { return lollipopOpt.title.font; },
-        set titleColor(_) { lollipopOpt.title.color = _; }, get titleColor() { return lollipopOpt.title.color; },
-        set titleAlignment(_) { lollipopOpt.title.alignment = _; }, get titleAlignment() { return lollipopOpt.title.alignment; },
-        set titleDy(_) { lollipopOpt.title.dy = _; }, get titleY() { return lollipopOpt.title.dy; },
+        set titleText(_) { lollipopOpt.title.text = _; }, 
+        get titleText() { return lollipopOpt.title.text; },
+
+        set titleFont(_) { lollipopOpt.title.font = _; }, 
+        get titleFont() { return lollipopOpt.title.font; },
+
+        set titleColor(_) { lollipopOpt.title.color = _; }, 
+        get titleColor() { return lollipopOpt.title.color; },
+
+        set titleAlignment(_) { lollipopOpt.title.alignment = _; }, 
+        get titleAlignment() { return lollipopOpt.title.alignment; },
+
+        set titleDy(_) { lollipopOpt.title.dy = _; }, 
+        get titleDy() { return lollipopOpt.title.dy; },
 
         get annoID() { return domainOpt.id },
 
-        set annoHeight(_) { domainOpt.height = _; }, get annoHeight() { return domainOpt.height; },
-        set annoMargin(_) { domainOpt.margin = _; }, get annoMargin() { return domainOpt.margin; },
-        set annoBackground(_) { domainOpt.background = _; }, get annoBackground() { return domainOpt.background; },
+        set annoHeight(_) { domainOpt.height = _; }, 
+        get annoHeight() { return domainOpt.height; },
 
-        set annoBarFill(_) { domainOpt.bar.background = _; }, get annoBarFill() { return domainOpt.bar.background; },
-        set annoBarMargin(_) { domainOpt.bar.margin = _; }, get annoBarMargin() { return domainOpt.bar.margin; },
+        set annoMargin(_) { domainOpt.margin = _; }, 
+        get annoMargin() { return domainOpt.margin; },
+
+        set annoBackground(_) { domainOpt.background = _; }, 
+        get annoBackground() { return domainOpt.background; },
+
+        set annoBarFill(_) { domainOpt.bar.background = _; }, 
+        get annoBarFill() { return domainOpt.bar.background; },
+
+        set annoBarMargin(_) { domainOpt.bar.margin = _; }, 
+        get annoBarMargin() { return domainOpt.bar.margin; },
 
         set domainColorScheme(_) { domainOpt.domain.colorSchemeName = _; domainOpt.domain.colorScheme = scaleOrdinal(_); }, 
         get domainColorScheme() { return domainOpt.domain.colorSchemeName; },
-        set domainMargin(_) { domainOpt.domain.margin = _; }, get domainMargin() { return domainOpt.domain.margin; },
-        set domainTextFont(_) { domainOpt.domain.label.font = _; }, get domainTextFont() { return domainOpt.domain.label.font; },
-        set domainTextColor(_) { domainOpt.domain.label.color = _; }, get domainTextColor() { return domainOpt.domain.label.color; },
 
-        set brush(_) { domainOpt.brush.enabled = _; }, get brush() { return domainOpt.brush.enabled; },
-        set brushBackground(_) { domainOpt.brush.fill = _; }, get brushBackground() { return domainOpt.brush.fill; },
-        set brushOpacity(_) { domainOpt.brush.opacity = _; }, get brushOpacity() { return domainOpt.brush.opacity; },
-        set brushBorderColor(_) { domainOpt.brush.stroke = _; }, get brushBorderColor() { return domainOpt.brush.stroke; },
-        set brushBorderWidth(_) { domainOpt.brush.strokeWdith = _; }, get brushBorderWidth() { return domainOpt.brush.strokeWidth; },
-        set brushHandler(_) { domainOpt.brush.handler = _; }, get brushHandler() { return domainOpt.brush.handler; }, 
+        set domainMargin(_) { domainOpt.domain.margin = _; }, 
+        get domainMargin() { return domainOpt.domain.margin; },
 
-        set zoom(_) { domainOpt.zoom = _; }, get zoom() { return domainOpt.zoom; },
+        set domainTextFont(_) { domainOpt.domain.label.font = _; }, 
+        get domainTextFont() { return domainOpt.domain.label.font; },
+
+        set domainTextColor(_) { domainOpt.domain.label.color = _; }, 
+        get domainTextColor() { return domainOpt.domain.label.color; },
+
+        set brush(_) { domainOpt.brush.enabled = _; }, 
+        get brush() { return domainOpt.brush.enabled; },
+
+        set brushBackground(_) { domainOpt.brush.fill = _; }, 
+        get brushBackground() { return domainOpt.brush.fill; },
+
+        set brushOpacity(_) { domainOpt.brush.opacity = _; }, 
+        get brushOpacity() { return domainOpt.brush.opacity; },
+
+        set brushBorderColor(_) { domainOpt.brush.stroke = _; }, 
+        get brushBorderColor() { return domainOpt.brush.stroke; },
+
+        set brushBorderWidth(_) { domainOpt.brush.strokeWdith = _; }, 
+        get brushBorderWidth() { return domainOpt.brush.strokeWidth; },
+
+        set brushHandler(_) { domainOpt.brush.handler = _; }, 
+        get brushHandler() { return domainOpt.brush.handler; }, 
+
+        set zoom(_) { domainOpt.zoom = _; }, 
+        get zoom() { return domainOpt.zoom; },
     };
 
     lollipop.setOptions = function (options) {
         for (let _key in options) {
             this.options[_key] = options[_key];
         }
-    };
-
-    lollipop.getOptions = function (options) {
-        let _options = {};
-        let self = this;
-        options = options || {};
-        options.forEach(function (opt) {
-            if (self.options[opt]) {
-                _options[opt] = self.options[opt];
-            }
-        });
-        return _options;
     };
 
     lollipop.destroy = function () {
@@ -2282,7 +2328,7 @@ function Lollipop(target, chartType, width) {
             _addLollipopLegend();
         }
 
-        if (domainOpt.brush) {
+        if (domainOpt.brush.enabled) {
             _initBrush();
         }
 

@@ -26,7 +26,7 @@ fontsize: 10pt
 geometry: margin=1in
 vignette: >
   %\VignetteEncoding{utf8}
-  %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram}
+  %\VignetteIndexEntry{Introduction to g3viz (pdf)}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -277,9 +277,6 @@ mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 
 
 
-
-
-
 # <a name="usage"></a>Usage
 
 ## <a name="readdata"></a>Read data
@@ -296,21 +293,43 @@ In `g3viz`, annotated mutation data can be loaded in three ways
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## <a name="mutation"></a>Map mutation type to mutation class
 
 In addtion to reading mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type to mutation class and generate a `Mutation_Class` column by default.  Mutation type is usually in the column of `Variant_Classification` or `Mutation_Type`.  The default mapping table is,
 
-```{r, include=TRUE, echo=FALSE, results = 'asis'}
+```{r, include=TRUE, echo=FALSE}
 mutation.mapping.df = read.table("tables/mutation_mapping.tsv", sep="\t", header=TRUE, quote="")
 
-kable(mutation.mapping.df, caption = "Variant classification to mutation class mapping table") %>% 
-  kable_styling(latex_options = c("striped", "scale_down"), full_width = TRUE) %>%
-  pack_rows("Inframe", 1, 4)  %>%
-  pack_rows("Missense", 5, 5) %>%
-  pack_rows("Truncating", 6, 12)  %>%
-  pack_rows("Other", 13, 28)
+kable(mutation.mapping.df,  longtable = TRUE, booktabs = TRUE, caption = "Variant classification to mutation class mapping table") %>% 
+  kable_styling(latex_options = c("striped", "repeat_header"), full_width = TRUE)
 ```
-
 
 
 
@@ -336,8 +355,7 @@ hgnc2pfam("GNAS", guess = TRUE)
 
 ## <a name="themes"></a> Chart themes
 
-The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  Check [online vignettes](https://cran.r-project.org/web/packages/g3viz/vignettes/chart_themes.html) or supplementary document for usage and examples.
-
+The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  Check [online live demo](./chart_themes.html) or [online pdf](./suppl_chart_themes.pdf) for usage and examples.
 
 
 ## <a name="schemes"></a> Color schemes

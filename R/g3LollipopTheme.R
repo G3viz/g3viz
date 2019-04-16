@@ -133,13 +133,13 @@ g3Lollipop.theme <- function(
     anno.bar.margin = list(top = 3, bottom = 3),
     # lollipop track options
     lollipop.track.height = 320,
-    lollipop.track.background = "#f5f5f5",
+    lollipop.track.background = "#ebebeb",
     lollipop.pop.info.color = "white",
     lollipop.color.scheme = "dark2",
     # yline
     y.axis.line.color = "white",
     y.axis.line.style = "line",
-    y.axis.line.width = 0.5,
+    y.axis.line.width = 1.4,
     # domain annotation track options
     domain.text.font = "bold 13px Serif",
     domain.color.scheme = "google16",

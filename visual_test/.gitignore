@@ -1,3 +1,5 @@
 *.html
 *.R
 temp
+figures
+tables

@@ -1,20 +1,6 @@
 ---
 title: "Chart themes of g3viz"
 header-includes:
-  - \usepackage{booktabs}
-  - \usepackage{longtable}
-  - \usepackage{array}
-  - \usepackage{multirow}
-  - \usepackage{wrapfig}
-  - \usepackage{float}
-  - \usepackage{colortbl}
-  - \usepackage{pdflscape}
-  - \usepackage{tabu}
-  - \usepackage{threeparttable}
-  - \usepackage{threeparttablex}
-  - \usepackage[normalem]{ulem}
-  - \usepackage{makecell}
-  - \usepackage{xcolor}
 output:
   pdf_document:
     df_print: kable
@@ -25,7 +11,7 @@ fontsize: 10pt
 geometry: margin=1in
 vignette: >
   %\VignetteEncoding{utf8}
-  %\VignetteIndexEntry{G3viz: chart themes}
+  %\VignetteIndexEntry{Chart themes of G3viz (pdf)}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 

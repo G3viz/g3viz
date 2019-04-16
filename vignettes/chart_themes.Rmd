@@ -1,7 +1,7 @@
 ---
 title: "G3viz: chart themes"
 author: "Xin Guo <g3viz.group at gmail.com>"
-date: "2019-04-01"
+date: "2019-04-06"
 output:
   html_document:
     df_print: kable
@@ -15,7 +15,7 @@ output:
       smooth_scroll: yes
 vignette: >
   %\VignetteEncoding{utf8}
-  %\VignetteIndexEntry{G3viz: chart themes}
+  %\VignetteIndexEntry{Chart themes of g3viz (live demo)}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 

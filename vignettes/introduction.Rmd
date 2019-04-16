@@ -2,7 +2,7 @@
 title: 'G3viz: an R package to interactively visualize genetic mutation data using
   a lollipop-diagram'
 author: "Xin Guo <g3viz.group at gmail.com>"
-date: '2019-04-01'
+date: '2019-04-06'
 output:
   html_document:
     df_print: kable
@@ -17,7 +17,7 @@ output:
       smooth_scroll: yes
 vignette: >
   %\VignetteEncoding{utf8}
-  %\VignetteIndexEntry{G3viz: interactively visualize genetic mutation data using a lollipop-diagram}
+  %\VignetteIndexEntry{Introduction to g3viz (live demo)}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
