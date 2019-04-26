@@ -25,6 +25,8 @@
 #'  \code{\link{mapMutationTypeToMutationClass}} for details. Default \code{NA},
 #'  which indicates to use default mappoings.
 #'@param sep separator of columns. Default \code{sep = "\\t"}.
+#'@param quote the set of quoting characters. To disable quoting altogether,
+#'  use \code{quote = ""}.  Default \code{quote = ""}.
 #'@param ... additional parameters pass to \code{\link[utils]{read.table}}.
 #'
 #'@importFrom utils write.table read.table
@@ -42,7 +44,9 @@ readMAF <- function(maf.file,
                     mutation.class.col = "Mutation_Class",
                     aa.pos.col = "AA_Position",
                     mutation.type.to.class.df = NA,
-                    sep = "\t", ...) {
+                    sep = "\t",
+                    quote = "",
+                    ...) {
   if(missing(maf.file)){
     stop("maf.file is missing")
   }
@@ -54,10 +58,10 @@ readMAF <- function(maf.file,
   # read data in
   if(grepl(pattern = 'gz$', maf.file)){
     suppressWarnings(
-      maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = "", ...)
+      maf.df <- read.table(gzfile(description = maf.file), header = TRUE, sep = sep, quote = quote, ...)
     )
   } else {
-    maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = "", ...)
+    maf.df <- read.table(maf.file, header = TRUE, sep = sep, quote = quote, ...)
   }
 
   # =============================

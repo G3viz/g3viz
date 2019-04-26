@@ -9,7 +9,7 @@ readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
   if.parse.aa.pos = TRUE, if.parse.mutation.class = TRUE,
   mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
-  mutation.type.to.class.df = NA, sep = "\\t", ...)
+  mutation.type.to.class.df = NA, sep = "\\t", quote = "", ...)
 }
 \arguments{
 \item{maf.file}{MAF file name.  Gnuzipped input file allowed, with ".gz" file
@@ -43,6 +43,9 @@ Default \emph{AA_Position}.}
 which indicates to use default mappoings.}
 
 \item{sep}{separator of columns. Default \code{sep = "\\t"}.}
+
+\item{quote}{the set of quoting characters. To disable quoting altogether,
+use \code{quote = ""}.  Default \code{quote = ""}.}
 
 \item{...}{additional parameters pass to \code{\link[utils]{read.table}}.}
 }
