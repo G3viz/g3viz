@@ -10,6 +10,12 @@ HTMLWidgets.widget({
         // root div
         var root_div = document.getElementById(el.id);
 
+        // clear div (issue #2)
+        while(root_div.firstChild){
+          root_div.removeChild(root_div.firstChild);
+        }
+
+        // add lollipop contents
         var btnStyle = x.btnStyle;
 
         // if add button

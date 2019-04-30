@@ -1,7 +1,7 @@
 Package: g3viz
 Type: Package
 Title: Interactively Visualize Genetic Mutation Data using a Lollipop-Diagram
-Version: 1.1.1
+Version: 1.1.2
 Authors@R: c(
     person("Xin", "Guo", email = "g3viz.group@gmail.com", role = c("aut", "cre"))
     )
