@@ -4,8 +4,12 @@
 \alias{g3Lollipop.theme}
 \title{G3Lollipop chart options of built-in themes.}
 \usage{
-g3Lollipop.theme(theme.name = "default", title.text = "",
-  y.axis.label = "# of mutations", legend.title = NA)
+g3Lollipop.theme(
+  theme.name = "default",
+  title.text = "",
+  y.axis.label = "# of mutations",
+  legend.title = NA
+)
 }
 \arguments{
 \item{theme.name}{theme name, including \emph{default}, \emph{cbioportal},

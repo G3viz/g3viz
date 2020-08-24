@@ -4,12 +4,21 @@
 \alias{g3Lollipop}
 \title{Render g3lollipop diagram for the given mutation data}
 \usage{
-g3Lollipop(mutation.dat, gene.symbol, uniprot.id = NA,
-  gene.symbol.col = "Hugo_Symbol", aa.pos.col = "AA_Position",
+g3Lollipop(
+  mutation.dat,
+  gene.symbol,
+  uniprot.id = NA,
+  gene.symbol.col = "Hugo_Symbol",
+  aa.pos.col = "AA_Position",
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
-  factor.col = "Mutation_Class", plot.options = g3Lollipop.options(),
-  save.png.btn = TRUE, save.svg.btn = TRUE, btn.style = NA,
-  output.filename = "output")
+  factor.col = "Mutation_Class",
+  plot.options = g3Lollipop.options(),
+  domain.info = NULL,
+  save.png.btn = TRUE,
+  save.svg.btn = TRUE,
+  btn.style = NA,
+  output.filename = "output"
+)
 }
 \arguments{
 \item{mutation.dat}{Input genomic mutation data frame}

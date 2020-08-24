@@ -4,10 +4,11 @@
   
   [![Build Status](https://travis-ci.org/G3viz/g3viz.svg?branch=master)](https://travis-ci.org/G3viz/g3viz)
   [![CRAN_version](http://www.r-pkg.org/badges/version/g3viz)](https://cran.r-project.org/package=g3viz)
-  [![CRAN_monthly_download](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
 
-## Check [introduction (live demo)](https://g3viz.github.io/g3viz/)
-## Check [g3viz chart themes (live demo)](https://g3viz.github.io/g3viz/chart_themes.html)
+## Live demo
+1. [Short introduction](https://g3viz.github.io/g3viz/)
+1. [Chart themes](https://g3viz.github.io/g3viz/chart_themes.html)
+1. [An example of showing multiple genes in a shiny app](https://g3viz.github.io/g3viz/shiny_app.html)
 
 ## Introduction
 
@@ -41,3 +42,9 @@ if("devtools" %in% rownames(installed.packages()) == FALSE){
 devtools::install_github("g3viz/g3viz")
 ```
 
+
+## What's new
+
+1.1.3  Update Pfam version 33.1 (dated: 2020-08-24)
+       Update UniProt to 2020-08-24
+       For [Issues #5](https://github.com/G3viz/g3viz/issues/5)

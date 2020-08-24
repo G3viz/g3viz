@@ -4,7 +4,8 @@
 \name{hgnc2pfam.df}
 \alias{hgnc2pfam.df}
 \title{Mapping table between gene.symbol, uniprot.id, and pfam}
-\format{A data frame with columns:
+\format{
+A data frame with columns:
 \describe{
   \item{symbol}{Gene symbol}
   \item{uniprot}{UniProt ID}
@@ -14,7 +15,8 @@
   \item{hmm.acc}{Pfam accession number}
   \item{hmm.name}{Pfam name}
   \item{type}{Pfam type, i.e., domain/family/motif/repeat/disordered/coiled-coil}
-}}
+}
+}
 \source{
 Pfam (v31.0) and UniProt
 }

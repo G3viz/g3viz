@@ -17,6 +17,7 @@ header-includes:
   - \usepackage{makecell}
   - \usepackage{xcolor}
 output:
+  word_document:
   pdf_document:
     df_print: kable
     fig_caption: yes

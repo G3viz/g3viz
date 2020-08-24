@@ -4,12 +4,20 @@
 \alias{readMAF}
 \title{Read MAF file}
 \usage{
-readMAF(maf.file, gene.symbol.col = "Hugo_Symbol",
+readMAF(
+  maf.file,
+  gene.symbol.col = "Hugo_Symbol",
   variant.class.col = c("Variant_Classification", "Mutation_Type"),
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
-  if.parse.aa.pos = TRUE, if.parse.mutation.class = TRUE,
-  mutation.class.col = "Mutation_Class", aa.pos.col = "AA_Position",
-  mutation.type.to.class.df = NA, sep = "\\t", quote = "", ...)
+  if.parse.aa.pos = TRUE,
+  if.parse.mutation.class = TRUE,
+  mutation.class.col = "Mutation_Class",
+  aa.pos.col = "AA_Position",
+  mutation.type.to.class.df = NA,
+  sep = "\\t",
+  quote = "",
+  ...
+)
 }
 \arguments{
 \item{maf.file}{MAF file name.  Gnuzipped input file allowed, with ".gz" file

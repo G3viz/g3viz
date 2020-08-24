@@ -4,9 +4,14 @@
 \alias{getMutationsFromCbioportal}
 \title{Query cancer genomic mutation data from cBioPortal}
 \usage{
-getMutationsFromCbioportal(study.id, gene.symbol, output.file = NA,
+getMutationsFromCbioportal(
+  study.id,
+  gene.symbol,
+  output.file = NA,
   mutation.type.to.class.df = NA,
-  cgds.url = "http://www.cbioportal.org/", test.cgds = FALSE)
+  cgds.url = "http://www.cbioportal.org/",
+  test.cgds = FALSE
+)
 }
 \arguments{
 \item{study.id}{cbioprotal study ID}

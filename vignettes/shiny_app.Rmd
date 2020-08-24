@@ -1,8 +1,7 @@
 ---
-title: 'G3viz: an R package to interactively visualize genetic mutation data using
-  a lollipop-diagram'
+title: 'G3viz: explore genetic mutations of multiple genes using Shiny'
 author: "Xin Guo <g3viz.group at gmail.com>"
-date: '2019-04-06'
+date: '2019-09-01'
 output:
   html_document:
     df_print: kable
@@ -17,7 +16,7 @@ output:
       smooth_scroll: yes
 vignette: >
   %\VignetteEncoding{utf8}
-  %\VignetteIndexEntry{Introduction to g3viz (live demo)}
+  %\VignetteIndexEntry{3. Shiny example}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -37,29 +36,10 @@ knitr::opts_chunk$set(
 )
 ```
 
+Here is an example to use Shiny to explore genetic mutations in multiple genes.
 
-# <a name="introduction"></a>Introduction
-
-Intuitively and effectively visualizing genetic mutation data can help researchers to better understand genomic data and validate findings.  `G3viz` is an R package which provides an easy-to-use lollipop-diagram tool.  It enables users to interactively visualize detailed translational effect of genetic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
-
-The features of `g3viz` include
-
-- Interactive (zoom & pan, tooltip, brush selection tool, and interactive legend)
-- Highlight and label positional mutations
-- 8 ready-to-use [chart themes](#themes)
-- Highly customizable with over 50 [chart options](#options) and over 35 [color schemes](#schemes)
-- Save charts in PNG or high-quality SVG format
-- Built-in function to retrieve [protein domain information](#pfam) and resolve gene isoforms
-- Built-in function to [map genetic mutation type (a.k.a, variant classification) to mutation class](#mutation)
-
-[↥ back to top](#top)
-
-
-
-# <a name="install"></a>Install `g3viz`
-Install from R repository
 ```r
-# install package
+# load packages
 install.packages("g3viz", repos = "http://cran.us.r-project.org")
 ```
 or install development version from github
@@ -79,7 +59,7 @@ devtools::install_github("g3viz/g3viz")
 
 # <a name="quickstart"></a>Quick Start
 
-```{r include = TRUE, message=FALSE, eval=FALSE}
+```r
 # load g3viz package
 library(g3viz)
 ```

@@ -4,8 +4,10 @@
 \alias{mapMutationTypeToMutationClass}
 \title{Map from mutation type (aka, variant classification) to mutation class}
 \usage{
-mapMutationTypeToMutationClass(mutation.type.vec,
-  mutation.type.to.class.df = NA)
+mapMutationTypeToMutationClass(
+  mutation.type.vec,
+  mutation.type.to.class.df = NA
+)
 }
 \arguments{
 \item{mutation.type.vec}{a vector of mutation type information}
