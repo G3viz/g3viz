@@ -13,7 +13,6 @@ g3Lollipop(
   protein.change.col = c("Protein_Change", "HGVSp_Short"),
   factor.col = "Mutation_Class",
   plot.options = g3Lollipop.options(),
-  domain.info = NULL,
   save.png.btn = TRUE,
   save.svg.btn = TRUE,
   btn.style = NA,

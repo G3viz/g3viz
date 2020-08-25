@@ -62,7 +62,7 @@ pfam_fn <- "9606.tsv.gz"
 download.file(pfam_url, pfam_fn)
 
 # --------------------------
-message("Read pfam information ...")
+message("Read Pfam information ...")
 pfam.file <- gzcon(file(pfam_fn, "r"))
 pfam.txt <- readLines(pfam.file)
 

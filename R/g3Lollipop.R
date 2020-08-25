@@ -62,9 +62,6 @@ g3Lollipop <- function(mutation.dat,
                        # legend factor
                        factor.col = "Mutation_Class",
                        plot.options = g3Lollipop.options(),
-                       # ---------------------
-                       domain.info = NULL,
-                       # ---------------------
                        save.png.btn = TRUE,
                        save.svg.btn = TRUE,
                        btn.style = NA,

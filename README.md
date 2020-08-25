@@ -42,7 +42,7 @@ if("devtools" %in% rownames(installed.packages()) == FALSE){
 devtools::install_github("g3viz/g3viz")
 ```
 
-## Cite
+## Reference
 
 Guo, X., *et al*. (2020). G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram. **Bioinformatics**, 36(3), 928-929.
 

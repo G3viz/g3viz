@@ -64,8 +64,6 @@ proteinDomain <- function(protein.length,
   domain.end.col = "End"
   #--
 
-
-
   domain.list <- list(
     length = protein.length,
     details = domain.list

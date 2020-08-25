@@ -1,4 +1,4 @@
-visual_test
+^visual_test/$
 ^.*\.Rproj/$
 ^\.Rproj\.user/$
 ^\.travis\.yml$
@@ -15,3 +15,5 @@ visual_test
 ^\.Rproj\.user$
 ^docs$
 ^\.DS_Store$
+^examples$
+^R/proteinDomain.R$
