@@ -28,7 +28,7 @@ message("Parsing filtered human data from UniProt ...")
 # - Length
 # --------------------------
 
-uniprot_fn = "uniprot-filtered-organism__Homo+sapiens+(Human)+[9606]_+AND+review--.tab.gz"
+uniprot_fn <- "uniprot-filtered-organism__Homo+sapiens+(Human)+[9606]_+AND+review--.tab.gz"
 
 uniprot.file <- gzcon(file(uniprot_fn, "r"))
 uniprot.txt <- readLines(uniprot.file)
@@ -57,8 +57,8 @@ for(idx in 1:nrow(uniprot.to.parse.df)){
 # Date: 2020-08-24
 # Version: 33.1
 message("Download Pfam data from Pfam website ...")
-pfam_url = "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/proteomes/9606.tsv.gz"
-pfam_fn = "data-raw/hgnc_to_pfam/9606.tsv.gz"
+pfam_url <- "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/proteomes/9606.tsv.gz"
+pfam_fn <- "9606.tsv.gz"
 download.file(pfam_url, pfam_fn)
 
 # --------------------------
@@ -75,17 +75,17 @@ pfam.df <- read.table(
   header = FALSE
 )
 
-colnames(pfam.df) = c("id", "align.start", "align.end", "start", "end",
-                      "hmm.acc", "hmm.name", "type", "hmm.start", "hmm.end", "hmm.length",
-                      "bit.score", "e.value", "clan")
-pfam.sub.df = pfam.df[, c("id", "start", "end", "hmm.acc", "hmm.name", "type")]
+colnames(pfam.df) <- c("id", "align.start", "align.end", "start", "end",
+                       "hmm.acc", "hmm.name", "type", "hmm.start", "hmm.end", "hmm.length",
+                       "bit.score", "e.value", "clan")
+pfam.sub.df <- pfam.df[, c("id", "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # merge by UniProt
 message("Generating mapping table ...")
-hgnc2pfam.df = merge(uniprot.single.df, pfam.sub.df, by.x="uniprot", by.y = "id", all.x=TRUE, sort = FALSE)
-hgnc2pfam.df = hgnc2pfam.df[with(hgnc2pfam.df, order(symbol, uniprot, start, end)), ]
-hgnc2pfam.df = hgnc2pfam.df[, c("symbol", "uniprot", "length",
-                                "start", "end", "hmm.acc", "hmm.name", "type")]
+hgnc2pfam.df <- merge(uniprot.single.df, pfam.sub.df, by.x="uniprot", by.y = "id", all.x=TRUE, sort = FALSE)
+hgnc2pfam.df <- hgnc2pfam.df[with(hgnc2pfam.df, order(symbol, uniprot, start, end)), ]
+hgnc2pfam.df <- hgnc2pfam.df[, c("symbol", "uniprot", "length",
+                                 "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # create Rdata, move this to "data" directory
 save(hgnc2pfam.df, file="hgnc2pfam.df.rda")
