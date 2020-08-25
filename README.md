@@ -45,6 +45,7 @@ devtools::install_github("g3viz/g3viz")
 
 ## What's new
 
-1.1.3  Update Pfam version 33.1 (dated: 2020-08-24)
-       Update UniProt to 2020-08-24
-       For [Issues #5](https://github.com/G3viz/g3viz/issues/5)
+1.1.3 
+  - [x] Updated Pfam version 33.1 (date: 2020-08-24)
+  - [x] Updated UniProt (date: 2020-08-24)
+  - [x] add "prepare_data" folder to instruct how to create `hgnc2pfam.df.rda` data

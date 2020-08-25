@@ -3,6 +3,7 @@ visual_test
 ^\.Rproj\.user/$
 ^\.travis\.yml$
 ^data-raw$
+^prepare_data$
 ^packrat/$
 ^\.Rprofile$
 ^README.md$
