@@ -19,7 +19,7 @@ message("Parsing filtered human data from UniProt ...")
 # --------------------------
 # In practice, the data were downloaded from UniProtKB
 #
-# https://wwwhttps://www.uniprot.org/uniprot/?query=*&fil=organism%3A%22Homo+sapiens+%28Human%29+%5B9606%5D%22+AND+reviewed%3Ayes
+# https://www.uniprot.org/uniprot/?query=*&fil=organism%3A%22Homo+sapiens+%28Human%29+%5B9606%5D%22+AND+reviewed%3Ayes
 # (1) select 9606
 # (2) select "Reviewed" only entries
 # (3) select columns
