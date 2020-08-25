@@ -7,9 +7,8 @@
   [![CRAN_monthly_download](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
 
 ## Live demo
-1. [Short introduction](https://g3viz.github.io/g3viz/)
-1. [Chart themes](https://g3viz.github.io/g3viz/chart_themes.html)
-1. [An example of showing multiple genes in a shiny app](https://g3viz.github.io/g3viz/shiny_app.html)
+- [x] [Short introduction](https://g3viz.github.io/g3viz/)
+- [x] [Chart themes](https://g3viz.github.io/g3viz/chart_themes.html)
 
 ## Introduction
 
