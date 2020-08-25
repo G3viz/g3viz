@@ -1,6 +1,6 @@
 # <a name="top"></a>G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram
 
-  **Date: 2019-04-01**
+  **Date: 2020-08-24**
   
   [![Build Status](https://travis-ci.org/G3viz/g3viz.svg?branch=master)](https://travis-ci.org/G3viz/g3viz)
   [![CRAN_version](http://www.r-pkg.org/badges/version/g3viz)](https://cran.r-project.org/package=g3viz)
