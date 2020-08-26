@@ -88,5 +88,5 @@ hgnc2pfam.df <- hgnc2pfam.df[, c("symbol", "uniprot", "length",
                                  "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # create Rdata, move this to "data" directory
-save(hgnc2pfam.df, file="hgnc2pfam.df.rda")
+save(hgnc2pfam.df, file="hgnc2pfam.df.rda", compress = "xz")
 

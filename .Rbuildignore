@@ -1,10 +1,10 @@
-^visual_test/$
+^visual_test/
 ^.*\.Rproj/$
-^\.Rproj\.user/$
+^\.Rproj\.user/
 ^\.travis\.yml$
 ^data-raw$
-^prepare_data$
-^packrat/$
+^prepare_data/
+^packrat/
 ^\.Rprofile$
 ^README.md$
 ^\.git/

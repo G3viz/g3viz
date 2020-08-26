@@ -232,7 +232,7 @@ g3Lollipop(mutation.dat,
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
 `g3viz` has a convenient way to retrieve data directly from this portal.
 
-In this example, we first retrieve genetic mutation data of `TP53` gene for the [msk\_impact\_2017](https://www.ncbi.nlm.nih.gov/pubmed/28481359) study,
+In this example, we first retrieve genetic mutation data of `TP53` gene for the [msk\_impact\_2017](https://pubmed.ncbi.nlm.nih.gov/28481359/) study,
 and then visualize the data using the built-in `cbioportal` theme, to miminc cBioPortal's [mutation_mapper](https://www.cbioportal.org/mutation_mapper).
 
 <a name="cbioportal_theme"></a>
