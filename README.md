@@ -1,6 +1,6 @@
 # <a name="top"></a>G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram
 
-  **Date: 2020-08-24**
+  **Date: 2022-08-19**
   
   [![Build Status](https://travis-ci.org/G3viz/g3viz.svg?branch=master)](https://travis-ci.org/G3viz/g3viz)
   [![CRAN_version](http://www.r-pkg.org/badges/version/g3viz)](https://cran.r-project.org/package=g3viz)
@@ -52,3 +52,8 @@ Guo, X., *et al*. (2020). G3viz: an R package to interactively visualize genetic
   - [x] Updated Pfam version 33.1 (date: 2020-08-24)
   - [x] Updated UniProt (date: 2020-08-24)
   - [x] add "prepare_data" folder to instruct how to create `hgnc2pfam.df.rda` data
+
+1.1.5
+  - [x] Updated getMutationsFromCbioportal (date: 2022-06-23)
+  - [x] Remove Dependency cgdsr; Add Dependency cBioPortalData (date: 2022-06-23)
+  - [x] Updated `hgnc2pfam.df.rda` (date: 2022-06-24)
