@@ -9,23 +9,16 @@
 #' @param mutation.type.to.class.df mapping table from mutation type to class.
 #'   See \code{\link{mapMutationTypeToMutationClass}} for details. Default
 #'   \code{NA}, which indicates to use default mappings.
-#' @param cgds.url the URL for the public CGDS server (Cancer Genomic Data
-#'   Server). Default is \url{http://www.cbioportal.org/}. Check
-#'   \emph{cgdsr} R-package for details.
-#' @param test.cgds if test CGDS connection.  Default is \code{FALSE}
 #' @examples
 #' \dontrun{
 #' # Usage:
-#' # Connection to CGDS (Cange Genomic Data Server). Internet access required.
-#' # Note: this may need more than 10 seconds, and sometimes it may fail.
-#' library(cgdsr)
-#' cgds <- CGDS("http://www.cbioportal.org/")
-#'
-#' # test if connection is OK (warning: sometimes it may fail)
-#' test(cgds)
+#' # cBioPortalData has officially replaced the defunct cgdsr.
+#' # Search online for cgdsrMigration.html if interested.
+#' library(cBioPortalData)
+#' cbio <- cBioPortal()
 #'
 #' # list all studies of cBioPortal
-#' all.studies <- getCancerStudies(cgds)
+#' all.studies <- getStudies(cbio, buildReport = FALSE)
 #'
 #' # First, select a cancer study that contains mutation data set ("caner_study_id")
 #' # then, query genomic mutation data using a HGNC gene symbol,
@@ -33,13 +26,14 @@
 #' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
 #' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
 #' }
-#' @importFrom cgdsr CGDS getGeneticProfiles getCaseLists getMutationData
+#' @importFrom cBioPortalData cBioPortal molecularProfiles sampleLists getDataByGenes
+#'             samplesInSampleLists
 #' @importFrom utils write.table
 #'
 #' @return a data frame with columns
 #'   \describe{
 #'       \item{Hugo_Symbol}{Hugo gene symbol}
-#'       \item{Protein_Change}{Protein change information (cBioprotal uses \emph{HGVSp} format)}
+#'       \item{Protein_Change}{Protein change information (cBioportal uses \emph{HGVSp} format)}
 #'       \item{Sample_ID}{Sample ID}
 #'       \item{Mutation_Type}{mutation type, aka, variant classification.}
 #'       \item{Chromosome}{chromosome}
@@ -55,52 +49,53 @@
 getMutationsFromCbioportal <- function(study.id,
                                        gene.symbol,
                                        output.file = NA,
-                                       mutation.type.to.class.df = NA,
-                                       cgds.url = "http://www.cbioportal.org/",
-                                       test.cgds = FALSE){
-  # =============================
-  # define mutation columns
-  aa.pos.col <- "AA_Position"
-  mutation.class.col <- "Mutation_Class"
+                                       mutation.type.to.class.df = NA){
 
   # ========================
-  # cgds server
-  cgds <- cgdsr::CGDS(cgds.url)
-
-  # ========================
-  # test cgds
-  if(test.cgds){
-    cgdsr::test(cgds)
-  }
+  # server
+  cbio <- cBioPortal()
 
   # ========================
   # get study information
-  genetic.profiles <- getGeneticProfiles(cgds, study.id)
+  genetic.profiles <- molecularProfiles(cbio,studyId = study.id)
   message("Found study ", study.id)
 
   # ========================
-  # check if mutation informaiton is available in the study
-  profile.col <- "genetic_profile_id"
-  mutation.idx <- grep(pattern = 'mutations$', x = genetic.profiles[, profile.col], fixed = FALSE)
+  # check if mutation information is available in the study
+  profile.col <- "molecularProfileId"
+  mutation.idx <- grep(pattern = 'mutations$', x = genetic.profiles$molecularProfileId, fixed = FALSE)
   if(is.integer(mutation.idx) && length(mutation.idx) == 0L){
     stop("Can not find mutation information in ", study.id, " study")
   }
-  mutation.profile <- genetic.profiles[mutation.idx, profile.col]
+  mutation.profile <- genetic.profiles$molecularProfileId[mutation.idx]
   message("Found mutation data set ", mutation.profile)
 
   # ========================
-  # get case list
-  case.list.details <- getCaseLists(cgds, study.id)[mutation.idx, ]
-  mutation.case.list.id <- case.list.details$case_list_id
-  num.case <- length(strsplit(case.list.details$case_ids, " ")[[1]])
+
+  case.list.details <- sampleLists(cbio, study.id)
+
+  mutation.case.list.id <- case.list.details$sampleListId
+
+  mutation.case.list.all <- mutation.case.list.id[grep(pattern = '_sequenced$',x = mutation.case.list.id)]
+  num.case <- length(samplesInSampleLists(cbio,mutation.case.list.id)[[mutation.case.list.all]])
   message(num.case, " cases in this study")
 
-  extended.mutation.df <- getMutationData(cgds, mutation.case.list.id, mutation.profile, gene.symbol)
+  ### Download mutation data on certain gene from study
+  df <- getDataByGenes(
+        cbio,
+        studyId = study.id,
+        genes = gene.symbol,
+        by = "hugoGeneSymbol",
+        molecularProfileIds = mutation.profile
+      )[[1]]
+
+  extended.mutation.df <- cbind(rep(gene.symbol,nrow(df)),df)
+  colnames(extended.mutation.df) <- c("gene_symbol",colnames(df))
   # =========================
   # parse mutation data columns
-  required.colnames <- c("gene_symbol", "amino_acid_change", "case_id", "mutation_type",
-                         "chr", "start_position", "end_position",
-                         "reference_allele", "variant_allele")
+  required.colnames <- c("gene_symbol", "proteinChange", "sampleId", "mutationType",
+                         "chr", "startPosition", "endPosition",
+                         "referenceAllele", "variantAllele")
 
   mapped.colnames <- c("Hugo_Symbol", "Protein_Change", "Sample_ID", "Mutation_Type",
                        "Chromosome", "Start_Position", "End_Position",
@@ -117,17 +112,18 @@ getMutationsFromCbioportal <- function(study.id,
   mutation.df <- extended.mutation.df[, required.colnames]
   colnames(mutation.df) <- mapped.colnames
 
+
   # =============================
   # map from mutation type to mutation class
-  mutation.df[, mutation.class.col] <- mapMutationTypeToMutationClass(mutation.df[, "Mutation_Type"],
+  mutation.df[, "Mutation_Class"] <- mapMutationTypeToMutationClass(mutation.df[, "Mutation_Type"],
                                                                       mutation.type.to.class.df)
 
   # =============================
   # parse amino acid position
-  mutation.df[, aa.pos.col] <- parseProteinChange(mutation.df[, "Protein_Change"],
-                                                  mutation.df[, mutation.class.col])
+  mutation.df[, "AA_Position"] <- parseProteinChange(mutation.df[, "Protein_Change"],
+                                                  mutation.df[, "Mutation_Class"])
 
-  mutation.df <- mutation.df[order(mutation.df[, aa.pos.col],
+  mutation.df <- mutation.df[order(mutation.df[, "AA_Position"],
                                    mutation.df[, "Protein_Change"], decreasing = FALSE), ]
 
   if(!is.na(output.file)){

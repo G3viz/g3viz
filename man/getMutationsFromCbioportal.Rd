@@ -8,9 +8,7 @@ getMutationsFromCbioportal(
   study.id,
   gene.symbol,
   output.file = NA,
-  mutation.type.to.class.df = NA,
-  cgds.url = "http://www.cbioportal.org/",
-  test.cgds = FALSE
+  mutation.type.to.class.df = NA
 )
 }
 \arguments{
@@ -24,18 +22,12 @@ Default is \code{NA}.}
 \item{mutation.type.to.class.df}{mapping table from mutation type to class.
 See \code{\link{mapMutationTypeToMutationClass}} for details. Default
 \code{NA}, which indicates to use default mappings.}
-
-\item{cgds.url}{the URL for the public CGDS server (Cancer Genomic Data
-Server). Default is \url{http://www.cbioportal.org/}. Check
-\emph{cgdsr} R-package for details.}
-
-\item{test.cgds}{if test CGDS connection.  Default is \code{FALSE}}
 }
 \value{
 a data frame with columns
   \describe{
       \item{Hugo_Symbol}{Hugo gene symbol}
-      \item{Protein_Change}{Protein change information (cBioprotal uses \emph{HGVSp} format)}
+      \item{Protein_Change}{Protein change information (cBioportal uses \emph{HGVSp} format)}
       \item{Sample_ID}{Sample ID}
       \item{Mutation_Type}{mutation type, aka, variant classification.}
       \item{Chromosome}{chromosome}
@@ -55,16 +47,13 @@ Retrieve and parse mutation data from cBioPortal by the given
 \examples{
 \dontrun{
 # Usage:
-# Connection to CGDS (Cange Genomic Data Server). Internet access required.
-# Note: this may need more than 10 seconds, and sometimes it may fail.
-library(cgdsr)
-cgds <- CGDS("http://www.cbioportal.org/")
-
-# test if connection is OK (warning: sometimes it may fail)
-test(cgds)
+# cBioPortalData has officially replaced the defunct cgdsr.
+# Search online for cgdsrMigration.html if interested.
+library(cBioPortalData)
+cbio <- cBioPortal()
 
 # list all studies of cBioPortal
-all.studies <- getCancerStudies(cgds)
+all.studies <- getStudies(cbio, buildReport = FALSE)
 
 # First, select a cancer study that contains mutation data set ("caner_study_id")
 # then, query genomic mutation data using a HGNC gene symbol,

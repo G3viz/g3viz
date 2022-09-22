@@ -59,6 +59,10 @@ indicating browser default.}
 
 \item{output.filename}{Specify output file name.}
 }
+\value{
+lollipop diagram for the given mutation data. The chart is interactive
+  within either Shiny applications or Rmd documents under the bindings.
+}
 \description{
 Render g3lollipop diagram for the given mutation data
 }

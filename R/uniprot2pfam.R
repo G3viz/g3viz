@@ -1,6 +1,6 @@
 #' From UniProt ID to Pfam-A domain composition
 #'
-#' @description Map from UniProt ID to Pfam-A domain compostion.
+#' @description Map from UniProt ID to Pfam-A domain composition.
 #' @param uniprot.id UniProt ID
 #' @return a data frame with columns
 #' \itemize{

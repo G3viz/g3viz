@@ -22,7 +22,7 @@ vignette: >
 ```{r, message=FALSE, include = FALSE}
 # install package
 library(g3viz)
-library(cgdsr)
+library(cBioPortalData)
 library(knitr)
 ```
 

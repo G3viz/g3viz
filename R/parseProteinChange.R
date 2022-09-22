@@ -27,7 +27,7 @@ parseProteinChange <- function(protein.change.vec, mutation.class.vec) {
 
     if(!(is.na(d.mc) || d.mc == "Other" || d.mc == "")){
       # extract the first numeric value
-      aa.pos.vec[idx] = as.numeric(str_extract_all(d.pc, "[0-9]+")[[1]])[1]
+      aa.pos.vec[idx] <- as.numeric(str_extract_all(d.pc, "[0-9]+")[[1]])[1]
     }
     # cat(d.pc, " ==> ", aa.pos.vec[idx], "\n")
   }

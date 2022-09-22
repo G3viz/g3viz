@@ -2,7 +2,7 @@
 title: 'G3viz: an R package to interactively visualize genetic mutation data using
   a lollipop-diagram'
 author: "Xin Guo <g3viz.group at gmail.com>"
-date: '2019-04-06'
+date: '2022-06-29'
 output:
   html_document:
     df_print: kable
@@ -256,16 +256,11 @@ g3Lollipop(mutation.dat,
 - Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/).  This may take more than 10 seconds, or sometimes it may fail.
 - To check what studies are available on cBioPortal
 ```r
-# Connect to CGDS (cancer Genomics Data Server)
-cgds <- cgdsr::CGDS("http://www.cbioportal.org/")
 
-# Test if connection is OK
-cgdsr::test(cgds)
+# list all studies of cBioPortal
+all.studies <- getStudies(cbio, buildReport = FALSE)
 
-# To list all studies
-all.studies <- cgdsr::getCancerStudies(cgds)
-
-# Pick up a cancer study with mutation data
+# Pick up a cancer study (studyId) with mutation data (gene symbol)
 mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
 ```
 

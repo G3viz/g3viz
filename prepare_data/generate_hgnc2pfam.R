@@ -59,7 +59,7 @@ for(idx in 1:nrow(uniprot.to.parse.df)){
 message("Download Pfam data from Pfam website ...")
 pfam_url <- "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/proteomes/9606.tsv.gz"
 pfam_fn <- "9606.tsv.gz"
-download.file(pfam_url, pfam_fn)
+#download.file(pfam_url, pfam_fn)
 
 # --------------------------
 message("Read Pfam information ...")
@@ -88,5 +88,5 @@ hgnc2pfam.df <- hgnc2pfam.df[, c("symbol", "uniprot", "length",
                                  "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # create Rdata, move this to "data" directory
-save(hgnc2pfam.df, file="hgnc2pfam.df.rda", compress = "xz")
+#save(hgnc2pfam.df, file="hgnc2pfam.df.rda", compress = "xz")
 

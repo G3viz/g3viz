@@ -17,3 +17,4 @@
 ^\.DS_Store$
 ^examples$
 ^R/proteinDomain.R$
+^LICENSE\.md$

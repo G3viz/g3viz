@@ -29,6 +29,8 @@
 #'   two built-in styles, \emph{blue} or \emph{gray}. Default \code{NA},
 #'   indicating browser default.
 #' @param output.filename Specify output file name.
+#' @return lollipop diagram for the given mutation data. The chart is interactive
+#'   within either Shiny applications or Rmd documents under the bindings.
 #'
 #' @examples
 #'
@@ -170,6 +172,8 @@ g3Lollipop <- function(mutation.dat,
 #' @param quoted Is \code{expr} a quoted expression (with \code{quote()})? This
 #'   is useful if you want to save an expression in a variable.
 #'
+#' @return No value returned. It is the binding which enables interactive functions
+#'   within Shiny applications and Rmd documents.
 #' @name g3Lollipop-shiny
 #'
 #' @importFrom htmlwidgets shinyWidgetOutput

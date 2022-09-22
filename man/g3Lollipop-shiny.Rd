@@ -24,6 +24,10 @@ string and have \code{'px'} appended.}
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
 }
+\value{
+No value returned. It is the binding which enables interactive functions
+  within Shiny applications and Rmd documents.
+}
 \description{
 Output and render functions for using g3viz lollipop diagram within Shiny
 applications and interactive Rmd documents.
