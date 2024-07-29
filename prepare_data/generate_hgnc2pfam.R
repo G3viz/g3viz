@@ -26,48 +26,52 @@ message("Parsing filtered human data from UniProt ...")
 # - Entry
 # - Gene names (primary)
 # - Length
+# (4) download in tsv format
 # --------------------------
 
-uniprot_fn <- "uniprot-filtered-organism__Homo+sapiens+(Human)+[9606]_+AND+review--.tab.gz"
+uniprot_fn <- "prepare_data/uniprotkb_taxonomy_id_9606_AND_reviewed_2024_07_29.tsv.gz"
 
-uniprot.file <- gzcon(file(uniprot_fn, "r"))
-uniprot.txt <- readLines(uniprot.file)
-uniprot.df <- read.table(textConnection(uniprot.txt),
-                         sep = "\t",
-                         quote = "",
-                         comment.char = "#",
-                         stringsAsFactors = FALSE,
-                         header = TRUE)
-colnames(uniprot.df) <- c("uniprot", "length", "symbol")
+uniprot_file <- gzcon(file(uniprot_fn, "r"))
+uniprot_txt <- readLines(uniprot_file)
+uniprot_df <- read.table(
+  textConnection(uniprot_txt),
+  sep = "\t",
+  quote = "",
+  comment.char = "#",
+  stringsAsFactors = FALSE,
+  header = TRUE)
+colnames(uniprot_df) <- c("uniprot", "length", "symbol")
 
 # split multiple entries in symbol column
-uniprot.single.df <- subset(uniprot.df, !grepl(";", symbol))
-uniprot.to.parse.df <- subset(uniprot.df, grepl(";", symbol))
-for(idx in 1:nrow(uniprot.to.parse.df)){
-  symbols <- strsplit(uniprot.to.parse.df[idx, "symbol"], "; ")[[1]]
-  uniprot.single.df <- rbind(uniprot.single.df,
-                             data.frame(uniprot = uniprot.to.parse.df[idx, "uniprot"],
-                                        length = uniprot.to.parse.df[idx, "length"],
-                                        symbol = symbols)
+uniprot_single_df <- subset(uniprot_df, !grepl(";", symbol))
+uniprot_to_parse_df <- subset(uniprot_df, grepl(";", symbol))
+for(idx in 1:nrow(uniprot_to_parse_df)){
+  symbols <- strsplit(uniprot_to_parse_df[idx, "symbol"], "; ")[[1]]
+  uniprot_single_df <- rbind(
+    uniprot_single_df,
+    data.frame(
+      uniprot = uniprot_to_parse_df[idx, "uniprot"],
+      length = uniprot_to_parse_df[idx, "length"],
+      symbol = symbols)
   )
 }
 
 # --------------------------
 # Pfam (human 9606)
-# Date: 2020-08-24
-# Version: 33.1
+# Date: 2025-07-29
+# Version: 37.0
 message("Download Pfam data from Pfam website ...")
 pfam_url <- "ftp://ftp.ebi.ac.uk/pub/databases/Pfam/current_release/proteomes/9606.tsv.gz"
-pfam_fn <- "9606.tsv.gz"
-#download.file(pfam_url, pfam_fn)
+pfam_fn <- "prepare_data/9606.tsv.gz"
+download.file(pfam_url, pfam_fn)
 
 # --------------------------
 message("Read Pfam information ...")
-pfam.file <- gzcon(file(pfam_fn, "r"))
-pfam.txt <- readLines(pfam.file)
+pfam_file <- gzcon(file(pfam_fn, "r"))
+pfam_txt <- readLines(pfam_file)
 
-pfam.df <- read.table(
-  file = textConnection(pfam.txt),
+pfam_df <- read.table(
+  file = textConnection(pfam_txt),
   sep = "\t",
   quote = "",
   comment.char = "#",
@@ -75,18 +79,19 @@ pfam.df <- read.table(
   header = FALSE
 )
 
-colnames(pfam.df) <- c("id", "align.start", "align.end", "start", "end",
-                       "hmm.acc", "hmm.name", "type", "hmm.start", "hmm.end", "hmm.length",
-                       "bit.score", "e.value", "clan")
-pfam.sub.df <- pfam.df[, c("id", "start", "end", "hmm.acc", "hmm.name", "type")]
+colnames(pfam_df) <- c(
+  "id", "align.start", "align.end", "start", "end",
+  "hmm.acc", "hmm.name", "type", "hmm.start", "hmm.end", "hmm.length",
+  "bit.score", "e.value", "clan")
+pfam_sub_df <- pfam_df[, c("id", "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # merge by UniProt
 message("Generating mapping table ...")
-hgnc2pfam.df <- merge(uniprot.single.df, pfam.sub.df, by.x="uniprot", by.y = "id", all.x=TRUE, sort = FALSE)
-hgnc2pfam.df <- hgnc2pfam.df[with(hgnc2pfam.df, order(symbol, uniprot, start, end)), ]
-hgnc2pfam.df <- hgnc2pfam.df[, c("symbol", "uniprot", "length",
+hgnc2pfam_df <- merge(uniprot_single_df, pfam_sub_df, by.x="uniprot", by.y = "id", all.x=TRUE, sort = FALSE)
+hgnc2pfam_df <- hgnc2pfam_df[with(hgnc2pfam_df, order(symbol, uniprot, start, end)), ]
+hgnc2pfam_df <- hgnc2pfam_df[, c("symbol", "uniprot", "length",
                                  "start", "end", "hmm.acc", "hmm.name", "type")]
 
 # create Rdata, move this to "data" directory
-#save(hgnc2pfam.df, file="hgnc2pfam.df.rda", compress = "xz")
+save(hgnc2pfam_df, file="hgnc2pfam.df.rda", compress = "xz")
 

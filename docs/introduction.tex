@@ -1,0 +1,779 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={G3viz: an R package to interactively visualize genetic mutation data using a lollipop-diagram},
+  pdfauthor={g3viz development group \textless g3viz.group at gmail.com\textgreater{}},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{G3viz: an R package to interactively visualize genetic mutation
+data using a lollipop-diagram}
+\author{g3viz development group \textless g3viz.group at
+gmail.com\textgreater{}}
+\date{2024-07-28}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}\label{introduction}
+
+Intuitively and effectively visualizing genetic mutation data can help
+researchers to better understand genomic data and validate findings.
+\texttt{G3viz} is an R package which provides an easy-to-use
+lollipop-diagram tool. It enables users to interactively visualize
+detailed translational effect of genetic mutations in RStudio or a web
+browser, without having to know any HTML5/JavaScript technologies.
+
+The features of \texttt{g3viz} include
+
+\begin{itemize}
+\tightlist
+\item
+  Interactive (zoom \& pan, tooltip, brush selection tool, and
+  interactive legend)
+\item
+  Highlight and label positional mutations
+\item
+  8 ready-to-use \hyperref[themes]{chart themes}
+\item
+  Highly customizable with over 50 \hyperref[options]{chart options} and
+  over 35 \hyperref[schemes]{color schemes}
+\item
+  Save charts in PNG or high-quality SVG format
+\item
+  Built-in function to retrieve \hyperref[pfam]{protein domain
+  information} and resolve gene isoforms
+\item
+  Built-in function to \hyperref[mutation]{map genetic mutation type
+  (a.k.a, variant classification) to mutation class}
+\end{itemize}
+
+\hyperref[top]{↥ back to top}
+
+\section{\texorpdfstring{Install
+\texttt{g3viz}}{Install g3viz}}\label{install-g3viz}
+
+Install from R repository
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# install package}
+\FunctionTok{install.packages}\NormalTok{(}\StringTok{"g3viz"}\NormalTok{, }\AttributeTok{repos =} \StringTok{"http://cran.us.r{-}project.org"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+or install development version from github
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Check if "devtools" installed}
+\ControlFlowTok{if}\NormalTok{(}\StringTok{"devtools"} \SpecialCharTok{\%in\%} \FunctionTok{rownames}\NormalTok{(}\FunctionTok{installed.packages}\NormalTok{()) }\SpecialCharTok{==} \ConstantTok{FALSE}\NormalTok{)\{ }
+  \FunctionTok{install.packages}\NormalTok{(}\StringTok{"devtools"}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# install from github}
+\NormalTok{devtools}\SpecialCharTok{::}\FunctionTok{install\_github}\NormalTok{(}\StringTok{"g3viz/g3viz"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hyperref[top]{↥ back to top}
+
+\section{Quick Start}\label{quick-start}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load g3viz package}
+\FunctionTok{library}\NormalTok{(g3viz)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{\texorpdfstring{Example 1: Visualize genetic mutation data
+from \texttt{MAF}
+file}{Example 1: Visualize genetic mutation data from MAF file}}\label{example-1-visualize-genetic-mutation-data-from-maf-file}
+
+Mutation Annotation Format
+(\href{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}{MAF})
+is a commonly-used tab-delimited text file for storing aggregated
+mutation information. It could be generated from
+\href{https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/}{VCF}
+file using tools like \href{https://github.com/mskcc/vcf2maf}{vcf2maf}.
+Translational effect of variant alleles in \texttt{MAF} files are
+usually in the column named \texttt{Variant\_Classification} or
+\texttt{Mutation\_Type} (\emph{i.e.}, \texttt{Frame\_Shift\_Del},
+\texttt{Split\_Site}). In this example, the somatic mutation data of the
+\emph{TCGA-BRCA} study was originally downloaded from the
+\href{https://portal.gdc.cancer.gov/projects/TCGA-BRCA}{GDC Data
+Portal}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# System file}
+\NormalTok{maf.file }\OtherTok{\textless{}{-}} \FunctionTok{system.file}\NormalTok{(}\StringTok{"extdata"}\NormalTok{, }\StringTok{"TCGA.BRCA.varscan.somatic.maf.gz"}\NormalTok{, }\AttributeTok{package =} \StringTok{"g3viz"}\NormalTok{)}
+
+\CommentTok{\# ============================================}
+\CommentTok{\# Read in MAF file}
+\CommentTok{\#   In addition to read data in, g3viz::readMAF function does}
+\CommentTok{\#     1. parse "Mutation\_Class" information from the "Variant\_Classification"}
+\CommentTok{\#        column (also named "Mutation\_Type" in some files)}
+\CommentTok{\#     2. parse "AA\_position" (amino{-}acid position) from the "HGVSp\_Short" column }
+\CommentTok{\#        (also named "amino\_acid\_change" in some files) (e.g., p.Q136P)}
+\CommentTok{\# ============================================}
+\NormalTok{mutation.dat }\OtherTok{\textless{}{-}} \FunctionTok{readMAF}\NormalTok{(maf.file)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ============================================}
+\CommentTok{\# Chart 1}
+\CommentTok{\# "default" chart theme}
+\CommentTok{\# ============================================}
+\NormalTok{chart.options }\OtherTok{\textless{}{-}} \FunctionTok{g3Lollipop.theme}\NormalTok{(}\AttributeTok{theme.name =} \StringTok{"default"}\NormalTok{,}
+                                  \AttributeTok{title.text =} \StringTok{"PIK3CA gene (default theme)"}\NormalTok{)}
+
+\FunctionTok{g3Lollipop}\NormalTok{(mutation.dat,}
+           \AttributeTok{gene.symbol =} \StringTok{"PIK3CA"}\NormalTok{,}
+           \AttributeTok{plot.options =}\NormalTok{ chart.options,}
+           \AttributeTok{output.filename =} \StringTok{"default\_theme"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Factor is set to Mutation\_Class}
+\CommentTok{\#\textgreater{} legend title is set to Mutation\_Class}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{/Users/xguo/Projects/RESEARCH/g3viz/docs/introduction_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{Example 2: visualize genetic mutation data
+from \texttt{CSV} or \texttt{TSV}
+file}{Example 2: visualize genetic mutation data from CSV or TSV file}}\label{example-2-visualize-genetic-mutation-data-from-csv-or-tsv-file}
+
+In this example, we read genetic mutation data from \texttt{CSV} or
+\texttt{TSV} files, and visualize it using some customized
+\hyperref[options]{chart options}. Note this is equivalent to
+\emph{dark} chart theme.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# load data}
+\NormalTok{mutation.csv }\OtherTok{\textless{}{-}} \FunctionTok{system.file}\NormalTok{(}\StringTok{"extdata"}\NormalTok{, }\StringTok{"ccle.csv"}\NormalTok{, }\AttributeTok{package =} \StringTok{"g3viz"}\NormalTok{)}
+
+\CommentTok{\# ============================================}
+\CommentTok{\# read in data}
+\CommentTok{\#   "gene.symbol.col"    : column of gene symbol}
+\CommentTok{\#   "variant.class.col"  : column of variant class}
+\CommentTok{\#   "protein.change.col" : colum of protein change column}
+\CommentTok{\# ============================================}
+\NormalTok{mutation.dat }\OtherTok{\textless{}{-}} \FunctionTok{readMAF}\NormalTok{(mutation.csv,}
+                        \AttributeTok{gene.symbol.col =} \StringTok{"Hugo\_Symbol"}\NormalTok{,}
+                        \AttributeTok{variant.class.col =} \StringTok{"Variant\_Classification"}\NormalTok{,}
+                        \AttributeTok{protein.change.col =} \StringTok{"amino\_acid\_change"}\NormalTok{,}
+                        \AttributeTok{sep =} \StringTok{","}\NormalTok{)  }\CommentTok{\# column{-}separator of csv file}
+
+\CommentTok{\# set up chart options}
+\NormalTok{plot.options }\OtherTok{\textless{}{-}} \FunctionTok{g3Lollipop.options}\NormalTok{(}
+  \CommentTok{\# Chart settings}
+  \AttributeTok{chart.width =} \DecValTok{600}\NormalTok{,}
+  \AttributeTok{chart.type =} \StringTok{"pie"}\NormalTok{,}
+  \AttributeTok{chart.margin =} \FunctionTok{list}\NormalTok{(}\AttributeTok{left =} \DecValTok{30}\NormalTok{, }\AttributeTok{right =} \DecValTok{20}\NormalTok{, }\AttributeTok{top =} \DecValTok{20}\NormalTok{, }\AttributeTok{bottom =} \DecValTok{30}\NormalTok{),}
+  \AttributeTok{chart.background =} \StringTok{"\#d3d3d3"}\NormalTok{,}
+  \AttributeTok{transition.time =} \DecValTok{300}\NormalTok{,}
+  \CommentTok{\# Lollipop track settings}
+  \AttributeTok{lollipop.track.height =} \DecValTok{200}\NormalTok{,}
+  \AttributeTok{lollipop.track.background =} \StringTok{"\#d3d3d3"}\NormalTok{,}
+  \AttributeTok{lollipop.pop.min.size =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{lollipop.pop.max.size =} \DecValTok{8}\NormalTok{,}
+  \AttributeTok{lollipop.pop.info.limit =} \FloatTok{5.5}\NormalTok{,}
+  \AttributeTok{lollipop.pop.info.dy =} \StringTok{"0.24em"}\NormalTok{,}
+  \AttributeTok{lollipop.pop.info.color =} \StringTok{"white"}\NormalTok{,}
+  \AttributeTok{lollipop.line.color =} \StringTok{"\#a9A9A9"}\NormalTok{,}
+  \AttributeTok{lollipop.line.width =} \DecValTok{3}\NormalTok{,}
+  \AttributeTok{lollipop.circle.color =} \StringTok{"\#ffdead"}\NormalTok{,}
+  \AttributeTok{lollipop.circle.width =} \FloatTok{0.4}\NormalTok{,}
+  \AttributeTok{lollipop.label.ratio =} \DecValTok{2}\NormalTok{,}
+  \AttributeTok{lollipop.label.min.font.size =} \DecValTok{12}\NormalTok{,}
+  \AttributeTok{lollipop.color.scheme =} \StringTok{"dark2"}\NormalTok{,}
+  \AttributeTok{highlight.text.angle =} \DecValTok{60}\NormalTok{,}
+  \CommentTok{\# Domain annotation track settings}
+  \AttributeTok{anno.height =} \DecValTok{16}\NormalTok{,}
+  \AttributeTok{anno.margin =} \FunctionTok{list}\NormalTok{(}\AttributeTok{top =} \DecValTok{0}\NormalTok{, }\AttributeTok{bottom =} \DecValTok{0}\NormalTok{),}
+  \AttributeTok{anno.background =} \StringTok{"\#d3d3d3"}\NormalTok{,}
+  \AttributeTok{anno.bar.fill =} \StringTok{"\#a9a9a9"}\NormalTok{,}
+  \AttributeTok{anno.bar.margin =} \FunctionTok{list}\NormalTok{(}\AttributeTok{top =} \DecValTok{4}\NormalTok{, }\AttributeTok{bottom =} \DecValTok{4}\NormalTok{),}
+  \AttributeTok{domain.color.scheme =} \StringTok{"pie5"}\NormalTok{,}
+  \AttributeTok{domain.margin =} \FunctionTok{list}\NormalTok{(}\AttributeTok{top =} \DecValTok{2}\NormalTok{, }\AttributeTok{bottom =} \DecValTok{2}\NormalTok{),}
+  \AttributeTok{domain.text.color =} \StringTok{"white"}\NormalTok{,}
+  \AttributeTok{domain.text.font =} \StringTok{"italic 8px Serif"}\NormalTok{,}
+  \CommentTok{\# Y{-}axis label}
+  \AttributeTok{y.axis.label =} \StringTok{"\# of TP53 gene mutations"}\NormalTok{,}
+  \AttributeTok{axis.label.color =} \StringTok{"\#303030"}\NormalTok{,}
+  \AttributeTok{axis.label.alignment =} \StringTok{"end"}\NormalTok{,}
+  \AttributeTok{axis.label.font =} \StringTok{"italic 12px Serif"}\NormalTok{,}
+  \AttributeTok{axis.label.dy =} \StringTok{"{-}1.5em"}\NormalTok{,}
+  \AttributeTok{y.axis.line.color =} \StringTok{"\#303030"}\NormalTok{,}
+  \AttributeTok{y.axis.line.width =} \FloatTok{0.5}\NormalTok{,}
+  \AttributeTok{y.axis.line.style =} \StringTok{"line"}\NormalTok{,}
+  \AttributeTok{y.max.range.ratio =} \FloatTok{1.1}\NormalTok{,}
+  \CommentTok{\# Chart title settings}
+  \AttributeTok{title.color =} \StringTok{"\#303030"}\NormalTok{,}
+  \AttributeTok{title.text =} \StringTok{"TP53 gene (customized chart options)"}\NormalTok{,}
+  \AttributeTok{title.font =} \StringTok{"bold 12px monospace"}\NormalTok{,}
+  \AttributeTok{title.alignment =} \StringTok{"start"}\NormalTok{,}
+  \CommentTok{\# Chart legend settings}
+  \AttributeTok{legend =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{legend.margin =} \FunctionTok{list}\NormalTok{(}\AttributeTok{left=}\DecValTok{20}\NormalTok{, }\AttributeTok{right =} \DecValTok{0}\NormalTok{, }\AttributeTok{top =} \DecValTok{10}\NormalTok{, }\AttributeTok{bottom =} \DecValTok{5}\NormalTok{),}
+  \AttributeTok{legend.interactive =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{legend.title =} \StringTok{"Variant classification"}\NormalTok{,}
+  \CommentTok{\# Brush selection tool}
+  \AttributeTok{brush =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{brush.selection.background =} \StringTok{"\#F8F8FF"}\NormalTok{,}
+  \AttributeTok{brush.selection.opacity =} \FloatTok{0.3}\NormalTok{,}
+  \AttributeTok{brush.border.color =} \StringTok{"\#a9a9a9"}\NormalTok{,}
+  \AttributeTok{brush.border.width =} \DecValTok{1}\NormalTok{,}
+  \AttributeTok{brush.handler.color =} \StringTok{"\#303030"}\NormalTok{,}
+  \CommentTok{\# tooltip and zoom}
+  \AttributeTok{tooltip =} \ConstantTok{TRUE}\NormalTok{,}
+  \AttributeTok{zoom =} \ConstantTok{TRUE}
+\NormalTok{)}
+
+\FunctionTok{g3Lollipop}\NormalTok{(mutation.dat,}
+           \AttributeTok{gene.symbol =} \StringTok{"TP53"}\NormalTok{,}
+           \AttributeTok{protein.change.col =} \StringTok{"amino\_acid\_change"}\NormalTok{,}
+           \AttributeTok{btn.style =} \StringTok{"blue"}\NormalTok{, }\CommentTok{\# blue{-}style chart download buttons}
+           \AttributeTok{plot.options =}\NormalTok{ plot.options,}
+           \AttributeTok{output.filename =} \StringTok{"customized\_plot"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Factor is set to Mutation\_Class}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{/Users/xguo/Projects/RESEARCH/g3viz/docs/introduction_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{Example 3: visualize genetic mutation data
+from
+\texttt{cBioPortal}}{Example 3: visualize genetic mutation data from cBioPortal}}\label{example-3-visualize-genetic-mutation-data-from-cbioportal}
+
+\href{http://www.cbioportal.org/}{cBioPortal} provides download for many
+cancer genomics data sets. \texttt{g3viz} has a convenient way to
+retrieve data directly from this portal.
+
+In this example, we first retrieve genetic mutation data of
+\texttt{TP53} gene for the
+\href{https://pubmed.ncbi.nlm.nih.gov/28481359/}{msk\_impact\_2017}
+study, and then visualize the data using the built-in
+\texttt{cbioportal} theme, to miminc cBioPortal's
+\href{https://www.cbioportal.org/mutation_mapper}{mutation\_mapper}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Retrieve mutation data of "msk\_impact\_2017" from cBioPortal}
+\NormalTok{mutation.dat }\OtherTok{\textless{}{-}} \FunctionTok{getMutationsFromCbioportal}\NormalTok{(}\StringTok{"msk\_impact\_2017"}\NormalTok{, }\StringTok{"TP53"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Found study msk\_impact\_2017}
+\CommentTok{\#\textgreater{} Found mutation data set msk\_impact\_2017\_mutations}
+\CommentTok{\#\textgreater{} 10945 cases in this study}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# "cbioportal" chart theme}
+\NormalTok{plot.options }\OtherTok{\textless{}{-}} \FunctionTok{g3Lollipop.theme}\NormalTok{(}\AttributeTok{theme.name =} \StringTok{"cbioportal"}\NormalTok{,}
+                                 \AttributeTok{title.text =} \StringTok{"TP53 gene (cbioportal theme)"}\NormalTok{,}
+                                 \AttributeTok{y.axis.label =} \StringTok{"\# of TP53 Mutations"}\NormalTok{)}
+
+\FunctionTok{g3Lollipop}\NormalTok{(mutation.dat,}
+           \AttributeTok{gene.symbol =} \StringTok{"TP53"}\NormalTok{,}
+           \AttributeTok{btn.style =} \StringTok{"gray"}\NormalTok{, }\CommentTok{\# gray{-}style chart download buttons}
+           \AttributeTok{plot.options =}\NormalTok{ plot.options,}
+           \AttributeTok{output.filename =} \StringTok{"cbioportal\_theme"}\NormalTok{)}
+\CommentTok{\#\textgreater{} Factor is set to Mutation\_Class}
+\CommentTok{\#\textgreater{} legend title is set to Mutation\_Class}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{/Users/xguo/Projects/RESEARCH/g3viz/docs/introduction_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\paragraph{Note:}\label{note}
+
+\begin{itemize}
+\tightlist
+\item
+  Internet access is required to download data from
+  \href{http://www.cbioportal.org/}{cBioPortal}. This may take more than
+  10 seconds, or sometimes it may fail.
+\item
+  To check what studies are available on cBioPortal
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# list all studies of cBioPortal}
+\NormalTok{all.studies }\OtherTok{\textless{}{-}} \FunctionTok{getStudies}\NormalTok{(cbio, }\AttributeTok{buildReport =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# Pick up a cancer study (studyId) with mutation data (gene symbol)}
+\NormalTok{mutation.dat }\OtherTok{\textless{}{-}}\NormalTok{ g3viz}\SpecialCharTok{::}\FunctionTok{getMutationsFromCbioportal}\NormalTok{(}\StringTok{"all\_stjude\_2016"}\NormalTok{, }\StringTok{"TP53"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hyperref[top]{↥ back to top}
+
+\section{Usage}\label{usage}
+
+\subsection{Read data}\label{read-data}
+
+In \texttt{g3viz}, annotated mutation data can be loaded in three ways
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  from
+  \href{https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/}{MAF}
+  file, as in \hyperref[ex1]{Example 1}.
+\item
+  from \texttt{CSV} or \texttt{TSV} files, as in \hyperref[ex2]{Example
+  2}.
+\item
+  from \href{http://www.cbioportal.org/}{cBioPortal} (internet access
+  required), as in \hyperref[ex3]{Example 3}.
+\end{enumerate}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{Map mutation type to mutation
+class}\label{map-mutation-type-to-mutation-class}
+
+In addtion to reading mutation data, \texttt{readMAF} or
+\texttt{getMutationFromCbioportal} functions also map mutation type to
+mutation class and generate a \texttt{Mutation\_Class} column by
+default. Mutation type is usually in the column of
+\texttt{Variant\_Classification} or \texttt{Mutation\_Type}. The default
+mapping table is,
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X>{\raggedright}X}
+\toprule
+Mutation\_Type & Mutation\_Class & Short\_Name\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Inframe}}\\
+\hspace{1em}In\_Frame\_Del & Inframe & IF del\\
+\hspace{1em}In\_Frame\_Ins & Inframe & IF ins\\
+\hspace{1em}Silent & Inframe & Silent\\
+\hspace{1em}Targeted\_Region & Inframe & IF\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Missense}}\\
+\hspace{1em}Missense\_Mutation & Missense & Missense\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Truncating}}\\
+\hspace{1em}Frame\_Shift & Truncating & FS\\
+\hspace{1em}Frame\_Shift\_Del & Truncating & FS del\\
+\hspace{1em}Frame\_Shift\_Ins & Truncating & FS ins\\
+\hspace{1em}Nonsense\_Mutation & Truncating & Nonsense\\
+\hspace{1em}Nonstop\_Mutation & Truncating & Nonstop\\
+\hspace{1em}Splice\_Region & Truncating & Splice\\
+\hspace{1em}Splice\_Site & Truncating & Splice\\
+\addlinespace[0.3em]
+\multicolumn{3}{l}{\textbf{Other}}\\
+\hspace{1em}3’Flank & Other & 3’Flank\\
+\hspace{1em}3’UTR & Other & 3’UTR\\
+\hspace{1em}5’Flank & Other & 5’Flank\\
+\hspace{1em}5’UTR & Other & 5’UTR\\
+\hspace{1em}De\_novo\_Start\_InFrame & Other & de\_novo\_start\_inframe\\
+\hspace{1em}De\_novo\_Start\_OutOfFrame & Other & de\_novo\_start\_outofframe\\
+\hspace{1em}Fusion & Other & Fusion\\
+\hspace{1em}IGR & Other & IGR\\
+\hspace{1em}Intron & Other & Intron\\
+\hspace{1em}lincRNA & Other & lincRNA\\
+\hspace{1em}RNA & Other & RNA\\
+\hspace{1em}Start\_Codon\_Del & Other & Nonstart\\
+\hspace{1em}Start\_Codon\_Ins & Other & start\_codon\_ins\\
+\hspace{1em}Start\_Codon\_SNP & Other & Nonstart\\
+\hspace{1em}Translation\_Start\_Site & Other & TSS\\
+\hspace{1em}Unknown & Other & Unknown\\
+\bottomrule
+\end{longtabu}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{Retrieve Pfam domain
+inforamtion}\label{retrieve-pfam-domain-inforamtion}
+
+Given a \href{https://www.genenames.org/}{HUGO} gene symbol, users can
+either use \texttt{hgnc2pfam} function to retrieve
+\href{https://pfam.xfam.org/}{Pfam} protein domain information first or
+use all-in-one \texttt{g3Lollipop} function to directly create
+lollipop-diagram. In case that the given gene has multiple isoforms,
+\texttt{hgnc2pfam} returns all \href{https://www.uniprot.org/}{UniProt}
+entries, and users can specify one using the corresponding
+\texttt{UniProt} entry. If attribute \texttt{guess} is \texttt{TRUE},
+the Pfam domain information of the longest UniProt entry is returned.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Example 1: TP53 has single UniProt entry}
+\FunctionTok{hgnc2pfam}\NormalTok{(}\StringTok{"TP53"}\NormalTok{, }\AttributeTok{output.format =} \StringTok{"list"}\NormalTok{)}
+\CommentTok{\#\textgreater{} $symbol}
+\CommentTok{\#\textgreater{} [1] "TP53"}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} $uniprot}
+\CommentTok{\#\textgreater{} [1] "P04637"}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} $length}
+\CommentTok{\#\textgreater{} [1] 393}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} $pfam}
+\CommentTok{\#\textgreater{}       hmm.acc     hmm.name start end   type}
+\CommentTok{\#\textgreater{} 14773 PF08563      P53\_TAD     6  30  Motif}
+\CommentTok{\#\textgreater{} 14772 PF18521         TAD2    35  59  Motif}
+\CommentTok{\#\textgreater{} 14770 PF00870          P53    99 289 Domain}
+\CommentTok{\#\textgreater{} 14771 PF07710 P53\_tetramer   319 358  Motif}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+
+\CommentTok{\# Example 2: GNAS has multiple UniProt entries}
+\CommentTok{\#   \textasciigrave{}guess = TRUE\textasciigrave{}: the Pfam domain information of the longest }
+\CommentTok{\#                   UniProt protein is returned}
+\FunctionTok{hgnc2pfam}\NormalTok{(}\StringTok{"GNAS"}\NormalTok{, }\AttributeTok{guess =} \ConstantTok{TRUE}\NormalTok{)}
+\CommentTok{\#\textgreater{} GNAS maps to multiple UniProt entries: }
+\CommentTok{\#\textgreater{}  symbol uniprot length}
+\CommentTok{\#\textgreater{}    GNAS  O95467    245}
+\CommentTok{\#\textgreater{}    GNAS  P63092    394}
+\CommentTok{\#\textgreater{}    GNAS  P84996    626}
+\CommentTok{\#\textgreater{}    GNAS  Q5JWF2   1037}
+\CommentTok{\#\textgreater{} Warning in hgnc2pfam("GNAS", guess = TRUE): Pick: Q5JWF2}
+\CommentTok{\#\textgreater{} \{"symbol":"GNAS","uniprot":"Q5JWF2","length":1037,"pfam":[\{"hmm.acc":"PF00503","hmm.name":"G{-}alpha","start":663,"end":1026,"type":"Domain"\}]\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{ Chart
+themes}{ Chart themes}}\label{chart-themes}
+
+The \texttt{g3viz} package contains 8 ready-to-use chart schemes:
+\emph{default}, \emph{blue}, \emph{simple}, \emph{cbioportal},
+\emph{nature}, \emph{nature2}, \emph{ggplot2}, and \emph{dark}. Check
+\href{chart_themes.html}{this tutorial} for examples and usage.
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{ Color
+schemes}{ Color schemes}}\label{color-schemes}
+
+\hyperref[color_scheme_fig1]{Figure 1} demonstrates all color schemes
+that \texttt{g3viz} supports for lollipop-pops and Pfam domains. More
+demos are available at
+\href{https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/}{demo
+1},
+\href{https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/}{demo
+2}, and
+\href{https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/}{demo
+3}.
+
+\begin{figure}
+
+{\centering \includegraphics[width=620px]{figures/color_scheme} 
+
+}
+
+\caption{**Figure 1.** List of color schemes supported by `g3viz`}\label{fig:chunk-label}
+\end{figure}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{ Chart
+options}{ Chart options}}\label{chart-options}
+
+Chart options can be specified using \texttt{g3Lollipop.options()}
+function (see \hyperref[ex2]{example 2}). Here is the full list of chart
+options,
+
+\begin{longtabu} to \linewidth {>{\raggedright}X>{\raggedright}X}
+\caption{\label{tab:unnamed-chunk-9}Chart options of `g3viz`}\\
+\toprule
+Option & Description\\
+\midrule
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Chart settings}}\\
+\hspace{1em}chart.width & chart width in px.  Default `800`.\\
+\hspace{1em}chart.type & pop type, `pie` or `circle`.  Default `pie`.\\
+\hspace{1em}chart.margin & specify chart margin in \_list\_ format.  Default `list(left = 40, right = 20, top = 15, bottom = 25)`.\\
+\hspace{1em}chart.background & chart background.  Default `transparent`.\\
+\hspace{1em}transition.time & chart animation transition time in millisecond.  Default `600`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Lollipop track settings}}\\
+\hspace{1em}lollipop.track.height & height of lollipop track. Default `420`.\\
+\hspace{1em}lollipop.track.background & background of lollipop track. Default `rgb(244,244,244)`.\\
+\hspace{1em}lollipop.pop.min.size & lollipop pop minimal size in px. Default `2`.\\
+\hspace{1em}lollipop.pop.max.size & lollipop pop maximal size in px. Default `12`.\\
+\hspace{1em}lollipop.pop.info.limit & threshold of lollipop pop size to show count information in middle of pop. Default `8`.\\
+\hspace{1em}lollipop.pop.info.color & lollipop pop information text color. Default `\#EEE`.\\
+\hspace{1em}lollipop.pop.info.dy & y-axis direction text adjustment of lollipop pop information. Default `-0.35em`.\\
+\hspace{1em}lollipop.line.color & lollipop line color. Default `rgb(42,42,42)`.\\
+\hspace{1em}lollipop.line.width & lollipop line width. Default `0.5`.\\
+\hspace{1em}lollipop.circle.color & lollipop circle border color. Default `wheat`.\\
+\hspace{1em}lollipop.circle.width & lollipop circle border width. Default `0.5`.\\
+\hspace{1em}lollipop.label.ratio & lollipop click-out label font size to circle size ratio. Default `1.4`.\\
+\hspace{1em}lollipop.label.min.font.size & lollipop click-out label minimal font size. Default `10`.\\
+\hspace{1em}lollipop.color.scheme & color scheme to fill lollipop pops. Default `accent`. Check [color schemes](\#schemes) for details.\\
+\hspace{1em}highlight.text.angle & the rotation angle of on-click highlight text in degree.  Default `90`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Domain annotation track settings}}\\
+\hspace{1em}anno.height & height of protein structure annotation track. Default `30`.\\
+\hspace{1em}anno.margin & margin of protein structure annotation track. Default `list(top = 4, bottom = 0)`.\\
+\hspace{1em}anno.background & background of protein structure annotation track. Default `transparent`.\\
+\hspace{1em}anno.bar.fill & background of protein bar in protein structure annotation track. Default `\#E5E3E1`.\\
+\hspace{1em}anno.bar.margin & margin of protein bar in protein structure annotation track. Default `list(top = 2, bottom = 2)`.\\
+\hspace{1em}domain.color.scheme & color scheme of protein domains. Default `category10`.  Check [color schemes](\#schemes) for details.\\
+\hspace{1em}domain.margin & margin of protein domains. Default `list(top = 0, bottom = 0)`.\\
+\hspace{1em}domain.text.font & domain label text font in shorthand format. Default `normal 11px Arial`.\\
+\hspace{1em}domain.text.color & domain label text color. Default `\#F2F2F2`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Y-axis settings}}\\
+\hspace{1em}y.axis.label & Y-axis label text.  Default `\# of mutations`.\\
+\hspace{1em}axis.label.font & css font style shorthand (font-style font-variant font-weight font-size/line-height font-family).  Default `normal 12px Arial`.\\
+\hspace{1em}axis.label.color & axis label text color.  Default `\#4f4f4f`.\\
+\hspace{1em}axis.label.alignment & axis label text alignment (start/end/middle). Default `middle`\\
+\hspace{1em}axis.label.dy & text adjustment of axis label text.  Default `-2em`.\\
+\hspace{1em}y.axis.line.color & color of y-axis in-chart lines (ticks). Default `\#c4c8ca`.\\
+\hspace{1em}y.axis.line.style & style of y-axis in-chart lines (ticks), `dash` or `line`. Default `dash`.\\
+\hspace{1em}y.axis.line.width & width of y-axis in-chart lines (ticks). Default `1`.\\
+\hspace{1em}y.max.range.ratio & ratio of y-axis range to data value range.  Default `1.1`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Chart title settings}}\\
+\hspace{1em}title.text & title of chart. Default "".\\
+\hspace{1em}title.font & font of chart title. Default `normal 16px Arial`.\\
+\hspace{1em}title.color & color of chart title. Default `\#424242`.\\
+\hspace{1em}title.alignment & text alignment of chart title (start/middle/end). Default `middle`.\\
+\hspace{1em}title.dy & text adjustment of chart title. Default `0.35em`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Chart legend settings}}\\
+\hspace{1em}legend & if show legend. Default `TRUE`.\\
+\hspace{1em}legend.margin & legend margin in \_list\_ format. Default `list(left = 10, right = 0, top = 5, bottom = 5)`.\\
+\hspace{1em}legend.interactive & legend interactive mode. Default `TRUE`.\\
+\hspace{1em}legend.title & legend title. If `NA`, use factor name as `factor.col`. Default is `NA`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Brush selection tool settings}}\\
+\hspace{1em}brush & if show brush. Default `TRUE`.\\
+\hspace{1em}brush.selection.background & background color of selection brush. Default `\#666`.\\
+\hspace{1em}brush.selection.opacity & background opacity of selection brush. Default `0.2`.\\
+\hspace{1em}brush.border.color & border color of selection brush. Default `\#969696`.\\
+\hspace{1em}brush.handler.color & color of left and right handlers of selection brush. Default `\#333`.\\
+\hspace{1em}brush.border.width & border width of selection brush. Default `1`.\\
+\addlinespace[0.3em]
+\multicolumn{2}{l}{\textbf{Tooltip and zoom tools}}\\
+\hspace{1em}tooltip & if show tooltip. Default `TRUE`.\\
+\hspace{1em}zoom & if enable zoom feature. Default `TRUE`.\\
+\bottomrule
+\end{longtabu}
+
+\hyperref[top]{↥ back to top}
+
+\subsection{\texorpdfstring{ Save chart as
+HTML}{ Save chart as HTML}}\label{save-chart-as-html}
+
+\texttt{g3Lollipop} also renders two buttons over the lollipop-diagram,
+allowing to save the resulting chart in PNG or vector-based SVG file. To
+save chart programmatically as HTML, you can use
+\texttt{htmlwidgets::saveWidget} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{chart }\OtherTok{\textless{}{-}} \FunctionTok{g3Lollipop}\NormalTok{(mutation.dat,}
+                    \AttributeTok{gene.symbol =} \StringTok{"TP53"}\NormalTok{,}
+                    \AttributeTok{protein.change.col =} \StringTok{"amino\_acid\_change"}\NormalTok{,}
+                    \AttributeTok{plot.options =}\NormalTok{ plot.options)}
+\NormalTok{htmlwidgets}\SpecialCharTok{::}\FunctionTok{saveWidget}\NormalTok{(chart, }\StringTok{"g3lollipop\_chart.html"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hyperref[top]{↥ back to top}
+
+\section{Session Info}\label{session-info}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sessionInfo}\NormalTok{()}
+\CommentTok{\#\textgreater{} R version 4.4.0 (2024{-}04{-}24)}
+\CommentTok{\#\textgreater{} Platform: x86\_64{-}apple{-}darwin20}
+\CommentTok{\#\textgreater{} Running under: macOS Sonoma 14.5}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} Matrix products: default}
+\CommentTok{\#\textgreater{} BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib }
+\CommentTok{\#\textgreater{} LAPACK: /Library/Frameworks/R.framework/Versions/4.4{-}x86\_64/Resources/lib/libRlapack.dylib;  LAPACK version 3.12.0}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} locale:}
+\CommentTok{\#\textgreater{} [1] en\_US.UTF{-}8/en\_US.UTF{-}8/en\_US.UTF{-}8/C/en\_US.UTF{-}8/en\_US.UTF{-}8}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} time zone: America/Los\_Angeles}
+\CommentTok{\#\textgreater{} tzcode source: internal}
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} attached base packages:}
+\CommentTok{\#\textgreater{} [1] stats4    stats     graphics  grDevices utils     datasets  methods   base     }
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} other attached packages:}
+\CommentTok{\#\textgreater{}  [1] g3viz\_1.2.0                 kableExtra\_1.4.0            knitr\_1.47                  cBioPortalData\_2.16.0      }
+\CommentTok{\#\textgreater{}  [5] MultiAssayExperiment\_1.30.2 SummarizedExperiment\_1.34.0 Biobase\_2.64.0              GenomicRanges\_1.56.1       }
+\CommentTok{\#\textgreater{}  [9] GenomeInfoDb\_1.40.1         IRanges\_2.38.0              S4Vectors\_0.42.0            BiocGenerics\_0.50.0        }
+\CommentTok{\#\textgreater{} [13] MatrixGenerics\_1.16.0       matrixStats\_1.3.0           AnVIL\_1.16.0                dplyr\_1.1.4                }
+\CommentTok{\#\textgreater{} [17] rmarkdown\_2.27             }
+\CommentTok{\#\textgreater{} }
+\CommentTok{\#\textgreater{} loaded via a namespace (and not attached):}
+\CommentTok{\#\textgreater{}   [1] rstudioapi\_0.16.0         jsonlite\_1.8.8            magrittr\_2.0.3            GenomicFeatures\_1.56.0   }
+\CommentTok{\#\textgreater{}   [5] fs\_1.6.4                  BiocIO\_1.14.0             zlibbioc\_1.50.0           vctrs\_0.6.5              }
+\CommentTok{\#\textgreater{}   [9] memoise\_2.0.1             Rsamtools\_2.20.0          RCurl\_1.98{-}1.14           tinytex\_0.51             }
+\CommentTok{\#\textgreater{}  [13] webshot\_0.5.5             usethis\_2.2.3             htmltools\_0.5.8.1         S4Arrays\_1.4.1           }
+\CommentTok{\#\textgreater{}  [17] BiocBaseUtils\_1.6.0       lambda.r\_1.2.4            curl\_5.2.1                SparseArray\_1.4.8        }
+\CommentTok{\#\textgreater{}  [21] sass\_0.4.9                bslib\_0.7.0               desc\_1.4.3                htmlwidgets\_1.6.4        }
+\CommentTok{\#\textgreater{}  [25] testthat\_3.2.1.1          futile.options\_1.0.1      cachem\_1.1.0              GenomicAlignments\_1.40.0 }
+\CommentTok{\#\textgreater{}  [29] mime\_0.12                 lifecycle\_1.0.4           pkgconfig\_2.0.3           Matrix\_1.7{-}0             }
+\CommentTok{\#\textgreater{}  [33] R6\_2.5.1                  fastmap\_1.2.0             rcmdcheck\_1.4.0           GenomeInfoDbData\_1.2.12  }
+\CommentTok{\#\textgreater{}  [37] shiny\_1.8.1.1             digest\_0.6.36             colorspace\_2.1{-}0          RaggedExperiment\_1.28.0  }
+\CommentTok{\#\textgreater{}  [41] ps\_1.7.7                  AnnotationDbi\_1.66.0      rprojroot\_2.0.4           pkgload\_1.4.0            }
+\CommentTok{\#\textgreater{}  [45] RSQLite\_2.3.7             filelock\_1.0.3            RTCGAToolbox\_2.34.0       fansi\_1.0.6              }
+\CommentTok{\#\textgreater{}  [49] RJSONIO\_1.3{-}1.9           httr\_1.4.7                abind\_1.4{-}5               compiler\_4.4.0           }
+\CommentTok{\#\textgreater{}  [53] remotes\_2.5.0             withr\_3.0.0               bit64\_4.0.5               BiocParallel\_1.38.0      }
+\CommentTok{\#\textgreater{}  [57] DBI\_1.2.3                 pkgbuild\_1.4.4            highr\_0.11                sessioninfo\_1.2.2        }
+\CommentTok{\#\textgreater{}  [61] rappdirs\_0.3.3            DelayedArray\_0.30.1       rjson\_0.2.21              tools\_4.4.0              }
+\CommentTok{\#\textgreater{}  [65] httpuv\_1.6.15             glue\_1.7.0                callr\_3.7.6               restfulr\_0.0.15          }
+\CommentTok{\#\textgreater{}  [69] promises\_1.3.0            grid\_4.4.0                generics\_0.1.3            tzdb\_0.4.0               }
+\CommentTok{\#\textgreater{}  [73] tidyr\_1.3.1               data.table\_1.15.4         hms\_1.1.3                 xml2\_1.3.6               }
+\CommentTok{\#\textgreater{}  [77] utf8\_1.2.4                XVector\_0.44.0            pillar\_1.9.0              stringr\_1.5.1            }
+\CommentTok{\#\textgreater{}  [81] later\_1.3.2               BiocFileCache\_2.12.0      lattice\_0.22{-}6            rtracklayer\_1.64.0       }
+\CommentTok{\#\textgreater{}  [85] bit\_4.0.5                 tidyselect\_1.2.1          Biostrings\_2.72.1         miniUI\_0.1.1.1           }
+\CommentTok{\#\textgreater{}  [89] svglite\_2.1.3             futile.logger\_1.4.3       xfun\_0.45                 brio\_1.1.5               }
+\CommentTok{\#\textgreater{}  [93] devtools\_2.4.5            DT\_0.33                   stringi\_1.8.4             UCSC.utils\_1.0.0         }
+\CommentTok{\#\textgreater{}  [97] xopen\_1.0.1               yaml\_2.3.8                evaluate\_0.24.0           codetools\_0.2{-}20         }
+\CommentTok{\#\textgreater{} [101] tibble\_3.2.1              cli\_3.6.3                 systemfonts\_1.1.0         xtable\_1.8{-}4             }
+\CommentTok{\#\textgreater{} [105] processx\_3.8.4            roxygen2\_7.3.2            munsell\_0.5.1             jquerylib\_0.1.4          }
+\CommentTok{\#\textgreater{} [109] Rcpp\_1.0.12               GenomicDataCommons\_1.28.0 dbplyr\_2.5.0              png\_0.1{-}8                }
+\CommentTok{\#\textgreater{} [113] XML\_3.99{-}0.17             rapiclient\_0.1.5          parallel\_4.4.0            ellipsis\_0.3.2           }
+\CommentTok{\#\textgreater{} [117] TCGAutils\_1.24.0          readr\_2.1.5               blob\_1.2.4                prettyunits\_1.2.0        }
+\CommentTok{\#\textgreater{} [121] profvis\_0.3.8             urlchecker\_1.0.1          bitops\_1.0{-}7              viridisLite\_0.4.2        }
+\CommentTok{\#\textgreater{} [125] scales\_1.3.0              purrr\_1.0.2               crayon\_1.5.3              rlang\_1.1.4              }
+\CommentTok{\#\textgreater{} [129] KEGGREST\_1.44.1           rvest\_1.0.4               formatR\_1.14}
+\end{Highlighting}
+\end{Shaded}
+
+\hyperref[top]{↥ back to top}
+
+\end{document}
