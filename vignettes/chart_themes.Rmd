@@ -1,6 +1,6 @@
 ---
 title: "G3viz: chart themes"
-author: "g3viz maintaining group <g3viz.group at gmail.com>"
+author: "g3viz development group <g3viz.group at gmail.com>"
 date: "2024-07-27"
 output:
   html_document:
