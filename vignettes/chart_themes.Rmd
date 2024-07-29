@@ -1,7 +1,7 @@
 ---
 title: "G3viz: chart themes"
-author: "Xin Guo <g3viz.group at gmail.com>"
-date: "2019-04-06"
+author: "g3viz maintaining group <g3viz.group at gmail.com>"
+date: "2024-07-27"
 output:
   html_document:
     df_print: kable
