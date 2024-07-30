@@ -49,6 +49,8 @@ Guo, X., *et al*. (2020). G3viz: an R package to interactively visualize genetic
 ## What's new
 
 1.2.0 
+  - [x] Updated Pfam (v37.0) (date: 2024-07-29)
+  - [x] Updated UniProtKB (date: 2024-07-29)
   - [x] Updated `hgnc2pfam.df.rda` (date: 2024-07-29)
 
 1.1.5 
