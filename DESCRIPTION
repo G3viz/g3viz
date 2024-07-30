@@ -37,4 +37,3 @@ Suggests:
 URL: https://github.com/G3viz/g3viz
 BugReports: https://github.com/G3viz/g3viz/issues
 RoxygenNote: 7.3.2
-VignetteBuilder: knitr
