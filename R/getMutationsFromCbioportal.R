@@ -10,7 +10,7 @@
 #'   See \code{\link{mapMutationTypeToMutationClass}} for details. Default
 #'   \code{NA}, which indicates to use default mappings.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Usage:
 #' # cBioPortalData has officially replaced the defunct cgdsr.
 #' # Search online for cgdsrMigration.html if interested.

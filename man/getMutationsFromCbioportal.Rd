@@ -45,7 +45,7 @@ Retrieve and parse mutation data from cBioPortal by the given
   cBioPortal cancer study ID and the gene symbol.
 }
 \examples{
-\dontrun{
+\donttest{
 # Usage:
 # cBioPortalData has officially replaced the defunct cgdsr.
 # Search online for cgdsrMigration.html if interested.
