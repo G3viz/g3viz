@@ -15,7 +15,7 @@
 #' # cBioPortalData has officially replaced the defunct cgdsr.
 #' # Search online for cgdsrMigration.html if interested.
 #' library(cBioPortalData)
-#' cbio <- cBioPortal()
+#' cbio <- suppressWarnings(cBioPortal(hostname = "www.cbioportal.org", protocol = "https", api. = "/api/v2/api-docs")
 #'
 #' # list all studies of cBioPortal
 #' all.studies <- getStudies(cbio, buildReport = FALSE)
