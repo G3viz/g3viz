@@ -53,11 +53,32 @@ getMutationsFromCbioportal <- function(study.id,
 
   # ========================
   # server
-  cbio <- cBioPortal()
+  # cbio <- cBioPortal()
+  # cbio <- suppressWarnings({
+  #   cBioPortal(
+  #    hostname = "www.cbioportal.org",
+  #     protocol = "https",
+  #     api. = "/api/v2/api-docs"
+  #   )
+  # })
+
+  cbio <- tryCatch({
+    cBioPortal(
+      hostname = "www.cbioportal.org",
+      protocol = "https",
+      api. = "/api/v2/api-docs"
+    )
+  }, warning = function(w){
+    # message(w)
+  }, error = function(e){
+    stop("Connection error: can not connect to cBioPortal API")
+  }, finally = {
+    #
+  })
 
   # ========================
   # get study information
-  genetic.profiles <- molecularProfiles(cbio,studyId = study.id)
+  genetic.profiles <- molecularProfiles(cbio, studyId = study.id)
   message("Found study ", study.id)
 
   # ========================
@@ -71,7 +92,6 @@ getMutationsFromCbioportal <- function(study.id,
   message("Found mutation data set ", mutation.profile)
 
   # ========================
-
   case.list.details <- sampleLists(cbio, study.id)
 
   mutation.case.list.id <- case.list.details$sampleListId

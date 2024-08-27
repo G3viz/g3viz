@@ -1,3 +1,7 @@
+## Version 1.2.0 
+  - Updated Pfam (v37.0) (date: 2024-07-29)
+  - Updated UniProtKB (date: 2024-07-29)
+
 ## Version 1.15 (2022/06/30)
   - Updated `hgnc2pfam.df.rda` data
   - Remove cgdsr dependencies; add cBioPortalData as the substitution

@@ -14,6 +14,18 @@ Authors@R: c(
       family = "Zhang", 
       email = "g3viz.group@gmail.com", 
       role = c("ctb")
+    ),
+    person(
+      given = "Ruining",
+      family = "Zhu", 
+      email = "g3viz.group@gmail.com", 
+      role = c("ctb")
+    ),
+    person(
+      given = "Feng",
+      family = "Zhao", 
+      email = "g3viz.group@gmail.com", 
+      role = c("ctb")
     ))
 Maintainer: Xin Guo <g3viz.group@gmail.com>
 Description: Interface for 'g3-lollipop' 'JavaScript' library.
@@ -22,7 +34,7 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Depends:
-    R (>= 3.5.0)
+    R (>= 4.2.0)
 biocViews:
 Imports:
     jsonlite,
