@@ -254,14 +254,6 @@ g3Lollipop(mutation.dat,
 - Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/).  This may take more than 10 seconds, or sometimes it may fail.
 - To check what studies are available on cBioPortal
 - `cBioPortalData` or `cBioPortal` R packages are not stable recently. Therefore, we query the mutation data from `cBioPortal` directly using API. This feature may change in later version.
-```r
-
-# list all studies of cBioPortal
-all.studies <- getStudies(cbio, buildReport = FALSE)
-
-# Pick up a cancer study (studyId) with mutation data (gene symbol)
-mutation.dat <- g3viz::getMutationsFromCbioportal("all_stjude_2016", "TP53")
-```
 
 [↥ back to top](#top)
 
@@ -288,7 +280,7 @@ In `g3viz`, annotated mutation data can be loaded in three ways
 
 ## <a name="mutation"></a>Map mutation type to mutation class
 
-In addtion to reading mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type to mutation class and generate a `Mutation_Class` column by default.  Mutation type is usually in the column of `Variant_Classification` or `Mutation_Type`.  The default mapping table is,
+In addition to reading mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type to mutation class and generate a `Mutation_Class` column by default.  Mutation type is usually in the column of `Variant_Classification` or `Mutation_Type`.  The default mapping table is,
 
 ```{r, include=TRUE, echo=FALSE}
 mutation.mapping.df = read.table("tables/mutation_mapping.tsv", sep="\t", header=TRUE, quote="")
@@ -309,7 +301,7 @@ kable(mutation.mapping.df) %>%
 Given a [HUGO](https://www.genenames.org/) gene symbol, users can either use `hgnc2pfam` function to retrieve [Pfam](https://pfam.xfam.org/) protein domain information first or use all-in-one `g3Lollipop` function to directly create lollipop-diagram.  In case that the given gene has multiple isoforms, `hgnc2pfam` returns all [UniProt](https://www.uniprot.org/) entries, and users can specify one using the corresponding `UniProt` entry.  If attribute `guess` is `TRUE`, the Pfam domain information of the longest UniProt entry is returned.
 
 ```{r, include = TRUE}
-# Example 1: TP53 has single UniProt entry
+# Example 1: TP53 has a single UniProt entry
 hgnc2pfam("TP53", output.format = "list")
 
 # Example 2: GNAS has multiple UniProt entries
@@ -333,7 +325,7 @@ The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *s
 
 ## <a name="schemes"></a> Color schemes
 
-[Figure 1](#color_scheme_fig1) demonstrates all color schemes that `g3viz` supports for lollipop-pops and Pfam domains.  More demos are available at [demo 1](https://bl.ocks.org/phoeguo/raw/2868503a074a6441b5ae6d987f150d48/), [demo 2](https://bl.ocks.org/phoeguo/raw/de79b9ce9bda958173af9891ab7aec93/), and [demo 3](https://bl.ocks.org/phoeguo/raw/81dffe0c7c6c8caae06f6a5f60c70d19/).
+[Figure 1](#color_scheme_fig1) demonstrates all color schemes that `g3viz` supports for lollipop-pops and Pfam domains.
 
 <a name="color_scheme_fig1"></a>
 ```{r, chunk-label, out.width = "620px", fig.align='center', fig.cap='**Figure 1.** List of color schemes supported by `g3viz`', echo = FALSE}
