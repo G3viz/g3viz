@@ -29,7 +29,7 @@ Authors@R: c(
     ))
 Maintainer: Xin Guo <g3viz.group@gmail.com>
 Description: Interface for 'g3-lollipop' 'JavaScript' library.
-    Visualize genetic mutation data using an interactive lollipop diagram in RStudio or your web browser.
+    Visualize genetic mutation data using an interactive lollipop diagram in 'RStudio' or your web browser.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true

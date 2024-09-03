@@ -2,7 +2,7 @@
 title: 'G3viz: an R package to interactively visualize genetic mutation data using
   a lollipop-diagram'
 author: "g3viz development group <g3viz.group at gmail.com>"
-date: '2024-07-28'
+date: '2024-09-03'
 output:
   html_document:
     df_print: kable
@@ -37,26 +37,26 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-# <a name="introduction"></a>Introduction
+# Introduction {#introduction}
 
 Intuitively and effectively visualizing genetic mutation data can help researchers to better understand genomic data and validate findings.  `G3viz` is an R package which provides an easy-to-use lollipop-diagram tool.  It enables users to interactively visualize detailed translational effect of genetic mutations in RStudio or a web browser, without having to know any HTML5/JavaScript technologies.
 
 The features of `g3viz` include
 
-- Interactive (zoom & pan, tooltip, brush selection tool, and interactive legend)
-- Highlight and label positional mutations
-- 8 ready-to-use [chart themes](#themes)
-- Highly customizable with over 50 [chart options](#options) and over 35 [color schemes](#schemes)
-- Save charts in PNG or high-quality SVG format
-- Built-in function to retrieve [protein domain information](#pfam) and resolve gene isoforms
-- Built-in function to [map genetic mutation type (a.k.a, variant classification) to mutation class](#mutation)
+- Interactive features including zoom & pan, tooltips, brush selection, and interactive legends.
+- Capability to highlight and label positional mutations.
+- 8 ready-to-use [chart themes](chart_themes.html).
+- Highly customizable with over 50 [chart options](#options) and more than 35 [color schemes](#schemes).
+- Ability to save charts in PNG or high-quality SVG formats.
+- Built-in functions to retrieve [protein domain information](#pfam) and resolve gene isoforms.
+- Built-in function to [map genetic mutation type (a.k.a, variant classification) to mutation class](#mutation).
+- Integrated support for retrieving cancer mutation data from [cBioPortal](https://www.cbioportal.org/) via API and visualizing it.
 
 [↥ back to top](#top)
 
 
 
-# <a name="install"></a>Install `g3viz`
+# Install `g3viz` {#install}
 Install from R repository
 ```r
 # install package
@@ -77,14 +77,14 @@ devtools::install_github("g3viz/g3viz")
 
 
 
-# <a name="quickstart"></a>Quick Start
+# Quick Start {#quickstart}
 
 ```{r include = TRUE, message=FALSE, eval=FALSE}
 # load g3viz package
 library(g3viz)
 ```
 
-## <a name="ex1"></a>Example 1: Visualize genetic mutation data from `MAF` file
+## Example 1: Visualize genetic mutation data from `MAF` file {#ex1}
 
 Mutation Annotation Format ([MAF](https://docs.gdc.cancer.gov/Data/File_Formats/MAF_Format/)) is a commonly-used tab-delimited text file for storing aggregated mutation information.  It could be generated from [VCF](https://docs.gdc.cancer.gov/Data/File_Formats/VCF_Format/) file using tools like [vcf2maf](https://github.com/mskcc/vcf2maf).  Translational effect of variant alleles in `MAF` files are usually in the column named `Variant_Classification` or `Mutation_Type` (_i.e._, `Frame_Shift_Del`, `Split_Site`).  In this example, the somatic mutation data of the *TCGA-BRCA* study was originally downloaded from the [GDC Data Portal](https://portal.gdc.cancer.gov/projects/TCGA-BRCA).
 
@@ -103,7 +103,7 @@ maf.file <- system.file("extdata", "TCGA.BRCA.varscan.somatic.maf.gz", package =
 # ============================================
 mutation.dat <- readMAF(maf.file)
 ```
-<a name="default_theme"></a>
+
 ```{r include = TRUE}
 # ============================================
 # Chart 1
@@ -117,17 +117,15 @@ g3Lollipop(mutation.dat,
            plot.options = chart.options,
            output.filename = "default_theme")
 ```
-<a name="nature_theme"></a>
-
 [↥ back to top](#top)
 
 
-## <a name="ex2"></a>Example 2: visualize genetic mutation data from `CSV` or `TSV` file
+
+## Example 2: visualize genetic mutation data from `CSV` or `TSV` file {#ex2}
 
 In this example, we read genetic mutation data from `CSV` or `TSV` files, and visualize it using some
-customized [chart options](#options).  Note this is equivalent to *dark* chart theme.
+customizable [chart options](#options).  Note this is equivalent to *dark* chart theme.
 
-<a name="customized"></a>
 ```{r include=TRUE}
 # load data
 mutation.csv <- system.file("extdata", "ccle.csv", package = "g3viz")
@@ -222,18 +220,14 @@ g3Lollipop(mutation.dat,
 
 
 
-
-
-
-## <a name="ex3"></a>Example 3: visualize genetic mutation data from `cBioPortal`
+## Example 3: visualize genetic mutation data from `cBioPortal` {#ex3}
 
 [cBioPortal](http://www.cbioportal.org/) provides download for many cancer genomics data sets.
 `g3viz` has a convenient way to retrieve data directly from this portal.
 
 In this example, we first retrieve genetic mutation data of `TP53` gene for the [msk\_impact\_2017](https://pubmed.ncbi.nlm.nih.gov/28481359/) study,
-and then visualize the data using the built-in `cbioportal` theme, to miminc cBioPortal's [mutation_mapper](https://www.cbioportal.org/mutation_mapper).
+and then visualize the data using the built-in `cbioportal` theme, to mimic cBioPortal [mutation_mapper](https://www.cbioportal.org/mutation_mapper).
 
-<a name="cbioportal_theme"></a>
 ```{r include=TRUE}
 # Retrieve mutation data of "msk_impact_2017" from cBioPortal
 mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
@@ -251,20 +245,17 @@ g3Lollipop(mutation.dat,
 ```
 
 #### Note:
-- Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/).  This may take more than 10 seconds, or sometimes it may fail.
-- To check what studies are available on cBioPortal
-- `cBioPortalData` or `cBioPortal` R packages are not stable recently. Therefore, we query the mutation data from `cBioPortal` directly using API. This feature may change in later version.
+- Internet access is required to download mutation data from [cBioPortal](http://www.cbioportal.org/). This may take more than 10 seconds; sometimes it may fail.
+- Check available studies on [cBioPortal](http://www.cbioportal.org/)
+- R packages of `cBioPortalData` or `cBioPortal` are not stable recently. Therefore, we query the mutation data from `cBioPortal` directly using its API. This feature is subject to change in later versions.
 
 [↥ back to top](#top)
 
 
 
+# Usage {#usage}
 
-
-
-# <a name="usage"></a>Usage
-
-## <a name="readdata"></a>Read data
+## Read data {#readdata}
 
 In `g3viz`, annotated mutation data can be loaded in three ways
 
@@ -278,7 +269,7 @@ In `g3viz`, annotated mutation data can be loaded in three ways
 
 
 
-## <a name="mutation"></a>Map mutation type to mutation class
+## Map mutation type to mutation class {#mutation}
 
 In addition to reading mutation data, `readMAF` or `getMutationFromCbioportal` functions also map mutation type to mutation class and generate a `Mutation_Class` column by default.  Mutation type is usually in the column of `Variant_Classification` or `Mutation_Type`.  The default mapping table is,
 
@@ -291,14 +282,12 @@ kable(mutation.mapping.df) %>%
   pack_rows("Truncating", 6, 12)  %>%
   pack_rows("Other", 13, 28)
 ```
-
-
 [↥ back to top](#top)
 
 
 
-## <a name="pfam"></a>Retrieve Pfam domain inforamtion
-Given a [HUGO](https://www.genenames.org/) gene symbol, users can either use `hgnc2pfam` function to retrieve [Pfam](https://pfam.xfam.org/) protein domain information first or use all-in-one `g3Lollipop` function to directly create lollipop-diagram.  In case that the given gene has multiple isoforms, `hgnc2pfam` returns all [UniProt](https://www.uniprot.org/) entries, and users can specify one using the corresponding `UniProt` entry.  If attribute `guess` is `TRUE`, the Pfam domain information of the longest UniProt entry is returned.
+## Retrieve Pfam domain inforamtion {#pfam}
+Given a [HUGO](https://www.genenames.org/) gene symbol, users can use either `hgnc2pfam` function to retrieve [Pfam](https://pfam.xfam.org/) protein domain information first or all-in-one `g3Lollipop` function to directly create lollipop-diagram.  In case that the given gene has multiple isoforms, `hgnc2pfam` returns all [UniProt](https://www.uniprot.org/) entries, and users can specify one using the corresponding `UniProt` entry.  If attribute `guess` is `TRUE`, the Pfam domain information of the longest UniProt entry is returned.
 
 ```{r, include = TRUE}
 # Example 1: TP53 has a single UniProt entry
@@ -314,8 +303,7 @@ hgnc2pfam("GNAS", guess = TRUE)
 
 
 
-
-## <a name="themes"></a> Chart themes
+## Chart themes {#themes}
 
 The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *simple*, *cbioportal*, *nature*, *nature2*, *ggplot2*, and *dark*.  Check [this tutorial](chart_themes.html) for examples and usage.
 
@@ -323,20 +311,19 @@ The `g3viz` package contains 8 ready-to-use chart schemes: *default*, *blue*, *s
 
 
 
-## <a name="schemes"></a> Color schemes
+## Color schemes {#schemes}
 
 [Figure 1](#color_scheme_fig1) demonstrates all color schemes that `g3viz` supports for lollipop-pops and Pfam domains.
 
-<a name="color_scheme_fig1"></a>
+{#color_scheme_fig1}
 ```{r, chunk-label, out.width = "620px", fig.align='center', fig.cap='**Figure 1.** List of color schemes supported by `g3viz`', echo = FALSE}
 knitr::include_graphics("figures/color_scheme.png")
 ```
-
 [↥ back to top](#top)
 
 
 
-## <a name="options"></a> Chart options
+## Chart options {#options}
 
 Chart options can be specified using `g3Lollipop.options()` function (see [example 2](#ex2)).
 Here is the full list of chart options,
@@ -354,17 +341,11 @@ kable(chart.options.df, caption = "Chart options of `g3viz`") %>%
   pack_rows("Brush selection tool settings", 48, 53) %>%
   pack_rows("Tooltip and zoom tools", 54, 55)
 ```
-
-
-
-
 [↥ back to top](#top)
 
 
 
-
-
-## <a name="save"></a> Save chart as HTML
+## Save chart as HTML {#save}
 
 `g3Lollipop` also renders two buttons over the lollipop-diagram, allowing to save the resulting chart in PNG or vector-based SVG file.
 To save chart programmatically as HTML, you can use `htmlwidgets::saveWidget` function.
@@ -381,9 +362,7 @@ htmlwidgets::saveWidget(chart, "g3lollipop_chart.html")
 
 
 
-
-
-# <a name="sessioninfo"></a>Session Info
+# Session Info {#sessioninfo}
 
 ```{r, include=TRUE}
 sessionInfo()
