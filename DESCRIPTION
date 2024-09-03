@@ -39,7 +39,9 @@ biocViews:
 Imports:
     jsonlite,
     stringr,
-    cBioPortalData,
+    httr2,
+    AnnotationDbi,
+    org.Hs.eg.db,
     htmlwidgets
 Suggests:
     shiny (>= 1.0.0),

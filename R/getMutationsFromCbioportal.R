@@ -12,22 +12,11 @@
 #' @examples
 #' \donttest{
 #' # Usage:
-#' # cBioPortalData has officially replaced the defunct cgdsr.
-#' # Search online for cgdsrMigration.html if interested.
-#' library(cBioPortalData)
-#' cbio <- suppressWarnings(cBioPortal(hostname = "www.cbioportal.org", protocol = "https", api. = "/api/v2/api-docs")
-#'
-#' # list all studies of cBioPortal
-#' all.studies <- getStudies(cbio, buildReport = FALSE)
-#'
-#' # First, select a cancer study that contains mutation data set ("caner_study_id")
-#' # then, query genomic mutation data using a HGNC gene symbol,
-#' # for example
-#' mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
-#' mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
 #' }
-#' @importFrom cBioPortalData cBioPortal molecularProfiles sampleLists getDataByGenes
-#'             samplesInSampleLists
+#' @importFrom httr2 request req_perform resp_status resp_body_string
+#' @importFrom org.Hs.eg.db org.Hs.eg.db
+#' @importFrom AnnotationDbi mapIds
+#' @importFrom jsonlite fromJSON
 #' @importFrom utils write.table
 #'
 #' @return a data frame with columns
@@ -52,104 +41,123 @@ getMutationsFromCbioportal <- function(study.id,
                                        mutation.type.to.class.df = NA){
 
   # ========================
-  # server
-  # cbio <- cBioPortal()
-  # cbio <- suppressWarnings({
-  #   cBioPortal(
-  #    hostname = "www.cbioportal.org",
-  #     protocol = "https",
-  #     api. = "/api/v2/api-docs"
-  #   )
-  # })
+  # cbioportal server
+  base.url = "https://www.cbioportal.org/api/"
 
-  cbio <- tryCatch({
-    cBioPortal(
-      hostname = "www.cbioportal.org",
-      protocol = "https",
-      api. = "/api/v2/api-docs"
-    )
+  # ========================
+  # library(httr2)
+  # library(AnnotationDbi)
+  # library(org.Hs.eg.db)
+
+  # study.id = "msk_impact_2017"
+  # gene.symbol = "TP53"
+
+  # ========================
+  tryCatch({
+    # step 1:
+    # get entrez gene id
+    entrez.id <- suppressMessages(mapIds(
+      org.Hs.eg.db,
+      keys = gene.symbol,
+      column = "ENTREZID",
+      keytype = "SYMBOL",
+      multiVals = "first"
+    ))
+
+    if (!is.na(entrez.id)) {
+      message(paste0("The Entrez Gene ID for ", gene.symbol, " is: ", entrez.id))
+    } else {
+      stop(paste0("[Error] No Entrez Gene ID found for ", gene.symbol))
+    }
+
+    entrez.id = as.character(entrez.id)
+
+    # step2:
+    # check if mutation information is available in the study
+    response <- request(paste0(base.url, "studies/", study.id, "/molecular-profiles")) |>
+      req_perform()
+    status_code <- resp_status(response)
+
+    if(status_code != 200){
+      stop("Can not find Mutation data for this study: ", study.id)
+    }
+
+    res_dataset_df <- response |>
+      resp_body_string() |>
+      fromJSON()
+
+    if(!"MAF" %in% res_dataset_df$datatype){
+      stop("Failed to retrieve data from cBioPortal. Status_cod = ", status_code)
+    }
+
+    # check if mutation dataset exists for this study
+    maf_col_idx = which(res_dataset_df$datatype == "MAF")
+    maf_study_name = res_dataset_df[maf_col_idx, "molecularProfileId"]
+    message("Found mutation dataset for ", study.id, ": ", maf_study_name)
+
+    all.sample.name = paste0(study.id, "_all")
+
+    # get mutation data
+    mutation_cmd = paste0(
+      base.url, "molecular-profiles/", maf_study_name, "/mutations?sampleListId=",
+      all.sample.name, "&entrezGeneId=", entrez.id)
+
+    response2 <- request(mutation_cmd) |> httr2::req_perform()
+    status_code2 <- resp_status(response2)
+
+    if(status_code2 != 200){
+      stop("[Error] can not query mutation data from cBioportal API for the study: ", study.id)
+    }
+
+    # ---------------------------
+    mutation.df <- response2 |>
+      resp_body_string() |>
+      fromJSON()
+
+    mutation.df$geneSymbol <- gene.symbol
+    required.colnames <- c("geneSymbol", "proteinChange", "sampleId", "mutationType",
+                           "chr", "proteinPosStart", "proteinPosEnd",
+                           "referenceAllele", "variantAllele")
+
+    mapped.colnames <- c("Hugo_Symbol", "Protein_Change", "Sample_ID", "Mutation_Type",
+                         "Chromosome", "Start_Position", "End_Position",
+                         "Reference_Allele", "Variant_Allele")
+
+    # check if any columns are missing
+    if(!all(required.colnames %in% colnames(mutation.df))){
+      missing.columns <- all(required.colnames %in% colnames(mutation.df))
+      stop("[Error] Some columns are missing: ", paste(missing.columns, collapse =", "))
+    }
+
+    # rename headers according to cbioportal MutationMapper
+    # url: http://www.cbioportal.org/mutation_mapper.jsp
+    mutation.df <- mutation.df[, required.colnames]
+    colnames(mutation.df) <- mapped.colnames
+
+    # =============================
+    # map from mutation type to mutation class
+    mutation.df[, "Mutation_Class"] <- mapMutationTypeToMutationClass(
+      mutation.df[, "Mutation_Type"],
+      mutation.type.to.class.df)
+
+    # =============================
+    # parse amino acid position
+    mutation.df[, "AA_Position"] <- parseProteinChange(mutation.df[, "Protein_Change"],
+                                                       mutation.df[, "Mutation_Class"])
+
+    mutation.df <- mutation.df[order(mutation.df[, "AA_Position"],
+                                     mutation.df[, "Protein_Change"], decreasing = FALSE), ]
+
+    if(!is.na(output.file)){
+      message("Write mutation data to ", output.file)
+      write.table(mutation.df, file = output.file, sep = "\t", quote = FALSE, col.names = TRUE, row.names = FALSE)
+    }
+
+    return(mutation.df)
   }, warning = function(w){
-    # message(w)
+    stop("[Warning] ", w)
   }, error = function(e){
-    stop("Connection error: can not connect to cBioPortal API")
+    stop("[Error] ", e)
   }, finally = {
-    #
   })
-
-  # ========================
-  # get study information
-  genetic.profiles <- molecularProfiles(cbio, studyId = study.id)
-  message("Found study ", study.id)
-
-  # ========================
-  # check if mutation information is available in the study
-  profile.col <- "molecularProfileId"
-  mutation.idx <- grep(pattern = 'mutations$', x = genetic.profiles$molecularProfileId, fixed = FALSE)
-  if(is.integer(mutation.idx) && length(mutation.idx) == 0L){
-    stop("Can not find mutation information in ", study.id, " study")
-  }
-  mutation.profile <- genetic.profiles$molecularProfileId[mutation.idx]
-  message("Found mutation data set ", mutation.profile)
-
-  # ========================
-  case.list.details <- sampleLists(cbio, study.id)
-
-  mutation.case.list.id <- case.list.details$sampleListId
-
-  mutation.case.list.all <- mutation.case.list.id[grep(pattern = '_sequenced$',x = mutation.case.list.id)]
-  num.case <- length(samplesInSampleLists(cbio,mutation.case.list.id)[[mutation.case.list.all]])
-  message(num.case, " cases in this study")
-
-  ### Download mutation data on certain gene from study
-  df <- getDataByGenes(
-        cbio,
-        studyId = study.id,
-        genes = gene.symbol,
-        by = "hugoGeneSymbol",
-        molecularProfileIds = mutation.profile
-      )[[1]]
-
-  extended.mutation.df <- cbind(rep(gene.symbol,nrow(df)),df)
-  colnames(extended.mutation.df) <- c("gene_symbol",colnames(df))
-  # =========================
-  # parse mutation data columns
-  required.colnames <- c("gene_symbol", "proteinChange", "sampleId", "mutationType",
-                         "chr", "startPosition", "endPosition",
-                         "referenceAllele", "variantAllele")
-
-  mapped.colnames <- c("Hugo_Symbol", "Protein_Change", "Sample_ID", "Mutation_Type",
-                       "Chromosome", "Start_Position", "End_Position",
-                       "Reference_Allele", "Variant_Allele")
-
-  # check if any columns are missing
-  missing.columns <- required.colnames[!required.colnames %in% colnames(extended.mutation.df)]
-  if(length(missing.columns) > 0){
-    stop("Some columns are missing: ", paste(missing.columns, collapse =", "))
-  }
-
-  # rename headers according to cbioportal MutationMapper
-  # url: http://www.cbioportal.org/mutation_mapper.jsp
-  mutation.df <- extended.mutation.df[, required.colnames]
-  colnames(mutation.df) <- mapped.colnames
-
-
-  # =============================
-  # map from mutation type to mutation class
-  mutation.df[, "Mutation_Class"] <- mapMutationTypeToMutationClass(mutation.df[, "Mutation_Type"],
-                                                                      mutation.type.to.class.df)
-
-  # =============================
-  # parse amino acid position
-  mutation.df[, "AA_Position"] <- parseProteinChange(mutation.df[, "Protein_Change"],
-                                                  mutation.df[, "Mutation_Class"])
-
-  mutation.df <- mutation.df[order(mutation.df[, "AA_Position"],
-                                   mutation.df[, "Protein_Change"], decreasing = FALSE), ]
-
-  if(!is.na(output.file)){
-    message("Write mutation data to ", output.file)
-    write.table(mutation.df, file = output.file, sep = "\t", quote = FALSE, col.names = TRUE, row.names = FALSE)
-  }
-
-  mutation.df
 }

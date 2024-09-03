@@ -122,8 +122,6 @@ g3Lollipop(mutation.dat,
 [↥ back to top](#top)
 
 
-
-
 ## <a name="ex2"></a>Example 2: visualize genetic mutation data from `CSV` or `TSV` file
 
 In this example, we read genetic mutation data from `CSV` or `TSV` files, and visualize it using some
@@ -255,6 +253,7 @@ g3Lollipop(mutation.dat,
 #### Note:
 - Internet access is required to download data from [cBioPortal](http://www.cbioportal.org/).  This may take more than 10 seconds, or sometimes it may fail.
 - To check what studies are available on cBioPortal
+- `cBioPortalData` or `cBioPortal` R packages are not stable recently. Therefore, we query the mutation data from `cBioPortal` directly using API. This feature may change in later version.
 ```r
 
 # list all studies of cBioPortal

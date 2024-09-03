@@ -47,18 +47,5 @@ Retrieve and parse mutation data from cBioPortal by the given
 \examples{
 \donttest{
 # Usage:
-# cBioPortalData has officially replaced the defunct cgdsr.
-# Search online for cgdsrMigration.html if interested.
-library(cBioPortalData)
-cbio <- cBioPortal()
-
-# list all studies of cBioPortal
-all.studies <- getStudies(cbio, buildReport = FALSE)
-
-# First, select a cancer study that contains mutation data set ("caner_study_id")
-# then, query genomic mutation data using a HGNC gene symbol,
-# for example
-mutation.dat <- getMutationsFromCbioportal("msk_impact_2017", "TP53")
-mutation.dat <- getMutationsFromCbioportal("all_stjude_2016", "TP53")
 }
 }
