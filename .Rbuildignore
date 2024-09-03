@@ -18,3 +18,4 @@
 ^examples$
 ^R/proteinDomain.R$
 ^LICENSE\.md$
+^vignettes/
