@@ -3,7 +3,7 @@
   **Date: 2024-09-04**
   
   [![Build Status](https://travis-ci.org/G3viz/g3viz.svg?branch=master)](https://travis-ci.org/G3viz/g3viz)
-  [![CRAN_version](http://www.r-pkg.org/badges/version/g3viz)](https://cran.r-project.org/package=g3viz)
+  [![CRAN status](https://www.r-pkg.org/badges/version/g3viz)](https://CRAN.R-project.org/package=g3viz)
   [![CRAN_monthly_download](https://cranlogs.r-pkg.org/badges/g3viz)](https://cran.r-project.org/package=g3viz)
 
 ## Live demo
