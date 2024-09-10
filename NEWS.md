@@ -1,4 +1,4 @@
-## Version 1.2.0 
+## Version 1.2.0 (2024/08/20)
   - Updated Pfam (v37.0) (date: 2024-07-29)
   - Updated UniProtKB (date: 2024-07-29)
 
